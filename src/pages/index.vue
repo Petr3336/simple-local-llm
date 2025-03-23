@@ -112,3 +112,10 @@ onMounted(() => {
     });
 });
 </script>
+
+<style>
+pre {
+  white-space: pre-wrap;      /* Перенос строк при необходимости */
+  word-wrap: break-word;      /* Разрешить перенос длинных слов */
+}
+</style>
