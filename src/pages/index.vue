@@ -5,6 +5,7 @@
         <v-card class="pa-4">
           <v-card-title>Чат с моделью</v-card-title>
           <v-card-text>
+            <!-- Выпадающий список для выбора модели -->
             <v-autocomplete
               v-model="modelParams.model"
               :items="modelsList"
@@ -12,12 +13,8 @@
               dense
             >
               <template #no-data>
-                <p
-                  class="px-4"
-                >
-                  Данная модель не обнаружена среди установленных, при попытке
-                  её использования произойдет попытка её загрузки с серверов
-                  ollama
+                <p class="px-4">
+                  Данная модель не обнаружена среди установленных, при попытке её использования произойдет попытка её загрузки с серверов ollama
                 </p>
               </template>
             </v-autocomplete>
@@ -26,12 +23,13 @@
               label="Введите сообщение"
               dense
             />
-            <v-btn
-              color="primary"
-              @click="startOllama"
-            >
+            <v-btn color="primary" @click="startOllama">
               Отправить
             </v-btn>
+            <!-- Индикатор загрузки, отображается до первого ответа -->
+            <div v-if="isLoading" class="d-flex justify-center my-2">
+              <v-progress-circular indeterminate color="primary" />
+            </div>
           </v-card-text>
           <pre>{{ output }}</pre>
         </v-card>
@@ -71,9 +69,12 @@ const modelParams = ref<ModelParameters>({
 
 const output = ref("");
 const modelsList = ref<string[]>([]);
+const isLoading = ref(false);
 
 // Функция для вызова Tauri-команды с параметрами
 function startOllama() {
+  isLoading.value = true; // включаем индикатор загрузки
+  output.value = "";
   invoke("run_ollama", {
     model: modelParams.value.model,
     prompt: modelParams.value.prompt,
@@ -84,6 +85,10 @@ function startOllama() {
 // Подписка на событие для получения потоковых данных
 onMounted(() => {
   listen("ollama-output", (event) => {
+    // Как только приходит первый ответ — скрываем индикатор загрузки
+    if (isLoading.value) {
+      isLoading.value = false;
+    }
     try {
       // Ожидается, что event.payload является JSON-строкой с полем response
       const parsed = JSON.parse(event.payload as string);
