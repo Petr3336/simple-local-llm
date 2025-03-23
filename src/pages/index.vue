@@ -14,7 +14,8 @@
             >
               <template #no-data>
                 <p class="px-4">
-                  Данная модель не обнаружена среди установленных, при попытке её использования произойдет попытка её загрузки с серверов ollama
+                  Данная модель не обнаружена среди установленных, при попытке её использования произойдет попытка её
+                  загрузки с серверов ollama
                 </p>
               </template>
             </v-autocomplete>
@@ -23,15 +24,33 @@
               label="Введите сообщение"
               dense
             />
-            <v-btn color="primary" @click="startOllama">
+            <v-btn
+              color="primary"
+              @click="startOllama"
+            >
               Отправить
             </v-btn>
             <!-- Индикатор загрузки, отображается до первого ответа -->
-            <div v-if="isLoading" class="d-flex justify-center my-2">
-              <v-progress-circular indeterminate color="primary" />
+            <div
+              v-if="isLoading"
+              class="d-flex justify-center my-4"
+            >
+              <v-progress-circular
+                indeterminate
+                color="primary"
+              />
             </div>
+            <md-preview
+              v-else
+              v-model="output"
+              theme="dark"
+              class="px-16 md-preview mt-2"
+              style="padding-bottom: 19.2px;"
+              language="ru-RU"
+              :code-foldable="false"
+              no-code-header
+            />
           </v-card-text>
-          <pre>{{ output }}</pre>
         </v-card>
       </v-col>
     </v-row>
@@ -42,6 +61,12 @@
 import { ref, onMounted } from "vue";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+
+import { MdPreview } from 'md-editor-v3';
+
+import 'md-editor-v3/lib/style.css';
+import '../plugins/md-editor-config';
+
 
 // Интерфейс для дополнительных параметров модели
 interface LLMOptions {
@@ -67,7 +92,7 @@ const modelParams = ref<ModelParameters>({
   },
 });
 
-const output = ref("");
+const output = ref("```html\n test \n```");
 const modelsList = ref<string[]>([]);
 const isLoading = ref(false);
 
@@ -115,7 +140,33 @@ onMounted(() => {
 
 <style>
 pre {
-  white-space: pre-wrap;      /* Перенос строк при необходимости */
-  word-wrap: break-word;      /* Разрешить перенос длинных слов */
+  white-space: pre-wrap;
+  /* Перенос строк при необходимости */
+  word-wrap: break-word;
+  /* Разрешить перенос длинных слов */
+}
+
+.md-editor {
+  background-color: #00000000;
+}
+
+.md-editor-code-head {
+  display: block !important;
+}
+
+.md-editor-code-action {
+  justify-content: space-between
+}
+
+.md-editor-code-lang {
+  margin-left: 10px;
+}
+
+.md-editor-copy-button {
+  padding-right: 0px !important;
+}
+
+.md-editor-code-flag {
+  display: none;
 }
 </style>
