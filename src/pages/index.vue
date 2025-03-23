@@ -6,51 +6,52 @@
           <v-card-title>Чат с моделью</v-card-title>
           <v-card-text>
             <!-- Выпадающий список для выбора модели -->
-            <v-autocomplete
-              v-model="modelParams.model"
-              :items="modelsList"
-              label="Выберите модель"
-              dense
-            >
-              <template #no-data>
-                <p class="px-4">
-                  Данная модель не обнаружена среди установленных, при попытке её использования произойдет попытка её
-                  загрузки с серверов ollama
-                </p>
-              </template>
-            </v-autocomplete>
-            <v-text-field
-              v-model="modelParams.prompt"
-              label="Введите сообщение"
-              dense
-            />
-            <v-btn
-              color="primary"
-              @click="startOllama"
-            >
-              Отправить
-            </v-btn>
-            <!-- Индикатор загрузки, отображается до первого ответа -->
-            <div
-              v-if="isLoading"
-              class="d-flex justify-center my-4"
-            >
-              <v-progress-circular
-                indeterminate
-                color="primary"
+            <v-form @submit.prevent="startOllama">
+              <v-autocomplete
+                v-model="modelParams.model"
+                :items="modelsList"
+                label="Выберите модель"
+                dense
+              >
+                <template #no-data>
+                  <p class="px-4">
+                    Данная модель не обнаружена среди установленных, при попытке её использования произойдет попытка её
+                    загрузки с серверов ollama
+                  </p>
+                </template>
+              </v-autocomplete>
+              <v-text-field
+                v-model="modelParams.prompt"
+                label="Введите сообщение"
+                dense
               />
-            </div>
-            <md-preview
-              v-else
-              v-model="output"
-              theme="dark"
-              class="px-16 md-preview mt-2"
-              style="padding-bottom: 19.2px;"
-              language="ru-RU"
-              :code-foldable="false"
-              no-code-header
-            />
+              <v-btn
+                color="primary"
+                type="submit"
+              >
+                Отправить
+              </v-btn>
+            </v-form>
           </v-card-text>
+          <div
+            v-if="isLoading"
+            class="d-flex justify-center my-4 mb-14"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            />
+          </div>
+          <md-preview
+            v-else
+            v-model="output"
+            theme="dark"
+            class="px-16 md-preview mt-2"
+            style="padding-bottom: 19.2px;"
+            language="ru-RU"
+            :code-foldable="false"
+            no-code-header
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -92,7 +93,7 @@ const modelParams = ref<ModelParameters>({
   },
 });
 
-const output = ref("```html\n test \n```");
+const output = ref("");
 const modelsList = ref<string[]>([]);
 const isLoading = ref(false);
 
