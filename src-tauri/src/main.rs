@@ -70,12 +70,47 @@ async fn run_ollama(
     Ok(())
 }
 
+/// Команда для получения установленных моделей по эндпоинту /api/tags
+#[tauri::command]
+async fn get_installed_models() -> Result<Vec<String>, String> {
+    let client = Client::new();
+    let response = client
+        .get("http://localhost:11434/api/tags")
+        .send()
+        .await
+        .map_err(|e| e.to_string())?;
+
+    // Определяем структуру ответа
+    #[derive(Deserialize)]
+    struct TagResponse {
+        models: Vec<ModelTag>,
+    }
+    #[derive(Deserialize)]
+    struct ModelTag {
+        name: String,
+        // Остальные поля можно добавить при необходимости
+    }
+
+    let tag_response: TagResponse = response
+        .json()
+        .await
+        .map_err(|e| format!("Ошибка парсинга JSON: {}", e))?;
+
+    // Извлекаем имена моделей
+    let model_names = tag_response
+        .models
+        .into_iter()
+        .map(|tag| tag.name)
+        .collect();
+    Ok(model_names)
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         // Если требуется инициализация плагинов, например, tauri-plugin-websocket, подключите их здесь:
         // .plugin(tauri_plugin_websocket::init())
-        .invoke_handler(tauri::generate_handler![run_ollama])
+        .invoke_handler(tauri::generate_handler![run_ollama, get_installed_models])
         .run(tauri::generate_context!())
         .expect("Ошибка при запуске Tauri-приложения");
 }

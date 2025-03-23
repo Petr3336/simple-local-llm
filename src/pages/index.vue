@@ -5,13 +5,26 @@
         <v-card class="pa-4">
           <v-card-title>Чат с моделью</v-card-title>
           <v-card-text>
-            <v-text-field
+            <v-autocomplete
               v-model="modelParams.model"
-              label="Введите название модели"
-            />
+              :items="modelsList"
+              label="Выберите модель"
+              dense
+            >
+              <template #no-data>
+                <p
+                  class="px-4"
+                >
+                  Данная модель не обнаружена среди установленных, при попытке
+                  её использования произойдет попытка её загрузки с серверов
+                  ollama
+                </p>
+              </template>
+            </v-autocomplete>
             <v-text-field
               v-model="modelParams.prompt"
               label="Введите сообщение"
+              dense
             />
             <v-btn
               color="primary"
@@ -28,9 +41,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import { invoke } from '@tauri-apps/api/core';
-import { listen } from '@tauri-apps/api/event';
+import { ref, onMounted } from "vue";
+import { invoke } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
 
 // Интерфейс для дополнительных параметров модели
 interface LLMOptions {
@@ -48,7 +61,7 @@ interface ModelParameters {
 
 // Инициализируем параметры модели
 const modelParams = ref<ModelParameters>({
-  model: '  ',
+  model: "", // значение будет установлено после загрузки списка моделей
   prompt: 'Say "hello world"!',
   options: {
     num_gpu: 100,
@@ -56,11 +69,12 @@ const modelParams = ref<ModelParameters>({
   },
 });
 
-const output = ref('');
+const output = ref("");
+const modelsList = ref<string[]>([]);
 
 // Функция для вызова Tauri-команды с параметрами
 function startOllama() {
-  invoke('run_ollama', {
+  invoke("run_ollama", {
     model: modelParams.value.model,
     prompt: modelParams.value.prompt,
     options: modelParams.value.options,
@@ -68,10 +82,28 @@ function startOllama() {
 }
 
 // Подписка на событие для получения потоковых данных
-
 onMounted(() => {
-  listen('ollama-output', (event) => {
-    output.value += JSON.parse(event.payload as string).response;
+  listen("ollama-output", (event) => {
+    try {
+      // Ожидается, что event.payload является JSON-строкой с полем response
+      const parsed = JSON.parse(event.payload as string);
+      output.value += parsed.response;
+    } catch {
+      // Если не удалось распарсить JSON, просто добавляем как текст
+      output.value += event.payload as string;
+    }
   });
+
+  // Получение списка установленных моделей
+  invoke<string[]>("get_installed_models")
+    .then((models) => {
+      modelsList.value = models;
+      if (models.length > 0 && !modelParams.value.model) {
+        modelParams.value.model = models[0];
+      }
+    })
+    .catch((error: unknown) => {
+      console.error("Ошибка получения моделей:", error);
+    });
 });
 </script>
