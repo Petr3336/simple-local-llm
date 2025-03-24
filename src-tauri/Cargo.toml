@@ -10,6 +10,10 @@ rust-version = "1.77.2"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+default = []
+llama_cpp = ["llama-cpp-2"]  # Подключает llama-cpp-2 только если явно включён флаг
+
 [lib]
 name = "app_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
@@ -27,3 +31,4 @@ reqwest = { version = "0.12", features = ["json", "stream"] }
 futures = "0.3"
 tauri-plugin-opener = "2"
 async-trait = "0.1.88"
+llama-cpp-2 = { version = "0.1.102", optional = true}

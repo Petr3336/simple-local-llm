@@ -1,5 +1,7 @@
 mod model_provider;
 mod ollama_provider;
+#[cfg(feature = "llama_cpp")]
+mod llamacpp_provider;
 
 use model_provider::{ModelProvider, LLMOptions};
 use ollama_provider::OllamaProvider;
@@ -7,7 +9,16 @@ use tauri::AppHandle;
 use std::sync::Arc;
 
 fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
-    vec![Arc::new(OllamaProvider)]
+    let providers: Vec<Arc<dyn ModelProvider>> = vec![Arc::new(OllamaProvider)];
+
+    #[cfg(feature = "llama_cpp")]
+    {
+        use std::path::PathBuf;
+        use llamacpp_provider::LlamaCppProvider;
+        providers.push(Arc::new(LlamaCppProvider::new(PathBuf::from("models/llama-model.gguf"))));
+    }
+
+    providers
 }
 
 #[tauri::command]
