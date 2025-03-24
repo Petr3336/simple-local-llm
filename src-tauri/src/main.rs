@@ -6,23 +6,37 @@
 mod model_provider;
 mod ollama_provider;
 
-use model_provider::{ModelProvider, LLMOptions};
+#[cfg(feature = "llama_cpp")]
+mod llamacpp_provider;
+
+use model_provider::{LLMOptions, ModelProvider};
 use ollama_provider::OllamaProvider;
-use tauri::AppHandle;
 use std::sync::Arc;
+use tauri::AppHandle;
 
-fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
-    vec![Arc::new(OllamaProvider)]
+fn get_providers(app: &AppHandle) -> Vec<Arc<dyn ModelProvider>> {
+    let mut providers: Vec<Arc<dyn ModelProvider>> = vec![Arc::new(OllamaProvider)];
+
+    #[cfg(feature = "llama_cpp")]
+    {
+        use llamacpp_provider::LlamaCppProvider;
+        providers.push(Arc::new(LlamaCppProvider::new(app)));
+    }
+
+    providers
 }
 
 #[tauri::command]
-async fn get_available_providers() -> Vec<String> {
-    get_providers().into_iter().map(|p| p.name().to_string()).collect()
+async fn get_available_providers(app: AppHandle) -> Vec<String> {
+    get_providers(&app)
+        .into_iter()
+        .map(|p| p.name().to_string())
+        .collect()
 }
 
 #[tauri::command]
-async fn get_installed_models(provider_name: String) -> Result<Vec<String>, String> {
-    for provider in get_providers() {
+async fn get_installed_models(app: AppHandle, provider_name: String) -> Result<Vec<String>, String> {
+    for provider in get_providers(&app) {
         if provider.name() == provider_name {
             return provider.get_installed_models().await;
         }
@@ -38,7 +52,7 @@ async fn run_model(
     prompt: String,
     options: Option<LLMOptions>,
 ) -> Result<(), String> {
-    for provider in get_providers() {
+    for provider in get_providers(&app) {
         if provider.name() == provider_name {
             return provider.run_model(app, model, prompt, options).await;
         }
@@ -48,6 +62,7 @@ async fn run_model(
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             get_available_providers,
