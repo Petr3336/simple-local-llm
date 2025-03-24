@@ -18,7 +18,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://your-repo-url.git
+git clone https://github.com/Petr3336/simple-local-llm.git
 cd your-repo
 ```
 
