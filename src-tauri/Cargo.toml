@@ -31,4 +31,5 @@ reqwest = { version = "0.12", features = ["json", "stream"] }
 futures = "0.3"
 tauri-plugin-opener = "2"
 async-trait = "0.1.88"
-llama-cpp-2 = { version = "0.1.102", optional = true}
+llama-cpp-2 = { version = "0.1.102", optional = true, features = [] }
+tauri-plugin-fs = "2"

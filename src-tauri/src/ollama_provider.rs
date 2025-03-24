@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use futures::StreamExt;
 use reqwest::Client;
-use serde::{Deserialize};
+use serde::Deserialize;
 use serde_json::{json, Value};
 use tauri::{AppHandle, Emitter};
 
@@ -38,7 +38,11 @@ impl ModelProvider for OllamaProvider {
             .await
             .map_err(|e| format!("Ошибка парсинга JSON: {}", e))?;
 
-        Ok(tag_response.models.into_iter().map(|tag| tag.name).collect())
+        Ok(tag_response
+            .models
+            .into_iter()
+            .map(|tag| tag.name)
+            .collect())
     }
 
     async fn run_model(
@@ -75,7 +79,7 @@ impl ModelProvider for OllamaProvider {
             while let Some(chunk_result) = stream.next().await {
                 if let Ok(chunk_bytes) = chunk_result {
                     if let Ok(text) = std::str::from_utf8(chunk_bytes.as_ref()) {
-                        let _ = app.emit("ollama-output", text.to_string());
+                        let _ = app.emit("model-output", text.to_string());
                     }
                 }
             }

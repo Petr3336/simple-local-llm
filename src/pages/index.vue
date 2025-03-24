@@ -108,7 +108,8 @@ function getModels() {
 
 // Подписка на событие для получения потоковых данных
 onMounted(() => {
-  listen("ollama-output", (event) => {
+  listen("model-output", (event) => {
+    console.log(event)
     // Как только приходит первый ответ — скрываем индикатор загрузки
     if (isLoading.value) {
       isLoading.value = false;

@@ -1,86 +1,129 @@
 use async_trait::async_trait;
-use std::path::PathBuf;
-use std::sync::Mutex;
-use tauri::AppHandle;
-
 use llama_cpp_2::{
-    Model, ModelParameters, Session, SessionParams, InferenceParams, InferenceResult,
+    context::params::LlamaContextParams,
+    llama_backend::LlamaBackend,
+    llama_batch::LlamaBatch,
+    model::{AddBos, LlamaModel, Special},
+    sampling::LlamaSampler,
 };
 
-use crate::model_provider::{ModelProvider, LLMOptions};
+use crate::model_provider::{LLMOptions, ModelProvider};
+
+use std::fs;
+use std::num::NonZeroU32;
+use std::path::{Path, PathBuf};
+use tauri::{AppHandle, Emitter};
 
 pub struct LlamaCppProvider {
-    model_path: PathBuf,
-    model: Mutex<Option<Model>>,
+    models_dir: PathBuf,
 }
 
 impl LlamaCppProvider {
-    pub fn new(model_path: PathBuf) -> Self {
-        Self {
-            model_path,
-            model: Mutex::new(None),
+    pub fn new<P: AsRef<Path>>(models_dir: P) -> Self {
+        let path: &Path = models_dir.as_ref();
+        if !path.exists() {
+            if let Err(e) = fs::create_dir_all(path) {
+                eprintln!("Failed to create models directory: {}", e);
+            }
         }
-    }
-
-    fn load_model(&self) -> Result<Model, String> {
-        Model::load(&self.model_path, &ModelParameters::default())
-            .map_err(|e| format!("Ошибка загрузки модели: {:?}", e))
+        Self {
+            models_dir: path.to_path_buf(),
+        }
     }
 }
 
 #[async_trait]
 impl ModelProvider for LlamaCppProvider {
     fn name(&self) -> &'static str {
-        "llama-cpp"
+        "llama.cpp"
     }
 
     async fn get_installed_models(&self) -> Result<Vec<String>, String> {
-        Ok(vec![self.model_path.to_string_lossy().to_string()])
+        let entries = self
+            .models_dir
+            .read_dir()
+            .map_err(|e| format!("Failed to read models directory: {}", e))?;
+
+        let mut models = Vec::new();
+        for entry in entries.flatten() {
+            let path = entry.path();
+            if let Some(ext) = path.extension() {
+                if ext == "gguf" {
+                    if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+                        models.push(name.to_string());
+                    }
+                }
+            }
+        }
+
+        Ok(models)
     }
 
     async fn run_model(
         &self,
         app: AppHandle,
-        _model: String,
+        model: String,
         prompt: String,
-        _options: Option<LLMOptions>,
+        options: Option<LLMOptions>,
     ) -> Result<(), String> {
-        let model = {
-            let mut guard = self.model.lock().unwrap();
-            if let Some(model) = &*guard {
-                model.clone()
-            } else {
-                let loaded = self.load_model()?;
-                *guard = Some(loaded.clone());
-                loaded
+        let backend = LlamaBackend::init().map_err(|e| format!("Backend init error: {:?}", e))?;
+        let model_path = self.models_dir.join(model);
+
+        let model_params = Default::default();
+        let llama = LlamaModel::load_from_file(&backend, model_path, &model_params)
+            .map_err(|e| format!("Failed to load model: {:?}", e))?;
+
+        let ctx_params = LlamaContextParams::default()
+            .with_n_ctx(Some(options.and_then(|o| o.num_ctx).and_then(NonZeroU32::new).unwrap_or_else(|| NonZeroU32::new(2048).unwrap())));
+
+        let mut ctx = llama
+            .new_context(&backend, ctx_params)
+            .map_err(|e| format!("Failed to create context: {:?}", e))?;
+
+        let tokens = llama
+            .str_to_token(&prompt, AddBos::Always)
+            .map_err(|e| format!("Tokenization failed: {:?}", e))?;
+
+        let mut batch = LlamaBatch::new(512, 1);
+        for (i, token) in tokens.iter().enumerate() {
+            batch.add(*token, i as i32, &[0], i == tokens.len() - 1)
+                .map_err(|e| format!("Batch addition error: {:?}", e))?;
+        }
+
+        ctx.decode(&mut batch)
+            .map_err(|e| format!("Decoding failed: {:?}", e))?;
+
+        let mut sampler = LlamaSampler::greedy();
+        let mut n_cur = batch.n_tokens();
+
+        while n_cur < (ctx.n_ctx() as usize).try_into().unwrap() {
+            let token = sampler.sample(&ctx, batch.n_tokens() - 1);
+            
+            if llama.is_eog_token(token) {
+                break;
             }
-        };
 
-        let session = Session::new(&model, &SessionParams::default())
-            .map_err(|e| format!("Ошибка создания сессии: {:?}", e))?;
-
-        let mut stream = session.infer(
-            &prompt,
-            &InferenceParams {
-                stream: true,
-                ..Default::default()
-            },
-        ).map_err(|e| format!("Ошибка инференса: {:?}", e))?;
-
-        tauri::async_runtime::spawn(async move {
-            while let Some(res) = stream.next().await {
-                match res {
-                    Ok(InferenceResult::Token(token)) => {
-                        let _ = app.emit("ollama-output", token);
-                    }
-                    Ok(_) => {}
-                    Err(e) => {
-                        let _ = app.emit("ollama-output", format!("[Ошибка: {:?}]", e));
-                        break;
-                    }
-                }
+            if llama.token_to_str(token, Special::Tokenize).unwrap_or_default() == "<|end_of_text|>" {
+                break;
             }
-        });
+
+            let output = llama
+                .token_to_str(token, Special::Tokenize)
+                .map_err(|e| format!("Token to string error: {:?}", e))?;
+
+            app.emit("model-output", &output)
+                .map_err(|e| format!("Failed to emit event: {:?}", e))?;
+
+            batch.clear();
+            batch
+                .add(token, n_cur as i32, &[0], true)
+                .map_err(|e| format!("Batch addition error: {:?}", e))?;
+
+            ctx.decode(&mut batch)
+                .map_err(|e| format!("Decoding failed: {:?}", e))?;
+
+            n_cur += 1;
+        }
 
         Ok(())
     }

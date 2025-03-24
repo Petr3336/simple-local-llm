@@ -1,21 +1,21 @@
 mod model_provider;
 mod ollama_provider;
+
 #[cfg(feature = "llama_cpp")]
 mod llamacpp_provider;
 
-use model_provider::{ModelProvider, LLMOptions};
+use model_provider::{LLMOptions, ModelProvider};
 use ollama_provider::OllamaProvider;
-use tauri::AppHandle;
 use std::sync::Arc;
+use tauri::AppHandle;
 
 fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
-    let providers: Vec<Arc<dyn ModelProvider>> = vec![Arc::new(OllamaProvider)];
+    let mut providers: Vec<Arc<dyn ModelProvider>> = vec![Arc::new(OllamaProvider)];
 
     #[cfg(feature = "llama_cpp")]
     {
-        use std::path::PathBuf;
         use llamacpp_provider::LlamaCppProvider;
-        providers.push(Arc::new(LlamaCppProvider::new(PathBuf::from("models/llama-model.gguf"))));
+        providers.push(Arc::new(LlamaCppProvider::new("models/")));
     }
 
     providers
@@ -23,7 +23,10 @@ fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
 
 #[tauri::command]
 async fn get_available_providers() -> Vec<String> {
-    get_providers().into_iter().map(|p| p.name().to_string()).collect()
+    get_providers()
+        .into_iter()
+        .map(|p| p.name().to_string())
+        .collect()
 }
 
 #[tauri::command]
@@ -54,6 +57,7 @@ async fn run_model(
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             get_available_providers,
