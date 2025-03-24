@@ -7,28 +7,27 @@ use llama_cpp_2::{
     sampling::LlamaSampler,
 };
 
-use crate::model_provider::{LLMOptions, ModelProvider};
-
-use std::fs;
 use std::num::NonZeroU32;
 use std::path::{Path, PathBuf};
-use tauri::{AppHandle, Emitter};
+use tauri::{AppHandle, Emitter, Manager};
+use tauri_plugin_fs::FsExt;
+
+use crate::model_provider::{LLMOptions, ModelProvider};
 
 pub struct LlamaCppProvider {
     models_dir: PathBuf,
 }
 
 impl LlamaCppProvider {
-    pub fn new<P: AsRef<Path>>(models_dir: P) -> Self {
-        let path: &Path = models_dir.as_ref();
-        if !path.exists() {
-            if let Err(e) = fs::create_dir_all(path) {
-                eprintln!("Failed to create models directory: {}", e);
-            }
+    pub fn new(app: &AppHandle) -> Self {
+        let app_dir = app.path().app_data_dir().expect("failed to get app data dir");
+        let models_dir = app_dir.join("models");
+
+        if let Err(e) = std::fs::create_dir_all(&models_dir) {
+            eprintln!("Failed to create models directory: {}", e);
         }
-        Self {
-            models_dir: path.to_path_buf(),
-        }
+
+        Self { models_dir }
     }
 }
 
@@ -39,9 +38,7 @@ impl ModelProvider for LlamaCppProvider {
     }
 
     async fn get_installed_models(&self) -> Result<Vec<String>, String> {
-        let entries = self
-            .models_dir
-            .read_dir()
+        let entries = std::fs::read_dir(&self.models_dir)
             .map_err(|e| format!("Failed to read models directory: {}", e))?;
 
         let mut models = Vec::new();
@@ -73,8 +70,14 @@ impl ModelProvider for LlamaCppProvider {
         let llama = LlamaModel::load_from_file(&backend, model_path, &model_params)
             .map_err(|e| format!("Failed to load model: {:?}", e))?;
 
-        let ctx_params = LlamaContextParams::default()
-            .with_n_ctx(Some(options.and_then(|o| o.num_ctx).and_then(NonZeroU32::new).unwrap_or_else(|| NonZeroU32::new(2048).unwrap())));
+        let ctx_params = LlamaContextParams::default().with_n_ctx(
+            Some(
+                options
+                    .and_then(|o| o.num_ctx)
+                    .and_then(NonZeroU32::new)
+                    .unwrap_or_else(|| NonZeroU32::new(2048).unwrap()),
+            ),
+        );
 
         let mut ctx = llama
             .new_context(&backend, ctx_params)
@@ -86,7 +89,8 @@ impl ModelProvider for LlamaCppProvider {
 
         let mut batch = LlamaBatch::new(512, 1);
         for (i, token) in tokens.iter().enumerate() {
-            batch.add(*token, i as i32, &[0], i == tokens.len() - 1)
+            batch
+                .add(*token, i as i32, &[0], i == tokens.len() - 1)
                 .map_err(|e| format!("Batch addition error: {:?}", e))?;
         }
 
@@ -111,7 +115,7 @@ impl ModelProvider for LlamaCppProvider {
                 .token_to_str(token, Special::Tokenize)
                 .map_err(|e| format!("Token to string error: {:?}", e))?;
 
-            app.emit("model-output", &output)
+            app.emit("model-output", output.to_string())
                 .map_err(|e| format!("Failed to emit event: {:?}", e))?;
 
             batch.clear();
