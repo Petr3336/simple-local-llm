@@ -46,12 +46,24 @@ npx tauri dev
 
 Данная команда автоматически загрузит зависимости Rust для сборки
 
+Используйте `--features llama_cpp` для сборки с поддержкой [llama.cpp](https://github.com/ggml-org/llama.cpp)
+
+```bash
+npx tauri dev --features llama_cpp
+```
+
 ### Сборка проекта для продакшена
 
 Чтобы собрать установочный пакет десктопного приложения, выполните следующую команду в корне проекта:
 
 ```bash
 npx tauri build
+```
+
+Используйте `--features llama_cpp` для сборки с поддержкой [llama.cpp](https://github.com/ggml-org/llama.cpp)
+
+```bash
+npx tauri build --features llama_cpp
 ```
 
 - Исполняемый файл приложения будет расположен по пути `src-tauri\target\release`
