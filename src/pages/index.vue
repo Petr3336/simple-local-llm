@@ -7,7 +7,13 @@
           <v-card-text>
             <!-- Выбор провайдера моделей -->
             <v-form @submit.prevent="runModel">
-              <v-select v-model="modelProvider" :items="providersList" label="Выберите провайдера модели" dense @update:model-value="getModels">
+              <v-select
+                v-model="modelProvider"
+                :items="providersList"
+                label="Выберите провайдера модели"
+                dense
+                @update:model-value="getModels"
+              >
                 <template #no-data>
                   <p class="px-4">
                     Данный провайдер моделей не найден
@@ -15,25 +21,67 @@
                 </template>
               </v-select>
               <!-- Выпадающий список для выбора модели -->
-              <v-autocomplete v-model="modelParams.model" :items="modelsList" label="Выберите модель" dense>
-                <template #no-data>
-                  <p class="px-4">
-                    Данная модель не обнаружена среди установленных, при попытке её использования произойдет попытка её
-                    загрузки с серверов ollama
-                  </p>
-                </template>
-              </v-autocomplete>
-              <v-text-field v-model="modelParams.prompt" label="Введите сообщение" dense />
-              <v-btn color="primary" type="submit">
+              <v-combobox
+                v-model="modelParams.model"
+                :items="modelsList"
+                label="Выберите модель"
+                dense
+              />
+              <v-text-field
+                v-model="modelParams.prompt"
+                label="Введите сообщение"
+                dense
+              />
+              <v-btn
+                color="primary"
+                type="submit"
+                class="mr-4 mt-4"
+              >
                 Отправить
+              </v-btn>
+              <v-btn
+                color="secondary"
+                class="mr-4 mt-4"
+                @click="downloadSelectedModel"
+              >
+                Загрузить модель
+              </v-btn>
+
+              <v-btn
+                color="error"
+                class="mr-4 mt-4"
+                @click="deleteSelectedModel"
+              >
+                Удалить выбранную модель
+              </v-btn>
+              <v-btn
+                color="error"
+                class="mr-4 mt-4"
+                @click="stopModel"
+              >
+                Остановить модель
               </v-btn>
             </v-form>
           </v-card-text>
-          <div v-if="isLoading" class="d-flex justify-center my-4 mb-14">
-            <v-progress-circular indeterminate color="primary" />
+          <div
+            v-if="isLoading"
+            class="d-flex justify-center my-4 mb-14"
+          >
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            />
           </div>
-          <md-preview v-else v-model="output" theme="dark" class="px-16 md-preview mt-2" style="padding-bottom: 19.2px;"
-            language="ru-RU" :code-foldable="false" no-code-header />
+          <md-preview
+            v-else
+            v-model="output"
+            theme="dark"
+            class="px-16 md-preview mt-2"
+            style="padding-bottom: 19.2px;"
+            language="ru-RU"
+            :code-foldable="false"
+            no-code-header
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -106,6 +154,64 @@ function getModels() {
   });
 }
 
+function downloadSelectedModel() {
+  if (!modelParams.value || !modelProvider.value) {
+    console.warn("Не указан провайдер или модель для загрузки");
+    return;
+  }
+
+  isLoading.value = true;
+  invoke("download_model", {
+    providerName: modelProvider.value,
+    model: modelParams.value.model,
+  })
+    .then(() => {
+      console.log("Модель успешно загружена");
+      getModels(); // обновим список после загрузки
+    })
+    .catch((error: unknown) => {
+      console.error("Ошибка загрузки модели:", error);
+    })
+    .finally(() => {
+      isLoading.value = false;
+    });
+}
+
+// Удаление выбранной модели
+function deleteSelectedModel() {
+  if (!modelParams.value.model || !modelProvider.value) {
+    console.warn("Не указан провайдер или модель для удаления");
+    return;
+  }
+
+  isLoading.value = true;
+  invoke("delete_model", {
+    providerName: modelProvider.value,
+    model: modelParams.value.model,
+  })
+    .then(() => {
+      console.log("Модель успешно удалена");
+      modelParams.value.model = "";
+      getModels(); // обновим список после удаления
+    })
+    .catch((error: unknown) => {
+      console.error("Ошибка удаления модели:", error);
+    })
+    .finally(() => {
+      isLoading.value = false;
+    });
+}
+
+// Остановка выбранной модели
+function stopModel() {
+  invoke("stop_model", {
+    providerName: modelProvider.value,
+    model: modelParams.value.model,
+    prompt: modelParams.value.prompt,
+    options: modelParams.value.options,
+  }).catch((e: unknown) => console.error(e));
+}
+
 // Подписка на событие для получения потоковых данных
 onMounted(() => {
   listen("model-output", (event) => {
@@ -122,6 +228,9 @@ onMounted(() => {
       // Если не удалось распарсить JSON, просто добавляем как текст
       output.value += event.payload as string;
     }
+  });
+  listen("stop-model", (event) => {
+    console.log(event)
   });
   // Получение списка провайдеров моделей
   invoke<string[]>("get_available_providers").then((providers) => {

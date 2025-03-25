@@ -1,13 +1,30 @@
 use async_trait::async_trait;
 use futures::StreamExt;
 use reqwest::Client;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use tauri::{AppHandle, Emitter};
+use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, Ordering};
 
 use crate::model_provider::{LLMOptions, ModelProvider};
 
-pub struct OllamaProvider;
+pub struct OllamaProvider {
+    stop_flag: Arc<AtomicBool>,
+}
+
+#[derive(Serialize)]
+struct ModelRequest {
+    name: String,
+}
+
+impl OllamaProvider {
+    pub fn new() -> Self {
+        Self {
+            stop_flag: Arc::new(AtomicBool::new(false)),
+        }
+    }
+}
 
 #[async_trait]
 impl ModelProvider for OllamaProvider {
@@ -53,7 +70,7 @@ impl ModelProvider for OllamaProvider {
         options: Option<LLMOptions>,
     ) -> Result<(), String> {
         let client = Client::new();
-
+    
         let mut body = serde_json::Map::new();
         body.insert("model".to_string(), json!(model));
         body.insert("prompt".to_string(), json!(prompt));
@@ -66,25 +83,82 @@ impl ModelProvider for OllamaProvider {
                 body.insert("num_ctx".to_string(), json!(num_ctx));
             }
         }
-
+    
+        self.stop_flag.store(false, Ordering::SeqCst);
+    
         let response = client
             .post("http://localhost:11434/api/generate")
             .json(&Value::Object(body))
             .send()
             .await
             .map_err(|e| e.to_string())?;
-
+    
         let mut stream = response.bytes_stream();
+        let stop_flag = self.stop_flag.clone();
+    
         tauri::async_runtime::spawn(async move {
             while let Some(chunk_result) = stream.next().await {
+                if stop_flag.load(Ordering::SeqCst) {
+                    let _ = app.emit("model-stopped", ());
+                    break;
+                }
+    
                 if let Ok(chunk_bytes) = chunk_result {
-                    if let Ok(text) = std::str::from_utf8(chunk_bytes.as_ref()) {
+                    if let Ok(text) = std::str::from_utf8(&chunk_bytes) {
                         let _ = app.emit("model-output", text.to_string());
                     }
                 }
             }
         });
+    
+        Ok(())
+    }
+    
 
+    async fn download_model(&self, model: String) -> Result<(), String> {
+        let client = Client::new();
+        let body = ModelRequest { name: model };
+
+        let response = client
+            .post("http://localhost:11434/api/pull")
+            .json(&body)
+            .send()
+            .await
+            .map_err(|e| e.to_string())?;
+
+        if !response.status().is_success() {
+            return Err(format!(
+                "Ошибка при загрузке модели: {}",
+                response.text().await.unwrap_or_default()
+            ));
+        }
+
+        Ok(())
+    }
+
+    async fn delete_model(&self, model: String) -> Result<(), String> {
+        let client = Client::new();
+        let body = ModelRequest { name: model };
+
+        let response = client
+            .delete("http://localhost:11434/api/delete")
+            .json(&body)
+            .send()
+            .await
+            .map_err(|e| e.to_string())?;
+
+        if !response.status().is_success() {
+            return Err(format!(
+                "Ошибка при удалении модели: {}",
+                response.text().await.unwrap_or_default()
+            ));
+        }
+
+        Ok(())
+    }
+
+    async fn stop_model(&self) -> Result<(), String> {
+        self.stop_flag.store(true, Ordering::SeqCst);
         Ok(())
     }
 }
