@@ -8,6 +8,7 @@
             <!-- Выбор провайдера моделей -->
             <v-form @submit.prevent="runModel">
               <v-select
+                id="model-provider"
                 v-model="modelProvider"
                 :items="providersList"
                 label="Выберите провайдера модели"
@@ -22,17 +23,20 @@
               </v-select>
               <!-- Выпадающий список для выбора модели -->
               <v-combobox
+                id="model-name"
                 v-model="modelParams.model"
                 :items="modelsList"
                 label="Выберите модель"
                 dense
               />
               <v-text-field
+                id="model-prompt"
                 v-model="modelParams.prompt"
                 label="Введите сообщение"
                 dense
               />
               <v-btn
+                id="generate"
                 color="primary"
                 type="submit"
                 class="mr-4 mt-4"
@@ -40,6 +44,7 @@
                 Отправить
               </v-btn>
               <v-btn
+                id="download-model"
                 color="secondary"
                 class="mr-4 mt-4"
                 @click="downloadSelectedModel"
@@ -48,6 +53,7 @@
               </v-btn>
 
               <v-btn
+                id="delete-model"
                 color="error"
                 class="mr-4 mt-4"
                 @click="deleteSelectedModel"
@@ -55,6 +61,7 @@
                 Удалить выбранную модель
               </v-btn>
               <v-btn
+                id="stop-model"
                 color="error"
                 class="mr-4 mt-4"
                 @click="stopModel"
