@@ -26,7 +26,11 @@ pub struct LlamaCppProvider {
 impl LlamaCppProvider {
     pub fn new(app: &AppHandle) -> Self {
         let app_dir = app.path().app_data_dir().expect("failed to get app data dir");
-        fs::create_dir_all(&app_dir)?;
+
+        if app_dir.exists() {
+            fs::create_dir_all(&app_dir)
+                .map_err(|e| format!("Failed to create app data dir: {}", e));
+        }
 
         let models_dir = app_dir.join("models");
 
