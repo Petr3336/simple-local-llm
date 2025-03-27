@@ -26,6 +26,8 @@ pub struct LlamaCppProvider {
 impl LlamaCppProvider {
     pub fn new(app: &AppHandle) -> Self {
         let app_dir = app.path().app_data_dir().expect("failed to get app data dir");
+        fs::create_dir_all(&app_dir)?;
+
         let models_dir = app_dir.join("models");
 
         if let Err(e) = fs::create_dir_all(&models_dir) {
@@ -42,7 +44,16 @@ impl LlamaCppProvider {
     fn model_path(&self, name: &str) -> PathBuf {
         self.models_dir.join(name)
     }
+
+    fn ensure_models_dir_exists(&self) -> Result<(), String> {
+        if !self.models_dir.exists() {
+            fs::create_dir_all(&self.models_dir)
+                .map_err(|e| format!("Failed to create models dir: {}", e))?;
+        }
+        Ok(())
+    }
 }
+
 
 #[async_trait]
 impl ModelProvider for LlamaCppProvider {
@@ -51,6 +62,8 @@ impl ModelProvider for LlamaCppProvider {
     }
 
     async fn get_installed_models(&self) -> Result<Vec<String>, String> {
+        self.ensure_models_dir_exists()?;
+
         let entries = fs::read_dir(&self.models_dir)
             .map_err(|e| format!("Failed to read models directory: {}", e))?;
 
@@ -76,6 +89,8 @@ impl ModelProvider for LlamaCppProvider {
         prompt: String,
         options: Option<LLMOptions>,
     ) -> Result<(), String> {
+        self.ensure_models_dir_exists()?;
+
         {
             let mut running = self.running.lock().unwrap();
             if *running {
@@ -169,6 +184,8 @@ impl ModelProvider for LlamaCppProvider {
     }
 
     async fn download_model(&self, model: String) -> Result<(), String> {
+        self.ensure_models_dir_exists()?;
+
         let (repo, filename) = model
             .split_once(':')
             .ok_or("Model format must be <repo>:<filename.gguf>")?;
