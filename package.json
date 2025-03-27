@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
+    "@tauri-apps/api": "^2.4.0",
     "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-opener": "^2.2.6",
     "@vavt/cm-extension": "^1.8.0",
