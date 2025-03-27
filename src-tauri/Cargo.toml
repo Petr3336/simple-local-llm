@@ -32,7 +32,7 @@ reqwest = { version = "0.12", features = ["json", "stream"], optional = true }
 futures = { version = "0.3", optional = true }
 async-trait = "0.1.88"
 tauri-plugin-opener = "2"
-llama-cpp-2 = { version = "0.1.102", optional = true, features = [] }
-hf-hub = { version = "0.4.2", optional = true }
+llama-cpp-2 = { git = "https://github.com/Petr3336/llama-cpp-rs", branch = "android-build-fixes", version = "0.1.102", optional = true, features = [] }
+hf-hub = { version = "0.4.2", features = ["tokio", "rustls-tls"], default-features = false, optional = true }
 once_cell = "1.21.1"
 tauri-plugin-fs = "2"

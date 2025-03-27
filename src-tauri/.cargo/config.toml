@@ -1,0 +1,11 @@
+
+[target.x86_64-linux-android]
+ANDROID_TARGET = "x86_64-linux-android"
+
+[env]
+BINDGEN_EXTRA_CLANG_ARGS = """
+--target=${ANDROID_TARGET} \
+--sysroot=${ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/sysroot \
+-I${ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include \
+-I${ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/${ANDROID_TARGET}
+"""
