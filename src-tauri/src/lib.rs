@@ -11,9 +11,11 @@ mod ollama_provider;
 #[cfg(feature = "llama_cpp")]
 mod llamacpp_provider;
 
+use log::LevelFilter;
 use model_provider::{LLMOptions, ModelProvider};
 use std::sync::{Arc, Mutex};
 use tauri::AppHandle;
+use tauri_plugin_log::{Builder as LogBuilder, TargetKind};
 
 use once_cell::sync::OnceCell;
 
@@ -113,11 +115,31 @@ async fn stop_model(provider_name: String) -> Result<(), String> {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let log_level = if cfg!(debug_assertions) {
+        // dev-сборка
+        LevelFilter::Debug
+    } else {
+        // release-сборка
+        LevelFilter::Info
+    };
     tauri::Builder::default()
+        .plugin(tauri_plugin_log::Builder::new().build())
         .setup(|app| {
             init_providers(&app.handle());
             Ok(())
         })
+        .plugin(
+            LogBuilder::default()
+                .level(log_level)
+                .targets([
+                    tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::LogDir {
+                        file_name: Some("logs".to_string()),
+                    }),
+                    tauri_plugin_log::Target::new(TargetKind::Stdout), 
+                    tauri_plugin_log::Target::new(TargetKind::Webview),
+                ])
+                .build(),
+        )
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![

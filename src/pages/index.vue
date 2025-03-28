@@ -152,7 +152,7 @@ function getModels() {
   invoke<string[]>("get_installed_models", { providerName: modelProvider.value })
         .then((models) => {
           modelsList.value = models;
-          if (models.length > 0 && !modelParams.value.model) {
+          if (models.length > 0) {
             modelParams.value.model = models[0];
           }
         })

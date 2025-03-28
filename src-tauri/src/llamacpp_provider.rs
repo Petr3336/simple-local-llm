@@ -11,7 +11,8 @@ use std::num::NonZeroU32;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
-use tauri::{AppHandle, Manager, Emitter};
+use tauri::{AppHandle, Emitter, Manager};
+use log::{info, warn, error, debug};
 
 use hf_hub::api::sync::ApiBuilder;
 
@@ -25,7 +26,10 @@ pub struct LlamaCppProvider {
 
 impl LlamaCppProvider {
     pub fn new(app: &AppHandle) -> Self {
-        let app_dir = app.path().app_data_dir().expect("failed to get app data dir");
+        let app_dir = app
+            .path()
+            .app_data_dir()
+            .expect("failed to get app data dir");
 
         if app_dir.exists() {
             fs::create_dir_all(&app_dir)
@@ -58,7 +62,6 @@ impl LlamaCppProvider {
     }
 }
 
-
 #[async_trait]
 impl ModelProvider for LlamaCppProvider {
     fn name(&self) -> &'static str {
@@ -67,6 +70,7 @@ impl ModelProvider for LlamaCppProvider {
 
     async fn get_installed_models(&self) -> Result<Vec<String>, String> {
         self.ensure_models_dir_exists()?;
+        debug!("Scanning models directory for installed models..."); // [log]
 
         let entries = fs::read_dir(&self.models_dir)
             .map_err(|e| format!("Failed to read models directory: {}", e))?;
@@ -77,12 +81,14 @@ impl ModelProvider for LlamaCppProvider {
             if let Some(ext) = path.extension() {
                 if ext == "gguf" {
                     if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+                        debug!("Found model file: {}", name); // [log]
                         models.push(name.to_string());
                     }
                 }
             }
         }
 
+        info!("Installed models: {:?}", models); // [log]
         Ok(models)
     }
 
@@ -98,37 +104,44 @@ impl ModelProvider for LlamaCppProvider {
         {
             let mut running = self.running.lock().unwrap();
             if *running {
+                warn!("Attempted to run model while one is already running"); // [log]
                 return Err("Модель уже запущена".to_string());
             }
             *running = true;
         }
 
+        info!("Starting model: {} with prompt: {:?}", model, prompt); // [log]
         self.stop_flag.store(false, Ordering::SeqCst);
 
         let result = async {
-            let backend = LlamaBackend::init().map_err(|e| format!("Backend init error: {:?}", e))?;
+            let backend =
+                LlamaBackend::init().map_err(|e| format!("Backend init error: {:?}", e))?;
+            info!("Llama backend initialized"); // [log]
+
             let model_path = self.model_path(&model);
+            debug!("Loading model from path: {:?}", model_path); // [log]
 
             let model_params = Default::default();
             let llama = LlamaModel::load_from_file(&backend, model_path, &model_params)
                 .map_err(|e| format!("Failed to load model: {:?}", e))?;
+            info!("Model loaded successfully"); // [log]
 
-            let ctx_params = LlamaContextParams::default().with_n_ctx(
-                Some(
-                    options
-                        .and_then(|o| o.num_ctx)
-                        .and_then(NonZeroU32::new)
-                        .unwrap_or_else(|| NonZeroU32::new(2048).unwrap()),
-                ),
-            );
+            let ctx_params = LlamaContextParams::default().with_n_ctx(Some(
+                options
+                    .and_then(|o| o.num_ctx)
+                    .and_then(NonZeroU32::new)
+                    .unwrap_or_else(|| NonZeroU32::new(2048).unwrap()),
+            ));
 
             let mut ctx = llama
                 .new_context(&backend, ctx_params)
                 .map_err(|e| format!("Failed to create context: {:?}", e))?;
+            debug!("Context created"); // [log]
 
             let tokens = llama
                 .str_to_token(&prompt, AddBos::Always)
                 .map_err(|e| format!("Tokenization failed: {:?}", e))?;
+            debug!("Prompt tokenized into {} tokens", tokens.len()); // [log]
 
             let mut batch = LlamaBatch::new(512, 1);
             for (i, token) in tokens.iter().enumerate() {
@@ -139,12 +152,14 @@ impl ModelProvider for LlamaCppProvider {
 
             ctx.decode(&mut batch)
                 .map_err(|e| format!("Decoding failed: {:?}", e))?;
+            debug!("Initial decoding complete"); // [log]
 
             let mut sampler = LlamaSampler::greedy();
             let mut n_cur = batch.n_tokens();
 
             while n_cur < (ctx.n_ctx() as usize).try_into().unwrap() {
                 if self.stop_flag.load(Ordering::SeqCst) {
+                    info!("Model run stopped by user"); // [log]
                     let _ = app.emit("stop-model", ());
                     break;
                 }
@@ -152,16 +167,24 @@ impl ModelProvider for LlamaCppProvider {
                 let token = sampler.sample(&ctx, batch.n_tokens() - 1);
 
                 if llama.is_eog_token(token) {
+                    info!("End-of-generation token received"); // [log]
                     break;
                 }
-    
-                if llama.token_to_str(token, Special::Tokenize).unwrap_or_default() == "<|end_of_text|>" {
+
+                if llama
+                    .token_to_str(token, Special::Tokenize)
+                    .unwrap_or_default()
+                    == "<|end_of_text|>"
+                {
+                    info!("End-of-text token encountered"); // [log]
                     break;
                 }
 
                 let output = llama
                     .token_to_str(token, Special::Tokenize)
                     .map_err(|e| format!("Token to string error: {:?}", e))?;
+
+                debug!("Model output token: {}", output); // [log]
 
                 app.emit("model-output", output.to_string())
                     .map_err(|e| format!("Failed to emit event: {:?}", e))?;
@@ -184,11 +207,17 @@ impl ModelProvider for LlamaCppProvider {
         let mut running = self.running.lock().unwrap();
         *running = false;
 
+        match &result {
+            Ok(_) => info!("Model run completed successfully"),        // [log]
+            Err(e) => error!("Model run failed: {}", e),               // [log]
+        }
+
         result
     }
 
     async fn download_model(&self, model: String) -> Result<(), String> {
         self.ensure_models_dir_exists()?;
+        info!("Downloading model: {}", model); // [log]
 
         let (repo, filename) = model
             .split_once(':')
@@ -205,18 +234,19 @@ impl ModelProvider for LlamaCppProvider {
             .map_err(|e| format!("Download error: {:?}", e))?;
 
         let target_path = self.model_path(filename);
-        fs::copy(downloaded, target_path)
-            .map_err(|e| format!("Copy error: {:?}", e))?;
+        fs::copy(downloaded, &target_path).map_err(|e| format!("Copy error: {:?}", e))?;
 
+        info!("Model downloaded to {:?}", target_path); // [log]
         Ok(())
     }
 
     async fn delete_model(&self, model: String) -> Result<(), String> {
         let path = self.model_path(&model);
         if path.exists() {
-            fs::remove_file(path)
-                .map_err(|e| format!("Failed to delete model: {:?}", e))?;
+            fs::remove_file(path).map_err(|e| format!("Failed to delete model: {:?}", e))?;
+            info!("Model file deleted: {}", model); // [log]
         } else {
+            warn!("Attempted to delete non-existent model: {}", model); // [log]
             return Err("Model file does not exist".to_string());
         }
         Ok(())
@@ -224,6 +254,7 @@ impl ModelProvider for LlamaCppProvider {
 
     async fn stop_model(&self) -> Result<(), String> {
         self.stop_flag.store(true, Ordering::SeqCst);
+        info!("Stop flag set for current model run"); // [log]
         Ok(())
     }
 }
