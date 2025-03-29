@@ -1,4 +1,5 @@
 use async_trait::async_trait;
+use futures::StreamExt;
 use llama_cpp_2::{
     context::params::LlamaContextParams,
     llama_backend::LlamaBackend,
@@ -6,15 +7,16 @@ use llama_cpp_2::{
     model::{AddBos, LlamaModel, Special},
     sampling::LlamaSampler,
 };
+use log::{debug, error, info, warn};
+use reqwest::Client;
 use std::fs;
 use std::num::NonZeroU32;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
 use tauri::{AppHandle, Emitter, Manager};
-use log::{info, warn, error, debug};
-
-use hf_hub::api::sync::ApiBuilder;
+use tokio::fs::File;
+use tokio::io::AsyncWriteExt;
 
 use crate::model_provider::{LLMOptions, ModelProvider};
 
@@ -25,21 +27,26 @@ pub struct LlamaCppProvider {
 }
 
 impl LlamaCppProvider {
-    pub fn new(app: &AppHandle) -> Self {
-        let app_dir = app
-            .path()
-            .app_data_dir()
-            .expect("failed to get app data dir");
+    pub async fn new(app: &AppHandle) -> Self {
+        let mut app_dir = app.path().cache_dir().expect("Failed to get app data dir");
 
-        if app_dir.exists() {
-            fs::create_dir_all(&app_dir)
-                .map_err(|e| format!("Failed to create app data dir: {}", e));
+        #[cfg(not(target_os = "android"))]
+        {
+            app_dir = app.path().app_data_dir().expect("Failed to get app data dir");
+        }
+
+        if let Err(e) = tokio::fs::create_dir_all(&app_dir).await {
+            error!("Failed to create app data dir: {:?}", e);
+        } else {
+            info!("App data dir ensured: {:?}", app_dir);
         }
 
         let models_dir = app_dir.join("models");
 
-        if let Err(e) = fs::create_dir_all(&models_dir) {
-            eprintln!("Failed to create models directory: {}", e);
+        if let Err(e) = tokio::fs::create_dir_all(&models_dir).await {
+            error!("Failed to create models directory: {:?}", e);
+        } else {
+            info!("Models directory ensured at {:?}", models_dir);
         }
 
         Self {
@@ -208,35 +215,87 @@ impl ModelProvider for LlamaCppProvider {
         *running = false;
 
         match &result {
-            Ok(_) => info!("Model run completed successfully"),        // [log]
-            Err(e) => error!("Model run failed: {}", e),               // [log]
+            Ok(_) => info!("Model run completed successfully"), // [log]
+            Err(e) => error!("Model run failed: {}", e),        // [log]
         }
 
         result
     }
 
-    async fn download_model(&self, model: String) -> Result<(), String> {
-        self.ensure_models_dir_exists()?;
-        info!("Downloading model: {}", model); // [log]
+    async fn download_model(&self, app: tauri::AppHandle, model: String) -> Result<(), String> {
+        info!("Downloading model: {}", model);
 
-        let (repo, filename) = model
-            .split_once(':')
-            .ok_or("Model format must be <repo>:<filename.gguf>")?;
+        let (repo, filename) = model.split_once(':').ok_or_else(|| {
+            let msg = "Model format must be <repo>:<filename.gguf>".to_string();
+            error!("{}", msg);
+            msg
+        })?;
 
-        let api = ApiBuilder::new()
-            .with_progress(true)
-            .build()
-            .map_err(|e| format!("Failed to create HF API: {:?}", e))?;
+        if !self.models_dir.exists() {
+            tokio::fs::create_dir_all(&self.models_dir)
+                .await
+                .map_err(|e| {
+                    let msg = format!("Failed to create models dir: {:?}", e);
+                    error!("{}", msg);
+                    msg
+                })?;
+            info!("Created models directory: {:?}", self.models_dir);
+        }
 
-        let hf_model = api.model(repo.to_string());
-        let downloaded = hf_model
-            .get(filename)
-            .map_err(|e| format!("Download error: {:?}", e))?;
+        let url = format!("https://huggingface.co/{}/resolve/main/{}", repo, filename);
 
+        debug!("Fetching model from URL: {}", url);
+
+        let client = Client::new();
+        let response = client.get(&url).send().await.map_err(|e| {
+            let msg = format!("Failed to send GET request: {:?}", e);
+            error!("{}", msg);
+            msg
+        })?;
+
+        if !response.status().is_success() {
+            let msg = format!(
+                "Failed to download model. HTTP error: {}",
+                response.status()
+            );
+            error!("{}", msg);
+            return Err(msg);
+        }
+
+        let total_size = response.content_length().ok_or_else(|| {
+            let msg = "Response did not include content length.".to_string();
+            error!("{}", msg);
+            msg
+        })?;
+
+        let mut stream = response.bytes_stream();
         let target_path = self.model_path(filename);
-        fs::copy(downloaded, &target_path).map_err(|e| format!("Copy error: {:?}", e))?;
+        let mut file = File::create(&target_path).await.map_err(|e| {
+            let msg = format!("Failed to create file: {:?}", e);
+            error!("{}", msg);
+            msg
+        })?;
 
-        info!("Model downloaded to {:?}", target_path); // [log]
+        let mut downloaded: u64 = 0;
+        while let Some(chunk_result) = stream.next().await {
+            let chunk = chunk_result.map_err(|e| {
+                let msg = format!("Error reading stream: {:?}", e);
+                error!("{}", msg);
+                msg
+            })?;
+
+            file.write_all(&chunk).await.map_err(|e| {
+                let msg = format!("Failed to write chunk to file: {:?}", e);
+                error!("{}", msg);
+                msg
+            })?;
+
+            downloaded += chunk.len() as u64;
+            let progress = downloaded as f32 / total_size as f32;
+            let _ = app.emit("model-download-progress", progress);
+        }
+
+        info!("Model downloaded to {:?}", target_path);
         Ok(())
     }
 

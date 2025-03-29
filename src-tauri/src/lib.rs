@@ -12,6 +12,8 @@ mod ollama_provider;
 mod llamacpp_provider;
 
 use log::LevelFilter;
+use log::{info, debug, warn, error}; // [log]
+
 use model_provider::{LLMOptions, ModelProvider};
 use std::sync::{Arc, Mutex};
 use tauri::AppHandle;
@@ -21,7 +23,8 @@ use once_cell::sync::OnceCell;
 
 static PROVIDERS: OnceCell<Mutex<Vec<Arc<dyn ModelProvider>>>> = OnceCell::new();
 
-fn init_providers(app: &AppHandle) {
+
+async fn init_providers(app: &AppHandle) {
     let mut providers: Vec<Arc<dyn ModelProvider>> = vec![];
 
     #[cfg(feature = "ollama")]
@@ -33,10 +36,13 @@ fn init_providers(app: &AppHandle) {
     #[cfg(feature = "llama_cpp")]
     {
         use llamacpp_provider::LlamaCppProvider;
-        providers.push(Arc::new(LlamaCppProvider::new(app)));
+        let provider = LlamaCppProvider::new(app).await;
+        providers.push(Arc::new(provider));
     }
 
+    let count = providers.len();
     PROVIDERS.set(Mutex::new(providers)).ok();
+    info!("Initialized {} model provider(s)", count);
 }
 
 fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
@@ -50,20 +56,24 @@ fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
 
 #[tauri::command]
 async fn get_available_providers() -> Vec<String> {
-    get_providers()
+    let names: Vec<_> = get_providers()
         .into_iter()
         .map(|p| p.name().to_string())
-        .collect()
+        .collect();
+    debug!("Available providers: {:?}", names); // [log]
+    names
 }
 
 #[tauri::command]
 async fn get_installed_models(provider_name: String) -> Result<Vec<String>, String> {
+    debug!("Request to get installed models for provider: {}", provider_name); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             return provider.get_installed_models().await;
         }
     }
-    Err("Провайдер не найден".into())
+    warn!("Provider not found: {}", provider_name); // [log]
+    Err("Provider not found".into())
 }
 
 #[tauri::command]
@@ -74,58 +84,71 @@ async fn run_model(
     prompt: String,
     options: Option<LLMOptions>,
 ) -> Result<(), String> {
+    info!("Request to run model '{}' on provider '{}'", model, provider_name); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             return provider.run_model(app, model, prompt, options).await;
         }
     }
-    Err("Провайдер не найден".into())
+    warn!("Provider not found: {}", provider_name); // [log]
+    Err("Provider not found".into())
 }
 
 #[tauri::command]
-async fn download_model(provider_name: String, model: String) -> Result<(), String> {
+async fn download_model(app: AppHandle, provider_name: String, model: String) -> Result<(), String> {
+    info!("Request to download model '{}' from provider '{}'", model, provider_name); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
-            return provider.download_model(model).await;
+            return provider.download_model(app, model).await;
         }
     }
-    Err("Провайдер не найден".into())
+    warn!("Provider not found: {}", provider_name); // [log]
+    Err("Provider not found".into())
 }
 
 #[tauri::command]
 async fn delete_model(provider_name: String, model: String) -> Result<(), String> {
+    info!("Request to delete model '{}' from provider '{}'", model, provider_name); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             return provider.delete_model(model).await;
         }
     }
-    Err("Провайдер не найден".into())
+    warn!("Provider not found: {}", provider_name); // [log]
+    Err("Provider not found".into())
 }
 
 #[tauri::command]
 async fn stop_model(provider_name: String) -> Result<(), String> {
+    info!("Request to stop model on provider '{}'", provider_name); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             let _ = provider.stop_model().await;
             return Ok(());
         }
     }
-    Err("Провайдер не найден".into())
+    warn!("Provider not found: {}", provider_name); // [log]
+    Err("Provider not found".into())
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let log_level = if cfg!(debug_assertions) {
-        // dev-сборка
         LevelFilter::Debug
     } else {
-        // release-сборка
         LevelFilter::Info
     };
     tauri::Builder::default()
-        .plugin(tauri_plugin_log::Builder::new().build())
         .setup(|app| {
-            init_providers(&app.handle());
+            info!("Running setup hook");
+            // 2. Получаем AppHandle как отдельную переменную (копия)
+            let handle = app.handle().clone();
+        
+            // 3. Передаём его внутрь async
+            tauri::async_runtime::spawn(async move {
+                init_providers(&handle).await;
+            });
+
             Ok(())
         })
         .plugin(
@@ -135,7 +158,7 @@ pub fn run() {
                     tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::LogDir {
                         file_name: Some("logs".to_string()),
                     }),
-                    tauri_plugin_log::Target::new(TargetKind::Stdout), 
+                    tauri_plugin_log::Target::new(TargetKind::Stdout),
                     tauri_plugin_log::Target::new(TargetKind::Webview),
                 ])
                 .build(),

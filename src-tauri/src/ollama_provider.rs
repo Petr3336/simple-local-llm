@@ -142,7 +142,7 @@ impl ModelProvider for OllamaProvider {
         Ok(())
     }
 
-    async fn download_model(&self, model: String) -> Result<(), String> {
+    async fn download_model(&self, app: tauri::AppHandle, model: String) -> Result<(), String> {
         info!("Requesting download for model: {}", model); // [log]
 
         let client = Client::new();

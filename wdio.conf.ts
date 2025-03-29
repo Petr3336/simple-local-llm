@@ -28,7 +28,7 @@ export const config = {
   protocol: 'http',
 
   // ensure the rust project is built since we expect this binary to exist for the webdriver sessions
-  onPrepare: () => spawnSync('cargo', ['build', '--release']),
+  onPrepare: () => spawnSync('cargo', ['build', '--release', '--features', '\"ollama, llama_cpp\"']),
 
   // ensure we are running `tauri-driver` before the session starts so that we can proxy the webdriver requests
   beforeSession: () => {

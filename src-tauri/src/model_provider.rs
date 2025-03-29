@@ -20,7 +20,7 @@ pub trait ModelProvider: Send + Sync {
         options: Option<LLMOptions>,
     ) -> Result<(), String>;
 
-    async fn download_model(&self, model: String) -> Result<(), String>;
+    async fn download_model(&self, app: tauri::AppHandle, model: String) -> Result<(), String>;
     async fn delete_model(&self, model: String) -> Result<(), String>;
 
     async fn stop_model(&self) -> Result<(), String>;
