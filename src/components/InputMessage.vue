@@ -1,104 +1,72 @@
 <template>
   <v-container>
-    <div class="chat-container" :class="{ 'fullscreen-mode': isFullscreen }">
+    <div class="chat-container">
       <!-- Загруженные файлы (превью) -->
       <div v-if="files.length > 0" class="file-previews">
         <div v-for="(file, index) in files" :key="index" class="file-preview">
-          <img 
-            v-if="file.type.startsWith('image/')" 
-            :src="file.preview" 
-            alt="Preview"
-            class="preview-image"
-          />
+
+          <img v-if="file.type.startsWith('image/')" :src="file.preview" alt="Preview" class="preview-image" />
           <div v-else class="file-document">
             <span class="file-icon">📄</span>
             <span class="file-name">{{ file.name }}</span>
           </div>
-          <button @click="removeFile(index)" class="remove-file-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </button>
+
         </div>
+        <v-btn @click="removeFile(index)" icon="mdi-close-thick" size="x-small" variant="text" border
+          class="file-close"> </v-btn>
+
       </div>
 
       <!-- Основное поле ввода -->
       <div class="input-wrapper">
-        <textarea
-          ref="textareaRef"
-          v-model="message"
-          placeholder="Введите ваше сообщение..."
-          @keydown.enter.exact.prevent="sendMessage"
-          class="message-input"
-        ></textarea>
+
+        <MdEditor v-model="text" theme="dark" :toolbars-exclude="['words-count']" :language='en - US' :preview="false"
+          :toolbars="toolbars" :no-footer="true" :show-words-count="false" :style="{
+            height: '200px',
+            width: '100%'
+          }" class="custom-md-editor" />
+
 
         <!-- Панель управления -->
         <div class="controls">
-          <!-- Левая группа кнопок -->
           <div class="left-controls">
-            <!-- Кнопка меню -->
-            <div class="menu-wrapper">
-              <button @click="toggleMenu" class="round-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2"/>
-                </svg>
-              </button>
-              
-              <!-- Выпадающее меню -->
-              <div v-if="showMenu" class="dropdown-menu">
-                <div class="menu-item">
-                  <label class="switch">
-                    <input type="checkbox" v-model="systemSearchEnabled">
-                    <span class="slider round"></span>
-                  </label>
-                  <span class="menu-label">Поиск по системе</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Кнопка раскрытия на весь экран -->
-            <button @click="toggleFullscreen" class="round-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path v-if="!isFullscreen" d="M7 7H4V4M17 7h3V4M7 17H4v3M17 17h3v3" stroke="currentColor" stroke-width="2"/>
-                <path v-else d="M7 17V20H4M17 17V20H20M7 7V4H4M17 7V4H20" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </button>
-            
-            <!-- Кнопка прикрепления файлов -->
-            <button @click="triggerFileInput" class="round-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </button>
+              <v-menu v-model="showMenu" :close-on-content-click="false">
+                <template v-slot:activator="{ props }">
+                  <v-btn v-bind="props" icon="mdi-menu" size="small" variant="text" border></v-btn>
+                </template>
+                <v-card class="menu-card" width="200">
+                  <v-list>
+                    <v-list-item>
+                      <template v-slot:prepend>
+                        <v-switch v-model="systemSearchEnabled" @click.stop hide-details></v-switch>
+                      </template>
+                      <v-list-item-title>Поиск по системе</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-card>
+              </v-menu>
+            <v-btn @click="triggerFileInput" icon="mdi-file-upload-outline" size="small" variant="text" border></v-btn>
           </div>
-          
+
           <!-- Кнопка отправки (стрелка) -->
-          <button @click="sendMessage" class="send-btn round-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </button>
+          <v-btn @click="sendMessage" icon="mdi-send-variant" size="small" color="#1976d2" variant="flat"><template
+              v-slot:default><v-icon color="white"></v-icon></template></v-btn>
         </div>
       </div>
 
       <!-- Скрытый input для загрузки файлов -->
-      <input
-        type="file"
-        ref="fileInput"
-        @change="handleFileUpload"
-        multiple
-        style="display: none;"
-      />
+      <input type="file" ref="fileInput" @change="handleFileUpload" multiple style="display: none;" />
     </div>
   </v-container>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { MdEditor } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 
 const message = ref('');
 const files = ref([]);
-const isFullscreen = ref(false);
 const textareaRef = ref(null);
 const fileInput = ref(null);
 const showMenu = ref(false);
@@ -107,6 +75,12 @@ const systemSearchEnabled = ref(false);
 const toggleMenu = () => {
   showMenu.value = !showMenu.value;
 };
+
+const toolbars = [
+  'bold', 'italic', 'underline', 'strikeThrough',
+  'code', 'link', 'fullscreen'
+];
+
 
 const handleFileUpload = (e) => {
   const uploadedFiles = Array.from(e.target.files);
@@ -134,23 +108,16 @@ const removeFile = (index) => {
 
 const sendMessage = () => {
   if (!message.value.trim() && files.value.length === 0) return;
-  
+
   const payload = {
     text: message.value,
     files: files.value.map(f => f.file),
     systemSearch: systemSearchEnabled.value
   };
-  
+
   console.log('Отправлено:', payload);
   message.value = '';
   files.value = [];
-};
-
-const toggleFullscreen = () => {
-  isFullscreen.value = !isFullscreen.value;
-  if (textareaRef.value) {
-    textareaRef.value.focus();
-  }
 };
 
 const triggerFileInput = () => {
@@ -164,6 +131,8 @@ onMounted(() => {
     }
   });
 });
+
+
 </script>
 
 <style scoped>
@@ -174,16 +143,10 @@ onMounted(() => {
   transition: all 0.3s ease;
 }
 
-.fullscreen-mode {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  border-radius: 0;
-  border: none;
-  padding: 16px;
-  background-color: #121212;
+.custom-md-editor {
+  --md-bk-color: #0000002b;
+  --md-color: #ffffff;
+  --md-border-color: #424242;
 }
 
 .file-previews {
@@ -194,11 +157,14 @@ onMounted(() => {
 }
 
 .file-preview {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   width: 80px;
   height: 80px;
   border-radius: 4px;
-  overflow: hidden;
   background-color: #2d2d2d;
 }
 
@@ -213,32 +179,27 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   color: #b0b0b0;
   font-size: 12px;
 }
 
+.file-close {
+  display: flex;
+  color: #b90000;
+  font-size: 12px;
+  right: 24px;
+  top: -14px;
+
+}
+
 .file-icon {
+  position: absolute;
+  right: 10px;
+  top: 5px;
   font-size: 24px;
   margin-bottom: 4px;
 }
 
-.remove-file-btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-}
 
 .input-wrapper {
   display: flex;
@@ -246,27 +207,7 @@ onMounted(() => {
   gap: 8px;
 }
 
-.message-input {
-  width: 100%;
-  min-height: 100px;
-  padding: 12px;
-  border: 1px solid #424242;
-  border-radius: 4px;
-  background-color: #1c1c1c;
-  color: #e0e0e0;
-  resize: none;
-  font-family: inherit;
-  font-size: 14px;
-}
 
-.message-input:focus {
-  outline: none;
-  border-color: #1976d2;
-}
-
-.fullscreen-mode .message-input {
-  min-height: calc(100vh - 180px);
-}
 
 .controls {
   display: flex;
@@ -277,31 +218,6 @@ onMounted(() => {
 .left-controls {
   display: flex;
   gap: 8px;
-}
-
-.round-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid #424242;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-}
-
-.round-btn:hover {
-  background-color: #3d3d3d;
-}
-
-.send-btn {
-  background-color: #1976d2;
-  color: white;
-}
-
-.send-btn:hover {
-  background-color: #1565c0;
 }
 
 .menu-wrapper {
@@ -318,7 +234,7 @@ onMounted(() => {
   padding: 8px;
   z-index: 1001;
   min-width: 180px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .menu-item {
@@ -370,11 +286,11 @@ onMounted(() => {
   border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #1976d2;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(20px);
 }
 </style>

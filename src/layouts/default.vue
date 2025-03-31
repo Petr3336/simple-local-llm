@@ -3,13 +3,13 @@
     <v-sidebar>
       <Sidebar />
     </v-sidebar>
-    <v-appbar>
+    <v-appbar app>
       <AppBar />
     </v-appbar>
     <v-main>
       <router-view />
     </v-main>
-    <v-footer class="exact-fit-footer">
+    <v-footer app class="exact-fit-footer">
       <InputMessage />
     </v-footer>
   </v-app>

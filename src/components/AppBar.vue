@@ -96,6 +96,6 @@ defineExpose({
 }
 
 .v-btn--variant-outlined {
-  border: thin solid rgba(255, 255, 255, 0.12);
+  border: thin solid #ffffff1f;
 }
 </style>
