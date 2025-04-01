@@ -1,27 +1,17 @@
 <template>
   <v-container>
     <div class="chat-container">
-      <!-- Загруженные файлы (превью) -->
-      <div v-if="files.length > 0" class="file-previews">
-        <div v-for="(file, index) in files" :key="index" class="file-preview">
-          <img v-if="file.type.startsWith('image/')" :src="file.preview" alt="Preview" class="preview-image" />
-          <div v-else class="file-document">
-            <span class="file-name">{{ file.name }}</span>
-          </div>
-
-        </div>
-        <v-btn @click="removeFile(index)" icon="mdi-close-thick" size="x-small" variant="text"
-          class="file-close"> </v-btn>
-      </div>
+      <!-- Компонент превью файлов -->
+      <FilePreviews :files="files" @remove-file="removeFile" />
 
       <!-- Основное поле ввода -->
       <div class="input-wrapper">
-        <MdEditor v-model="text" theme="dark" :language='en - US' :preview="false"
-          :toolbars="toolbars" :no-footer="true" :show-words-count="false" :style="{
+        <MdEditor v-model="text" theme="dark" :language="'en-US'" :preview="false" :toolbars="toolbars"
+          :no-footer="true" :show-words-count="false" class="custom-md-editor" :style="{
             borderRadius: '8px',
             height: '200px',
             width: '100%'
-          }" class="custom-md-editor" />
+          }" />
 
         <!-- Панель управления -->
         <div class="controls">
@@ -41,12 +31,11 @@
                 </v-list>
               </v-card>
             </v-menu>
-            <v-btn @click="triggerFileInput" icon="mdi-file-upload-outline" size="small" variant="text" border></v-btn>
+            <v-btn @click="triggerFileInput" icon="mdi-file-upload-outline" size="small" variant="text" border />
           </div>
 
-          <!-- Кнопка отправки (стрелка) -->
-          <v-btn @click="sendMessage" icon="mdi-send-variant" size="small" color="#1976d2" variant="flat"><template
-              v-slot:default><v-icon color="white"></v-icon></template></v-btn>
+          <!-- Кнопка отправки -->
+          <v-btn @click="sendMessage" icon="mdi-send-variant" size="small" color="#1976d2" variant="flat" />
         </div>
       </div>
 
@@ -57,24 +46,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
+import FilePreviews from './FilePreviews.vue';
 
-const message = ref('');
+const text = ref('');
 const files = ref([]);
 const fileInput = ref(null);
 const systemSearchEnabled = ref(false);
-
-const toggleMenu = () => {
-  showMenu.value = !showMenu.value;
-};
+const showMenu = ref(false);
 
 const toolbars = [
   'bold', 'underline', 'orderedList',
   'code', 'link', 'fullscreen'
 ];
-
 
 const handleFileUpload = (e) => {
   const uploadedFiles = Array.from(e.target.files);
@@ -101,31 +87,22 @@ const removeFile = (index) => {
 };
 
 const sendMessage = () => {
-  if (!message.value.trim() && files.value.length === 0) return;
+  if (!text.value.trim() && files.value.length === 0) return;
 
   const payload = {
-    text: message.value,
+    text: text.value,
     files: files.value.map(f => f.file),
     systemSearch: systemSearchEnabled.value
   };
 
   console.log('Отправлено:', payload);
-  message.value = '';
+  text.value = '';
   files.value = [];
 };
 
 const triggerFileInput = () => {
   fileInput.value.click();
 };
-
-onMounted(() => {
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.menu-wrapper')) {
-      showMenu.value = false;
-    }
-  });
-});
-
 </script>
 
 <style scoped>
@@ -140,49 +117,6 @@ onMounted(() => {
   --md-bk-color: #0000002b;
   --md-color: #ffffff;
   --md-border-color: #424242;
-}
-
-.file-previews {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.file-preview {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 80px;
-  height: 80px;
-  border-radius: 4px;
-  background-color: #2d2d2d;
-}
-
-.preview-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.file-document {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b0b0b0;
-  font-size: 12px;
-}
-
-.file-close {
-  display: flex;
-  color: #b90000;
-  font-size: 12px;
-  right: 24px;
-  top: -14px;
-
 }
 
 .input-wrapper {

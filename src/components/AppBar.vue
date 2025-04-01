@@ -5,34 +5,25 @@
       <v-btn icon @click="toggleSidebar">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      
       <v-spacer></v-spacer>
-      
-      <!-- Провайдер и модель - теперь всегда видны -->
-      <v-select
-        v-model="modelProvider"
-        :items="providersList"
-        label="Провайдер"
-        density="compact"
-        variant="outlined"
-        class="mr-2"
-        style="min-width: 120px; max-width: 180px;"
-        hide-details
-        @update:model-value="getModels"
-      ></v-select>
+      <v-menu :close-on-content-click="false">
+        <template v-slot:activator="{ props }" >
+          <v-btn v-bind="props">
+            {{ modelProvider || "Выберите провайдера" }}
+            <v-icon right>mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
 
-      <v-combobox
-        v-model="selectedModel"
-        :items="modelsList"
-        label="Модель"
-        density="compact"
-        variant="outlined"
-        style="min-width: 150px; max-width: 180px;"
-        hide-details
-      ></v-combobox>
-
-
-      <!-- Дополнительные элементы (если нужны) -->
+        <v-card class="pa-2" style="background: transparent; box-shadow: none;">
+          <div class="d-flex align-center">
+            <v-select v-model="modelProvider" :items="providersList" label="Провайдер" density="compact"
+              variant="outlined" class="mr-2" style="min-width: 120px; max-width: 180px;" hide-details
+              @update:model-value="getModels"></v-select>
+            <v-combobox v-model="selectedModel" :items="modelsList" label="Модель" density="compact" variant="outlined"
+              style="min-width: 150px; max-width: 180px;" hide-details></v-combobox>
+          </div>
+        </v-card>
+      </v-menu>
     </v-app-bar>
   </v-container>
 </template>
