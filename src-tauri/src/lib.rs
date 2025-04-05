@@ -1,20 +1,15 @@
-#![cfg_attr(
-    all(not(debug_assertions), target_os = "windows"),
-    windows_subsystem = "windows"
-)]
-
 mod model_provider;
+pub mod model_providers;
 
-#[cfg(feature = "ollama")]
-mod ollama_provider;
-
-#[cfg(feature = "llama_cpp")]
-mod llamacpp_provider;
+pub mod function_provider;
+use function_provider::LlmFunction;
+pub mod function_providers;
 
 use log::LevelFilter;
 use log::{info, debug, warn, error}; // [log]
 
 use model_provider::{LLMOptions, ModelProvider};
+use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 use tauri::AppHandle;
 use tauri_plugin_log::{Builder as LogBuilder, TargetKind};
@@ -22,20 +17,20 @@ use tauri_plugin_log::{Builder as LogBuilder, TargetKind};
 use once_cell::sync::OnceCell;
 
 static PROVIDERS: OnceCell<Mutex<Vec<Arc<dyn ModelProvider>>>> = OnceCell::new();
-
+//static FUNCTIONS: OnceCell<Vec<Arc<dyn LlmFunction>>> = OnceCell::new();
 
 async fn init_providers(app: &AppHandle) {
     let mut providers: Vec<Arc<dyn ModelProvider>> = vec![];
 
     #[cfg(feature = "ollama")]
     {
-        use ollama_provider::OllamaProvider;
+        use crate::model_providers::ollama_provider::OllamaProvider;
         providers.push(Arc::new(OllamaProvider::new()));
     }
 
     #[cfg(feature = "llama_cpp")]
     {
-        use llamacpp_provider::LlamaCppProvider;
+        use crate::model_providers::llamacpp_provider::LlamaCppProvider;    
         let provider = LlamaCppProvider::new(app).await;
         providers.push(Arc::new(provider));
     }
@@ -53,6 +48,22 @@ fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
         .unwrap()
         .clone()
 }
+
+pub fn initialize_functions() -> HashMap<String, Arc<dyn LlmFunction>> {
+    let functions = function_providers::all_functions();
+
+    functions
+        .into_iter()
+        .map(|f| {
+            let def = f.definition();
+            (def.name.clone(), f)
+        })
+        .collect()
+}
+
+/* pub fn initialize_functions() -> Vec<Arc<dyn LlmFunction>> {
+    function_providers::all_functions()
+} */
 
 #[tauri::command]
 async fn get_available_providers() -> Vec<String> {
@@ -81,13 +92,14 @@ async fn run_model(
     app: AppHandle,
     provider_name: String,
     model: String,
-    prompt: String,
+    messages: Vec<serde_json::Value>,
     options: Option<LLMOptions>,
+    chat_id: String,
 ) -> Result<(), String> {
     info!("Request to run model '{}' on provider '{}'", model, provider_name); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
-            return provider.run_model(app, model, prompt, options).await;
+            return provider.run_model(app, model, messages, options, chat_id).await;
         }
     }
     warn!("Provider not found: {}", provider_name); // [log]
@@ -148,6 +160,12 @@ pub fn run() {
             tauri::async_runtime::spawn(async move {
                 init_providers(&handle).await;
             });
+            
+            /* tauri::async_runtime::spawn(async move {
+                // 👇 Инициализация функций
+                let functions = initialize_functions();
+                FUNCTIONS.set(functions).ok();
+            }); */
 
             Ok(())
         })

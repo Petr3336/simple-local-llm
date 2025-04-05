@@ -37,3 +37,7 @@ llama-cpp-2 = { git = "https://github.com/Petr3336/llama-cpp-rs", branch = "andr
 hf-hub = { version = "0.4.2", default-features = false, features = ["tokio", "rustls-tls"], optional = true }
 once_cell = "1.21.1"
 tauri-plugin-fs = "2"
+chrono = "0.4.40"
+tera = "1.20.0"
+minijinja = "2.9.0"
+encoding_rs = "0.8.35"
