@@ -138,7 +138,7 @@ const modelParams = ref<ModelParameters>({
   prompt: 'Say "hello world"!',
   options: {
     num_gpu: 100,
-    num_ctx: 2048,
+    num_ctx: 32768,
     functions: ["get_unix_time"],
     stream: true,
   },

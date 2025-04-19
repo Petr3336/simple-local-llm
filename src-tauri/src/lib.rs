@@ -49,7 +49,7 @@ fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
         .clone()
 }
 
-pub fn initialize_functions() -> HashMap<String, Arc<dyn LlmFunction>> {
+/* pub fn initialize_functions() -> HashMap<String, Arc<dyn LlmFunction>> {
     let functions = function_providers::all_functions();
 
     functions
@@ -59,11 +59,11 @@ pub fn initialize_functions() -> HashMap<String, Arc<dyn LlmFunction>> {
             (def.name.clone(), f)
         })
         .collect()
-}
-
-/* pub fn initialize_functions() -> Vec<Arc<dyn LlmFunction>> {
-    function_providers::all_functions()
 } */
+
+pub fn initialize_functions() -> Vec<Arc<dyn LlmFunction>> {
+    function_providers::all_functions()
+}
 
 #[tauri::command]
 async fn get_available_providers() -> Vec<String> {

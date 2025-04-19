@@ -93,25 +93,29 @@ export const useChatStore = defineStore('chat', {
       prompt: string,
       options: LLMOptions
     ) {
-
-      if (options.functions.length > 0) {
-        options.stream = false;
+      // Клонируем options, чтобы не изменять оригинальный объект
+      const clonedOptions = { ...options };
+    
+      // Если провайдер — ollama и есть доступные для вызова функции, отключаем стриминг
+      if (providerName === "ollama" && options.functions.length > 0) {
+        clonedOptions.stream = false;
       }
-
+    
       // Формируем массив сообщений для отправки (сохраняем только role и content)
       const msgs = this.activeChat
         ? this.activeChat.messages.map(m => ({ role: m.role, content: m.content }))
-        : []
+        : [];
+    
       try {
         await invoke("run_model", {
           providerName,
           model,
           messages: msgs,
-          options,
+          options: clonedOptions,
           chatId: this.activeChatId
-        })
+        });
       } catch (error) {
-        console.error("Ошибка при запуске модели:", error)
+        console.error("Ошибка при запуске модели:", error);
       }
     },
     appendMessageByRole(chatId: string, role: ChatRole, content: string, tool_call_id?: string) {

@@ -2512,7 +2512,7 @@ checksum = "23fb14cb19457329c82206317a5663005a4d404783dc74f4252769b0d5f42856"
 [[package]]
 name = "llama-cpp-2"
 version = "0.1.103"
-source = "git+https://github.com/Petr3336/llama-cpp-rs?branch=android-build-fixes#c410bf24597e0b769f0c74843d8b7cabd2a1f926"
+source = "git+https://github.com/Petr3336/llama-cpp-rs?branch=android-build-fixes#aa257c0dd4341fc2c6e58b271053b1a952744e13"
 dependencies = [
  "enumflags2",
  "llama-cpp-sys-2",
@@ -2524,7 +2524,7 @@ dependencies = [
 [[package]]
 name = "llama-cpp-sys-2"
 version = "0.1.103"
-source = "git+https://github.com/Petr3336/llama-cpp-rs?branch=android-build-fixes#c410bf24597e0b769f0c74843d8b7cabd2a1f926"
+source = "git+https://github.com/Petr3336/llama-cpp-rs?branch=android-build-fixes#aa257c0dd4341fc2c6e58b271053b1a952744e13"
 dependencies = [
  "bindgen",
  "cc",
