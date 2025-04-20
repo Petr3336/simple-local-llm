@@ -14,6 +14,7 @@ rust-version = "1.77.2"
 default = []
 llama_cpp = ["llama-cpp-2", "reqwest", "futures"]  # Подключает llama-cpp-2 только если явно включён флаг
 ollama = ["reqwest", "futures"] # Подключает ollama только если явно включён флаг
+vulkan = ["llama-cpp-2", "llama-cpp-2/vulkan", "reqwest", "futures"]
 
 [lib]
 name = "app_lib"

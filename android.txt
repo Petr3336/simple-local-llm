@@ -5,3 +5,9 @@ export BINDGEN_EXTRA_CLANG_ARGS="\
 -I$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/x86_64-linux-android"
 
 $env:BINDGEN_EXTRA_CLANG_ARGS="--target=x86_64-linux-android --sysroot=D:/AndroidSdk/ndk/29.0.13113456/toolchains/llvm/prebuilt/windows-x86_64/sysroot -ID:/AndroidSdk/ndk/29.0.13113456/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include -ID:/AndroidSdk/ndk/29.0.13113456/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/x86_64-linux-android"
+
+export Vulkan_LIBRARY=/home/petr/Android/Sdk/ndk/29.0.13113456/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/arm-linux-androideabi/28/libvulkan.so
+
+export Vulkan_GLSLC_EXECUTABLE=/home/petr/Android/Sdk/ndk/29.0.13113456/shader-tools/linux-x86_64/glslc
+
+export Vulkan_INCLUDE_DIR=/home/petr/include

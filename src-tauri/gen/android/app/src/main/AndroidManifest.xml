@@ -4,7 +4,15 @@
 
     <!-- AndroidTV support -->
     <uses-feature android:name="android.software.leanback" android:required="false" />
-
+    <uses-feature
+        android:name="android.hardware.vulkan.version"
+        android:required="true"
+        android:version="0x401000" />
+    <uses-feature
+        android:name="android.hardware.vulkan.compute"
+        android:required="false"
+        android:version="0" />
+        
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
