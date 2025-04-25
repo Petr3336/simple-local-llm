@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\arg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\chat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\json-schema-to-grammar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\llguidance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\ngram-cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\sampling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\speculative.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\arg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\base64.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\chat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\minja\chat-template.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\minja\minja.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\ngram-cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\sampling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\speculative.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\common\build_info.dir\$(Configuration)\build-info.obj">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5F72DB0A-6DAA-3534-8478-CFE95F533690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{241DB3D6-4750-3EB3-B1A4-BD9D7EB4E28F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2B5BD738-D651-3CB5-A441-C671BD808396}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

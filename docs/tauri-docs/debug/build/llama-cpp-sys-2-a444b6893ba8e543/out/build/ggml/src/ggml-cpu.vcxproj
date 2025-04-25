@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4E61A156-F958-39A1-B605-3E1A9AF0EBBB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ggml-cpu</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ggml-cpu.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ggml-cpu</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ggml-cpu.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ggml-cpu</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ggml-cpu.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ggml-cpu</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ggml-cpu.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ggml-cpu</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Brepro /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Brepro -Brepro /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Brepro /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -Brepro /utf-8 /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;GGML_USE_OPENMP;GGML_USE_LLAMAFILE;GGML_USE_CPU_AARCH64;GGML_AVX2;GGML_FMA;GGML_F16C;_CRT_SECURE_NO_WARNINGS;GGML_SCHED_MAX_COPIES=4;_XOPEN_SOURCE=600;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\.;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/ggml/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp -BC:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build --check-stamp-file C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/ggml/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Strawberry\c\share\cmake-3.29\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCSourceRuns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindOpenMP.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageMessage.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceRuns.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\cmake\common.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\cmake\FindSIMD.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/ggml/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp -BC:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build --check-stamp-file C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/ggml/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Strawberry\c\share\cmake-3.29\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCSourceRuns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindOpenMP.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageMessage.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceRuns.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\cmake\common.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\cmake\FindSIMD.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/ggml/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp -BC:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build --check-stamp-file C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/ggml/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Strawberry\c\share\cmake-3.29\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCSourceRuns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindOpenMP.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageMessage.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceRuns.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\cmake\common.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\cmake\FindSIMD.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/ggml/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp -BC:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build --check-stamp-file C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/ggml/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Strawberry\c\share\cmake-3.29\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCSourceRuns.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\CheckCXXSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindOpenMP.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\FindPackageMessage.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckCompilerFlag.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake;C:\Strawberry\c\share\cmake-3.29\Modules\Internal\CheckSourceRuns.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\cmake\common.cmake;C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\cmake\FindSIMD.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu.c">
+      <ObjectFileName>$(IntDir)/ggml-cpu/ggml-cpu.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu.cpp">
+      <ObjectFileName>$(IntDir)/ggml-cpu/ggml-cpu.cpp.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-aarch64.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-aarch64.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-hbm.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-hbm.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-quants.c" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-quants.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-traits.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-traits.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\amx\amx.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\amx\amx.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\amx\mmq.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\amx\mmq.h" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ggml-cpu-impl.h" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\common.h" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\binary-ops.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\binary-ops.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\unary-ops.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\unary-ops.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\simd-mappings.h" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\vec.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\vec.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ops.h" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\ops.cpp" />
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\llamafile\sgemm.cpp" />
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-cpu\llamafile\sgemm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ZERO_CHECK.vcxproj">
+      <Project>{C8004122-437B-3827-986D-B6C1F2FC33FF}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\ggml\src\ggml-base.vcxproj">
+      <Project>{C5BAC683-3ABB-3DB2-902B-8AB6B41C8487}</Project>
+      <Name>ggml-base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

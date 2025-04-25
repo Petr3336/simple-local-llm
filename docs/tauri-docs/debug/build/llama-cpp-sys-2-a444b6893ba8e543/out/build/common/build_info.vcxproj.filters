@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\build-info.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\AntonMoryakov\project\simple-local-llm\docs\tauri-docs\debug\build\llama-cpp-sys-2-a444b6893ba8e543\out\build\CMakeFiles\8d077fe2ce019f9dbb3e7ed793bc4ffb\build-info.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\common\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A826BC1E-09D0-359C-96B1-179687D10B46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2B5BD738-D651-3CB5-A441-C671BD808396}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -193,7 +193,8 @@
 <a href="#192" id="192">192</a>
 <a href="#193" id="193">193</a>
 <a href="#194" id="194">194</a>
-<a href="#195" id="195">195</a></pre></div><pre class="rust"><code><span class="kw">mod </span>model_provider;
+<a href="#195" id="195">195</a>
+<a href="#196" id="196">196</a></pre></div><pre class="rust"><code><span class="kw">mod </span>model_provider;
 <span class="kw">pub mod </span>model_providers;
 
 <span class="kw">pub mod </span>function_provider;
@@ -201,9 +202,10 @@
 <span class="kw">pub mod </span>function_providers;
 
 <span class="kw">use </span>log::LevelFilter;
-<span class="kw">use </span>log::{info, debug, warn}; <span class="comment">// [log]
+<span class="kw">use </span>log::{info, debug, warn, error}; <span class="comment">// [log]
 
 </span><span class="kw">use </span>model_provider::{LLMOptions, ModelProvider};
+<span class="kw">use </span>std::collections::HashMap;
 <span class="kw">use </span>std::sync::{Arc, Mutex};
 <span class="kw">use </span>tauri::AppHandle;
 <span class="kw">use </span>tauri_plugin_log::{Builder <span class="kw">as </span>LogBuilder, TargetKind};
@@ -214,7 +216,7 @@
 <span class="comment">//static FUNCTIONS: OnceCell&lt;Vec&lt;Arc&lt;dyn LlmFunction&gt;&gt;&gt; = OnceCell::new();
 
 </span><span class="kw">async fn </span>init_providers(app: <span class="kw-2">&amp;</span>AppHandle) {
-    <span class="kw">let </span>providers: Vec&lt;Arc&lt;<span class="kw">dyn </span>ModelProvider&gt;&gt; = <span class="macro">vec!</span>[];
+    <span class="kw">let </span><span class="kw-2">mut </span>providers: Vec&lt;Arc&lt;<span class="kw">dyn </span>ModelProvider&gt;&gt; = <span class="macro">vec!</span>[];
 
     <span class="attr">#[cfg(feature = <span class="string">"ollama"</span>)]
     </span>{

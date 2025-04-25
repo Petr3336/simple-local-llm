@@ -1,3 +1,3 @@
-var srcIndex = new Map(JSON.parse('[["app",["",[],["main.rs"]]],["app_lib",["",[["function_providers",[],["mod.rs","time_provider.rs"]],["model_providers",[],["mod.rs"]]],["function_provider.rs","lib.rs","model_provider.rs"]]]]'));
+var srcIndex = new Map(JSON.parse('[["app",["",[],["main.rs"]]],["app_lib",["",[["function_providers",[],["mod.rs","time_provider.rs"]],["model_providers",[],["llamacpp_provider.rs","mod.rs","ollama_provider.rs"]]],["function_provider.rs","lib.rs","model_provider.rs"]]],["app_lib",["",[["function_providers",[],["mod.rs","time_provider.rs"]],["model_providers",[],["mod.rs"]]],["function_provider.rs","lib.rs","model_provider.rs"]]]]'));
 createSrcSidebar();
-//{"start":36,"fragment_lengths":[27,163]}
+//{"start":36,"fragment_lengths":[27,207,163]}

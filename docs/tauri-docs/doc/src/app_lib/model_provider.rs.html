@@ -28,9 +28,11 @@
 <a href="#27" id="27">27</a>
 <a href="#28" id="28">28</a>
 <a href="#29" id="29">29</a>
-<a href="#30" id="30">30</a></pre></div><pre class="rust"><code><span class="kw">use </span>async_trait::async_trait;
+<a href="#30" id="30">30</a>
+<a href="#31" id="31">31</a></pre></div><pre class="rust"><code><span class="kw">use </span>async_trait::async_trait;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>tauri::AppHandle;
+<span class="kw">use </span><span class="kw">crate</span>::function_provider::FunctionDefinition;
 
 <span class="attr">#[derive(Clone, Debug, Serialize, Deserialize)]
 </span><span class="kw">pub struct </span>LLMOptions {
