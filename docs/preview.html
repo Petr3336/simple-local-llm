@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>📘 Документация проекта</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .doc-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .doc-button:hover {
+      background-color: #45a049;
+    }
+    .doc-button.disabled {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 Документация проекта</h1>
+  <div class="buttons">
+    <a class="doc-button" href="./tauri-docs/doc/app_lib/index.html" target="_blank">Документация бэкенда (Rust)</a>
+    <a class="doc-button disabled" href="#">Документация фронта <br> (в разработке)</a>
+  </div>
+</body>
+</html>
