@@ -1,3 +1,5 @@
+//! Основной модуль библиотеки.
+
 pub mod model_provider;
 pub use model_provider::{ModelProvider, LLMOptions};
 
