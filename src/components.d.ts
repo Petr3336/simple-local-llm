@@ -8,13 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppBar: typeof import('./components/AppBar.vue')['default']
-    AppFooter: typeof import('./components/AppFooter.vue')['default']
     FilePreviews: typeof import('./components/FilePreviews.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     InputMessage: typeof import('./components/InputMessage.vue')['default']
+    RenameChatDialog: typeof import('./components/RenameChatDialog.vue')['default']
+    RenameDialog: typeof import('./components/RenameDialog.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchChatDialog: typeof import('./components/SearchChatDialog.vue')['default']
     Sidebar: typeof import('./components/Sidebar.vue')['default']
-    SideBar: typeof import('./components/sideBar.vue')['default']
   }
 }

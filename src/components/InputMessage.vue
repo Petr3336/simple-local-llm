@@ -20,11 +20,11 @@
               <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" icon="mdi-menu" size="small" variant="text" border></v-btn>
               </template>
-              <v-card class="menu-card" width="200">
+              <v-card class="menu-card">
                 <v-list>
                   <v-list-item>
                     <template v-slot:prepend>
-                      <v-switch v-model="systemSearchEnabled" @click.stop hide-details></v-switch>
+                      <v-switch v-model="systemSearchEnabled" class="pr-3" @click.stop hide-details></v-switch>
                     </template>
                     <v-list-item-title>Поиск по системе</v-list-item-title>
                   </v-list-item>

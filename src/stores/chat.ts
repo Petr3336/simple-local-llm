@@ -70,6 +70,7 @@ export const useChatStore = defineStore('chat', {
     },
     selectChat(id: string) {
       this.activeChatId = id
+      this.router.push(id.toString())
     },
     renameChat(id: string, newTitle: string) {
       const chat = this.chatSessions.find(c => c.id === id)
