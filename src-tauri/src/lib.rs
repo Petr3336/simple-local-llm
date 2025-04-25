@@ -183,6 +183,7 @@ pub fn run() {
         )
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_pinia::init())
         .invoke_handler(tauri::generate_handler![
             get_available_providers,
             get_installed_models,

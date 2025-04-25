@@ -111,6 +111,7 @@ dependencies = [
  "tauri-plugin-fs",
  "tauri-plugin-log",
  "tauri-plugin-opener",
+ "tauri-plugin-pinia",
  "tera",
  "tokio",
 ]
@@ -335,7 +336,7 @@ dependencies = [
  "bitflags 2.9.0",
  "cexpr",
  "clang-sys",
- "itertools",
+ "itertools 0.12.1",
  "lazy_static",
  "lazycell",
  "log",
@@ -414,6 +415,31 @@ dependencies = [
  "futures-io",
  "futures-lite",
  "piper",
+]
+
+[[package]]
+name = "bon"
+version = "3.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ced38439e7a86a4761f7f7d5ded5ff009135939ecb464a24452eaa4c1696af7d"
+dependencies = [
+ "bon-macros",
+ "rustversion",
+]
+
+[[package]]
+name = "bon-macros"
+version = "3.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ce61d2d3844c6b8d31b2353d9f66cf5e632b3e9549583fe3cac2f4f6136725e"
+dependencies = [
+ "darling",
+ "ident_case",
+ "prettyplease",
+ "proc-macro2",
+ "quote",
+ "rustversion",
+ "syn 2.0.100",
 ]
 
 [[package]]
@@ -943,6 +969,20 @@ dependencies = [
  "darling_core",
  "quote",
  "syn 2.0.100",
+]
+
+[[package]]
+name = "dashmap"
+version = "6.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5041cc499144891f3790297212f32a74fb938e5136a14943f338ef9e0ae276cf"
+dependencies = [
+ "cfg-if",
+ "crossbeam-utils",
+ "hashbrown 0.14.5",
+ "lock_api",
+ "once_cell",
+ "parking_lot_core",
 ]
 
 [[package]]
@@ -1819,6 +1859,12 @@ dependencies = [
 
 [[package]]
 name = "hashbrown"
+version = "0.14.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
+
+[[package]]
+name = "hashbrown"
 version = "0.15.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bf151400ff0baff5465007dd2f3e717f3fe502074ca563069ce3a6629d07b289"
@@ -2287,6 +2333,15 @@ name = "itertools"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ba291022dbbd398a455acf126c1e341954079855bc60dfdda641363bd6922569"
+dependencies = [
+ "either",
+]
+
+[[package]]
+name = "itertools"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b192c782037fadd9cfa75548310488aabdbf3d2da73885b31bd0abd03351285"
 dependencies = [
  "either",
 ]
@@ -4841,6 +4896,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "tauri-plugin-pinia"
+version = "3.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24603584d94eb38771405709a58ce16c4451e9375e957e454a06957cf25c0954"
+dependencies = [
+ "serde",
+ "tauri",
+ "tauri-plugin",
+ "tauri-store",
+ "tracing",
+]
+
+[[package]]
 name = "tauri-runtime"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4885,6 +4953,52 @@ dependencies = [
  "webview2-com",
  "windows",
  "wry",
+]
+
+[[package]]
+name = "tauri-store"
+version = "0.10.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "74fa58a1db9bffdf5cc176204aa89e5181221a95742367716dd1eee3f71a5feb"
+dependencies = [
+ "dashmap",
+ "futures",
+ "itertools 0.14.0",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-store-macros",
+ "tauri-store-utils",
+ "thiserror 2.0.12",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "tauri-store-macros"
+version = "0.10.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "defa4a869e8ec707f0787a1622b5cb80d33e2c39735ad1509eee91f18ab22026"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.100",
+]
+
+[[package]]
+name = "tauri-store-utils"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "14376c237a6632663991634d51a31f128b6b381b94d65e747db2419a513ae6d8"
+dependencies = [
+ "bon",
+ "semver",
+ "serde",
+ "serde_json",
+ "tauri",
+ "thiserror 2.0.12",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
