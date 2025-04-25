@@ -1,6 +1,7 @@
 pub mod model_provider;
-pub mod model_providers;
+pub use model_provider::{ModelProvider, LLMOptions};
 
+pub mod model_providers;
 pub mod function_provider;
 use function_provider::LlmFunction;
 pub mod function_providers;
@@ -8,7 +9,6 @@ pub mod function_providers;
 use log::LevelFilter;
 use log::{info, debug, warn, error}; // [log]
 
-use model_provider::{LLMOptions, ModelProvider};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 use tauri::AppHandle;
