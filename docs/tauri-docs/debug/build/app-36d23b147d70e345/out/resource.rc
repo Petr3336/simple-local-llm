@@ -1,22 +1,22 @@
 #pragma code_page(65001)
 1 VERSIONINFO
-FILEFLAGS 0x0
-FILEVERSION 0, 1, 0, 0
+FILEOS 0x40004
+FILEFLAGSMASK 0x3f
 FILESUBTYPE 0x0
 FILETYPE 0x1
-FILEFLAGSMASK 0x3f
 PRODUCTVERSION 0, 1, 0, 0
-FILEOS 0x40004
+FILEVERSION 0, 1, 0, 0
+FILEFLAGS 0x0
 {
 BLOCK "StringFileInfo"
 {
 BLOCK "000004b0"
 {
-VALUE "FileDescription", "simple-local-llm"
 VALUE "CompanyName", "simplelocalllm"
-VALUE "ProductVersion", "0.1.0"
 VALUE "FileVersion", "0.1.0"
+VALUE "ProductVersion", "0.1.0"
 VALUE "ProductName", "simple-local-llm"
+VALUE "FileDescription", "simple-local-llm"
 }
 }
 BLOCK "VarFileInfo" {
