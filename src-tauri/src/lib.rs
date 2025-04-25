@@ -1,4 +1,4 @@
-mod model_provider;
+pub mod model_provider;
 pub mod model_providers;
 
 pub mod function_provider;
