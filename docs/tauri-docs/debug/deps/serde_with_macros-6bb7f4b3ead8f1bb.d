@@ -1,0 +1,8 @@
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\serde_with_macros-6bb7f4b3ead8f1bb.dll: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\apply.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\lazy_bool.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\utils.rs
+
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\serde_with_macros-6bb7f4b3ead8f1bb.d: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\apply.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\lazy_bool.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\utils.rs
+
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\lib.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\apply.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\lazy_bool.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_with_macros-3.12.0\src\utils.rs:

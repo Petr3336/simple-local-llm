@@ -1,0 +1,9 @@
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\libenumflags2-b52d10f5e0d5e566.rmeta: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\formatting.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\fallible.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\iter.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\const_api.rs
+
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\enumflags2-b52d10f5e0d5e566.d: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\formatting.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\fallible.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\iter.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\const_api.rs
+
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\lib.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\formatting.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\fallible.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\iter.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\enumflags2-0.7.11\src\const_api.rs:

@@ -1,0 +1,11 @@
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\liburl-52602c8e8dca3e01.rmeta: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\host.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\origin.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\parser.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\path_segments.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\slicing.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\quirks.rs
+
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\url-52602c8e8dca3e01.d: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\host.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\origin.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\parser.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\path_segments.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\slicing.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\quirks.rs
+
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\lib.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\host.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\origin.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\parser.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\path_segments.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\slicing.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\url-2.5.4\src\quirks.rs:

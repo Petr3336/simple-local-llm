@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-alloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-backend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-opt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-threading.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-quants.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\gguf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\include\ggml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\include\ggml-alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\include\ggml-backend.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\include\ggml-cpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\include\ggml-opt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\include\gguf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-threading.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\ggml-quants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\AntonMoryakov\.cargo\git\checkouts\llama-cpp-rs-8f51a6be7089e2e6\aa257c0\llama-cpp-sys-2\llama.cpp\ggml\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5F72DB0A-6DAA-3534-8478-CFE95F533690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2B5BD738-D651-3CB5-A441-C671BD808396}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,972 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 6.2.9200 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: /O2;/DNDEBUG;/Ob2;-nologo;-MD;-Brepro
+      Id flags:  
+      
+      The output was:
+      0
+      ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+      ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:08.
+      
+      ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\3.29.2\\CompilerIdC\\CompilerIdC.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      PrepareForBuild:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "Debug\\CompilerIdC.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\3.29.2\\CompilerIdC\\CompilerIdC.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        ╨д╨░╨╣╨╗ "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
+      ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\3.29.2\\CompilerIdC\\CompilerIdC.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      
+      ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+          ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+          ╨Ю╤И╨╕╨▒╨╛╨║: 0
+      
+      ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.47
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/3.29.2/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: /O2;/DNDEBUG;/Ob2;-nologo;-MD;-Brepro
+      Id flags:  
+      
+      The output was:
+      0
+      ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+      ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:10.
+      
+      ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\3.29.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      PrepareForBuild:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\3.29.2\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        ╨д╨░╨╣╨╗ "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\3.29.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      
+      ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+          ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+          ╨Ю╤И╨╕╨▒╨╛╨║: 0
+      
+      ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.21
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/3.29.2/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-1q7fkr"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-1q7fkr"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-1q7fkr'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_344eb.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:12.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1q7fkr\\cmTC_344eb.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_344eb.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1q7fkr\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_344eb.dir\\Debug\\cmTC_344eb.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_344eb.dir\\Debug\\cmTC_344eb.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_344eb.dir\\Debug\\cmTC_344eb.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_344eb.dir\\Debug\\\\" /Fd"cmTC_344eb.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Strawberry\\c\\share\\cmake-3.29\\Modules\\CMakeCCompilerABI.c"
+          CMakeCCompilerABI.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1q7fkr\\Debug\\cmTC_344eb.exe" /INCREMENTAL /ILK:"cmTC_344eb.dir\\Debug\\cmTC_344eb.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-1q7fkr/Debug/cmTC_344eb.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-1q7fkr/Debug/cmTC_344eb.lib" /MACHINE:X64  /machine:x64 cmTC_344eb.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_344eb.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1q7fkr\\Debug\\cmTC_344eb.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_344eb.dir\\Debug\\cmTC_344eb.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_344eb.dir\\Debug\\cmTC_344eb.tlog\\cmTC_344eb.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1q7fkr\\cmTC_344eb.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.12
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:170 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:207 (cmake_determine_linker_id)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.43.34809.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:64 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-9g62wg"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-9g62wg"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-9g62wg'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0817e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:14.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9g62wg\\cmTC_0817e.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_0817e.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9g62wg\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_0817e.dir\\Debug\\cmTC_0817e.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_0817e.dir\\Debug\\cmTC_0817e.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_0817e.dir\\Debug\\cmTC_0817e.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_0817e.dir\\Debug\\\\" /Fd"cmTC_0817e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue  -Brepro "C:\\Strawberry\\c\\share\\cmake-3.29\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9g62wg\\Debug\\cmTC_0817e.exe" /INCREMENTAL /ILK:"cmTC_0817e.dir\\Debug\\cmTC_0817e.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-9g62wg/Debug/cmTC_0817e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-9g62wg/Debug/cmTC_0817e.lib" /MACHINE:X64  /machine:x64 cmTC_0817e.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_0817e.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9g62wg\\Debug\\cmTC_0817e.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_0817e.dir\\Debug\\cmTC_0817e.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_0817e.dir\\Debug\\cmTC_0817e.tlog\\cmTC_0817e.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9g62wg\\cmTC_0817e.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.11
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:170 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:207 (cmake_determine_linker_id)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.43.34808/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.43.34809.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "ggml/CMakeLists.txt:227 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-umlqa4"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-umlqa4"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-umlqa4'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_71245.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:17.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\cmTC_71245.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_71245.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_71245.dir\\Debug\\cmTC_71245.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_71245.dir\\Debug\\cmTC_71245.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_71245.dir\\Debug\\cmTC_71245.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_71245.dir\\Debug\\\\" /Fd"cmTC_71245.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\src.c"
+          src.c
+        C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\src.c(1,1): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\cmTC_71245.vcxproj]
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\cmTC_71245.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О) ╤Б ╨╛╤И╨╕╨▒╨║╨╛╨╣.
+        
+        ╨Ю╤И╨╕╨▒╨║╨░ ╤Б╨▒╨╛╤А╨║╨╕.
+        
+        "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\cmTC_71245.vcxproj" (╤Ж╨╡╨╗╨╡╨▓╨╛╨╣ ╨╛╨▒╤К╨╡╨║╤В ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О) (1) ->
+        (╨ж╨╡╨╗╨╡╨▓╨╛╨╣ ╨╛╨▒╤К╨╡╨║╤В ClCompile) -> 
+          C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\src.c(1,1): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-umlqa4\\cmTC_71245.vcxproj]
+        
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 1
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.76
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "ggml/CMakeLists.txt:227 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-j8m233"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-j8m233"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-j8m233'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a33b6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:18.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\cmTC_a33b6.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_a33b6.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_a33b6.dir\\Debug\\cmTC_a33b6.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_a33b6.dir\\Debug\\cmTC_a33b6.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_a33b6.dir\\Debug\\cmTC_a33b6.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_a33b6.dir\\Debug\\\\" /Fd"cmTC_a33b6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\CheckFunctionExists.c"
+          CheckFunctionExists.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\Debug\\cmTC_a33b6.exe" /INCREMENTAL /ILK:"cmTC_a33b6.dir\\Debug\\cmTC_a33b6.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-j8m233/Debug/cmTC_a33b6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-j8m233/Debug/cmTC_a33b6.lib" /MACHINE:X64  /machine:x64 cmTC_a33b6.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\cmTC_a33b6.vcxproj]
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\cmTC_a33b6.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О) ╤Б ╨╛╤И╨╕╨▒╨║╨╛╨╣.
+        
+        ╨Ю╤И╨╕╨▒╨║╨░ ╤Б╨▒╨╛╤А╨║╨╕.
+        
+        "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\cmTC_a33b6.vcxproj" (╤Ж╨╡╨╗╨╡╨▓╨╛╨╣ ╨╛╨▒╤К╨╡╨║╤В ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О) (1) ->
+        (╨ж╨╡╨╗╨╡╨▓╨╛╨╣ ╨╛╨▒╤К╨╡╨║╤В Link) -> 
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j8m233\\cmTC_a33b6.vcxproj]
+        
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 1
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.85
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "ggml/CMakeLists.txt:227 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-5jmthn"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-5jmthn"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-5jmthn'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2eab9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:19.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\cmTC_2eab9.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_2eab9.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_2eab9.dir\\Debug\\cmTC_2eab9.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_2eab9.dir\\Debug\\cmTC_2eab9.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_2eab9.dir\\Debug\\cmTC_2eab9.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_2eab9.dir\\Debug\\\\" /Fd"cmTC_2eab9.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\CheckFunctionExists.c"
+          CheckFunctionExists.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\Debug\\cmTC_2eab9.exe" /INCREMENTAL /ILK:"cmTC_2eab9.dir\\Debug\\cmTC_2eab9.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-5jmthn/Debug/cmTC_2eab9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-5jmthn/Debug/cmTC_2eab9.lib" /MACHINE:X64  /machine:x64 cmTC_2eab9.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\cmTC_2eab9.vcxproj]
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\cmTC_2eab9.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О) ╤Б ╨╛╤И╨╕╨▒╨║╨╛╨╣.
+        
+        ╨Ю╤И╨╕╨▒╨║╨░ ╤Б╨▒╨╛╤А╨║╨╕.
+        
+        "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\cmTC_2eab9.vcxproj" (╤Ж╨╡╨╗╨╡╨▓╨╛╨╣ ╨╛╨▒╤К╨╡╨║╤В ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О) (1) ->
+        (╨ж╨╡╨╗╨╡╨▓╨╛╨╣ ╨╛╨▒╤К╨╡╨║╤В Link) -> 
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5jmthn\\cmTC_2eab9.vcxproj]
+        
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 1
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.85
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:57 (find_package)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qkkde5"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qkkde5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_openmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qkkde5'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2fd12.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:21.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkkde5\\cmTC_2fd12.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_2fd12.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkkde5\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_2fd12.dir\\Debug\\cmTC_2fd12.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_2fd12.dir\\Debug\\cmTC_2fd12.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_2fd12.dir\\Debug\\cmTC_2fd12.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /openmp /std:c11 /Fo"cmTC_2fd12.dir\\Debug\\\\" /Fd"cmTC_2fd12.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkkde5\\OpenMPTryFlag.c"
+          OpenMPTryFlag.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkkde5\\Debug\\cmTC_2fd12.exe" /INCREMENTAL /ILK:"cmTC_2fd12.dir\\Debug\\cmTC_2fd12.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qkkde5/Debug/cmTC_2fd12.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qkkde5/Debug/cmTC_2fd12.lib" /MACHINE:X64  /machine:x64 cmTC_2fd12.dir\\Debug\\OpenMPTryFlag.obj
+          cmTC_2fd12.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkkde5\\Debug\\cmTC_2fd12.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_2fd12.dir\\Debug\\cmTC_2fd12.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_2fd12.dir\\Debug\\cmTC_2fd12.tlog\\cmTC_2fd12.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qkkde5\\cmTC_2fd12.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.08
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:487 (_OPENMP_GET_FLAGS)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:57 (find_package)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    description: "Detecting CXX OpenMP compiler info"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q9p7n6"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q9p7n6"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_CXX_openmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q9p7n6'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_43356.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:22.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q9p7n6\\cmTC_43356.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_43356.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q9p7n6\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_43356.dir\\Debug\\cmTC_43356.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_43356.dir\\Debug\\cmTC_43356.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_43356.dir\\Debug\\cmTC_43356.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /openmp /std:c++17 /Fo"cmTC_43356.dir\\Debug\\\\" /Fd"cmTC_43356.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q9p7n6\\OpenMPTryFlag.cpp"
+          OpenMPTryFlag.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q9p7n6\\Debug\\cmTC_43356.exe" /INCREMENTAL /ILK:"cmTC_43356.dir\\Debug\\cmTC_43356.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q9p7n6/Debug/cmTC_43356.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q9p7n6/Debug/cmTC_43356.lib" /MACHINE:X64  /machine:x64 cmTC_43356.dir\\Debug\\OpenMPTryFlag.obj
+          cmTC_43356.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q9p7n6\\Debug\\cmTC_43356.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_43356.dir\\Debug\\cmTC_43356.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_43356.dir\\Debug\\cmTC_43356.tlog\\cmTC_43356.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q9p7n6\\cmTC_43356.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.08
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:421 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:561 (_OPENMP_GET_SPEC_DATE)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:57 (find_package)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    description: "Detecting C OpenMP version"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qjtqn8"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qjtqn8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "OpenMP_SPECTEST_C_"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qjtqn8'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0a749.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:24.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qjtqn8\\cmTC_0a749.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_0a749.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qjtqn8\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_0a749.dir\\Debug\\cmTC_0a749.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_0a749.dir\\Debug\\cmTC_0a749.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_0a749.dir\\Debug\\cmTC_0a749.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /openmp /std:c11 /Fo"cmTC_0a749.dir\\Debug\\\\" /Fd"cmTC_0a749.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qjtqn8\\OpenMPCheckVersion.c"
+          OpenMPCheckVersion.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qjtqn8\\Debug\\cmTC_0a749.exe" /INCREMENTAL /ILK:"cmTC_0a749.dir\\Debug\\cmTC_0a749.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qjtqn8/Debug/cmTC_0a749.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-qjtqn8/Debug/cmTC_0a749.lib" /MACHINE:X64  /machine:x64 cmTC_0a749.dir\\Debug\\OpenMPCheckVersion.obj
+          cmTC_0a749.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qjtqn8\\Debug\\cmTC_0a749.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_0a749.dir\\Debug\\cmTC_0a749.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_0a749.dir\\Debug\\cmTC_0a749.tlog\\cmTC_0a749.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qjtqn8\\cmTC_0a749.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.07
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:421 (try_compile)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/FindOpenMP.cmake:561 (_OPENMP_GET_SPEC_DATE)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:57 (find_package)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    description: "Detecting CXX OpenMP version"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q6wulw"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q6wulw"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "OpenMP_SPECTEST_CXX_"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q6wulw'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_209d9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:25.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q6wulw\\cmTC_209d9.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_209d9.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q6wulw\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_209d9.dir\\Debug\\cmTC_209d9.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_209d9.dir\\Debug\\cmTC_209d9.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_209d9.dir\\Debug\\cmTC_209d9.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /openmp /std:c++17 /Fo"cmTC_209d9.dir\\Debug\\\\" /Fd"cmTC_209d9.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q6wulw\\OpenMPCheckVersion.cpp"
+          OpenMPCheckVersion.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q6wulw\\Debug\\cmTC_209d9.exe" /INCREMENTAL /ILK:"cmTC_209d9.dir\\Debug\\cmTC_209d9.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q6wulw/Debug/cmTC_209d9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-q6wulw/Debug/cmTC_209d9.lib" /MACHINE:X64  /machine:x64 cmTC_209d9.dir\\Debug\\OpenMPCheckVersion.obj
+          cmTC_209d9.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q6wulw\\Debug\\cmTC_209d9.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_209d9.dir\\Debug\\cmTC_209d9.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_209d9.dir\\Debug\\cmTC_209d9.tlog\\cmTC_209d9.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-q6wulw\\cmTC_209d9.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.13
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceRuns.cmake:93 (try_run)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceRuns.cmake:52 (cmake_check_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:61 (check_c_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:80 (check_sse)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:182 (include)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    checks:
+      - "Performing Test HAS_AVX_1"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-rc1f6f"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-rc1f6f"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "HAS_AVX_1_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-rc1f6f'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_32d6e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:27.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc1f6f\\cmTC_32d6e.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_32d6e.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc1f6f\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_32d6e.dir\\Debug\\cmTC_32d6e.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_32d6e.dir\\Debug\\cmTC_32d6e.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_32d6e.dir\\Debug\\cmTC_32d6e.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D HAS_AVX_1 /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_32d6e.dir\\Debug\\\\" /Fd"cmTC_32d6e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc1f6f\\src.c"
+          src.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc1f6f\\Debug\\cmTC_32d6e.exe" /INCREMENTAL /ILK:"cmTC_32d6e.dir\\Debug\\cmTC_32d6e.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-rc1f6f/Debug/cmTC_32d6e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-rc1f6f/Debug/cmTC_32d6e.lib" /MACHINE:X64  /machine:x64 cmTC_32d6e.dir\\Debug\\src.obj
+          cmTC_32d6e.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc1f6f\\Debug\\cmTC_32d6e.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_32d6e.dir\\Debug\\cmTC_32d6e.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_32d6e.dir\\Debug\\cmTC_32d6e.tlog\\cmTC_32d6e.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rc1f6f\\cmTC_32d6e.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.10
+        
+      exitCode: 0
+    runResult:
+      variable: "HAS_AVX_1_EXITCODE"
+      cached: true
+      stdout: |
+      stderr: |
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceRuns.cmake:93 (try_run)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceRuns.cmake:52 (cmake_check_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:61 (check_c_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:87 (check_sse)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:182 (include)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    checks:
+      - "Performing Test HAS_AVX2_1"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ep8qyi"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ep8qyi"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "HAS_AVX2_1_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ep8qyi'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_22834.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:28.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ep8qyi\\cmTC_22834.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_22834.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ep8qyi\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_22834.dir\\Debug\\cmTC_22834.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_22834.dir\\Debug\\cmTC_22834.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_22834.dir\\Debug\\cmTC_22834.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D HAS_AVX2_1 /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_22834.dir\\Debug\\\\" /Fd"cmTC_22834.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ep8qyi\\src.c"
+          src.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ep8qyi\\Debug\\cmTC_22834.exe" /INCREMENTAL /ILK:"cmTC_22834.dir\\Debug\\cmTC_22834.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ep8qyi/Debug/cmTC_22834.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ep8qyi/Debug/cmTC_22834.lib" /MACHINE:X64  /machine:x64 cmTC_22834.dir\\Debug\\src.obj
+          cmTC_22834.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ep8qyi\\Debug\\cmTC_22834.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_22834.dir\\Debug\\cmTC_22834.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_22834.dir\\Debug\\cmTC_22834.tlog\\cmTC_22834.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ep8qyi\\cmTC_22834.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.08
+        
+      exitCode: 0
+    runResult:
+      variable: "HAS_AVX2_1_EXITCODE"
+      cached: true
+      stdout: |
+      stderr: |
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceRuns.cmake:93 (try_run)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceRuns.cmake:52 (cmake_check_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:61 (check_c_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:88 (check_sse)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:182 (include)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    checks:
+      - "Performing Test HAS_FMA_1"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-bu1gxw"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-bu1gxw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "HAS_FMA_1_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-bu1gxw'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1f121.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:30.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bu1gxw\\cmTC_1f121.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_1f121.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bu1gxw\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_1f121.dir\\Debug\\cmTC_1f121.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_1f121.dir\\Debug\\cmTC_1f121.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_1f121.dir\\Debug\\cmTC_1f121.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D HAS_FMA_1 /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_1f121.dir\\Debug\\\\" /Fd"cmTC_1f121.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bu1gxw\\src.c"
+          src.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bu1gxw\\Debug\\cmTC_1f121.exe" /INCREMENTAL /ILK:"cmTC_1f121.dir\\Debug\\cmTC_1f121.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-bu1gxw/Debug/cmTC_1f121.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-bu1gxw/Debug/cmTC_1f121.lib" /MACHINE:X64  /machine:x64 cmTC_1f121.dir\\Debug\\src.obj
+          cmTC_1f121.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bu1gxw\\Debug\\cmTC_1f121.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_1f121.dir\\Debug\\cmTC_1f121.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_1f121.dir\\Debug\\cmTC_1f121.tlog\\cmTC_1f121.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bu1gxw\\cmTC_1f121.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.09
+        
+      exitCode: 0
+    runResult:
+      variable: "HAS_FMA_1_EXITCODE"
+      cached: true
+      stdout: |
+      stderr: |
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceRuns.cmake:93 (try_run)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceRuns.cmake:52 (cmake_check_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:61 (check_c_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:95 (check_sse)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:182 (include)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    checks:
+      - "Performing Test HAS_AVX512_1"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ih9vj9"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ih9vj9"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "HAS_AVX512_1_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ih9vj9'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_7973e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:32.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ih9vj9\\cmTC_7973e.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_7973e.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ih9vj9\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_7973e.dir\\Debug\\cmTC_7973e.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_7973e.dir\\Debug\\cmTC_7973e.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_7973e.dir\\Debug\\cmTC_7973e.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D HAS_AVX512_1 /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_7973e.dir\\Debug\\\\" /Fd"cmTC_7973e.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ih9vj9\\src.c"
+          src.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ih9vj9\\Debug\\cmTC_7973e.exe" /INCREMENTAL /ILK:"cmTC_7973e.dir\\Debug\\cmTC_7973e.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ih9vj9/Debug/cmTC_7973e.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-ih9vj9/Debug/cmTC_7973e.lib" /MACHINE:X64  /machine:x64 cmTC_7973e.dir\\Debug\\src.obj
+          cmTC_7973e.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ih9vj9\\Debug\\cmTC_7973e.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_7973e.dir\\Debug\\cmTC_7973e.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_7973e.dir\\Debug\\cmTC_7973e.tlog\\cmTC_7973e.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ih9vj9\\cmTC_7973e.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.10
+        
+      exitCode: 0
+    runResult:
+      variable: "HAS_AVX512_1_EXITCODE"
+      cached: true
+      stdout: |
+      stderr: |
+        Illegal instruction
+      exitCode: "FAILED_TO_RUN"
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceRuns.cmake:93 (try_run)"
+      - "C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceRuns.cmake:52 (cmake_check_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:61 (check_c_source_runs)"
+      - "ggml/src/ggml-cpu/cmake/FindSIMD.cmake:95 (check_sse)"
+      - "ggml/src/ggml-cpu/CMakeLists.txt:182 (include)"
+      - "ggml/src/CMakeLists.txt:299 (ggml_add_cpu_backend_variant_impl)"
+    checks:
+      - "Performing Test HAS_AVX512_2"
+    directories:
+      source: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-sxz8y0"
+      binary: "C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-sxz8y0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: " /O2 /DNDEBUG /Ob2 -nologo -MD -Brepro"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/cmake/"
+    buildResult:
+      variable: "HAS_AVX512_2_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-sxz8y0'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_12011.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.13.19+0d9f5a35a ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.04.2025 16:48:33.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sxz8y0\\cmTC_12011.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_12011.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sxz8y0\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_12011.dir\\Debug\\cmTC_12011.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_12011.dir\\Debug\\cmTC_12011.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_12011.dir\\Debug\\cmTC_12011.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\CL.exe /c /Zi /nologo /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D NDEBUG /D HAS_AVX512_2 /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /arch:AVX512 /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /std:c11 /Fo"cmTC_12011.dir\\Debug\\\\" /Fd"cmTC_12011.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -Brepro "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sxz8y0\\src.c"
+          src.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sxz8y0\\Debug\\cmTC_12011.exe" /INCREMENTAL /ILK:"cmTC_12011.dir\\Debug\\cmTC_12011.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-sxz8y0/Debug/cmTC_12011.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/CMakeScratch/TryCompile-sxz8y0/Debug/cmTC_12011.lib" /MACHINE:X64  /machine:x64 cmTC_12011.dir\\Debug\\src.obj
+          cmTC_12011.vcxproj -> C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sxz8y0\\Debug\\cmTC_12011.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_12011.dir\\Debug\\cmTC_12011.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_12011.dir\\Debug\\cmTC_12011.tlog\\cmTC_12011.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "C:\\Users\\AntonMoryakov\\project\\simple-local-llm\\docs\\tauri-docs\\debug\\build\\llama-cpp-sys-2-a444b6893ba8e543\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sxz8y0\\cmTC_12011.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:01.09
+        
+      exitCode: 0
+    runResult:
+      variable: "HAS_AVX512_2_EXITCODE"
+      cached: true
+      stdout: |
+      stderr: |
+        Illegal instruction
+      exitCode: "FAILED_TO_RUN"
+...

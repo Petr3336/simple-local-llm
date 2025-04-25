@@ -1,0 +1,15 @@
+# CMake generation dependency list for this directory.
+C:/Strawberry/c/share/cmake-3.29/Modules/BasicConfigVersion-SameMajorVersion.cmake.in
+C:/Strawberry/c/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/CheckIncludeFile.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/CheckIncludeFileCXX.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/CheckLibraryExists.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/FindPackageMessage.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/FindThreads.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/GNUInstallDirs.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake
+C:/Strawberry/c/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake
+C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/ggml/CMakeLists.txt
+C:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp/ggml/cmake/ggml-config.cmake.in

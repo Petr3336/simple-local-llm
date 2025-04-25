@@ -140,3 +140,30 @@ This project makes use of the following third-party libraries:
 - [Reqwest](https://github.com/seanmonstar/reqwest) — Apache-2.0 / MIT
 
 
+
+## 📚 Документация
+
+👉 [Открыть локальную документацию](https://html-preview.github.io/?url=https://github.com/Petr3336/simple-local-llm/blob/main/docs/tauri-docs/doc/app_lib/index.html)
+
+## 🔄 Как пересобрать документацию
+
+1. Перейдите в папку `src-tauri`:
+
+   ```bash
+   cd src-tauri
+   ```
+
+2. Сгенерируйте документацию с включёнными фичами:
+
+   ```bash
+   cargo doc --no-deps --features "ollama llama_cpp" --target-dir ../docs/tauri-docs
+   ```
+
+Эта команда пересоздаст документацию в папке `docs/tauri-docs/`.
+
+## 📂 Где находится документация
+
+- Путь к главной странице:  
+  `docs/tauri-docs/doc/app_lib/index.html`
+  
+- Для просмотра: откройте файл `index.html` в браузере.

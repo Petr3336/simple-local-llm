@@ -1,0 +1,10 @@
+^C:\USERS\ANTONMORYAKOV\.CARGO\GIT\CHECKOUTS\LLAMA-CPP-RS-8F51A6BE7089E2E6\AA257C0\LLAMA-CPP-SYS-2\LLAMA.CPP\CMAKELISTS.TXT
+setlocal
+C:\Strawberry\c\bin\cmake.exe -SC:/Users/AntonMoryakov/.cargo/git/checkouts/llama-cpp-rs-8f51a6be7089e2e6/aa257c0/llama-cpp-sys-2/llama.cpp -BC:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build --check-stamp-file C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

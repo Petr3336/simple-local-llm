@@ -1,0 +1,10 @@
+prefix=C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out
+exec_prefix=C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out
+libdir=C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/lib
+includedir=C:/Users/AntonMoryakov/project/simple-local-llm/docs/tauri-docs/debug/build/llama-cpp-sys-2-a444b6893ba8e543/out/include
+
+Name: llama
+Description: Port of Facebook's LLaMA model in C/C++
+Version: 0.0.5079
+Libs: -L${libdir} -lggml -lggml-base -lllama
+Cflags: -I${includedir}

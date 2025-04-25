@@ -1,0 +1,10 @@
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\libcargo_toml-09f94ec22c1e0416.rmeta: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\cargo_toml.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\afs.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\error.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\inheritable.rs
+
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\libcargo_toml-09f94ec22c1e0416.rlib: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\cargo_toml.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\afs.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\error.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\inheritable.rs
+
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\cargo_toml-09f94ec22c1e0416.d: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\cargo_toml.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\afs.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\error.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\inheritable.rs
+
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\cargo_toml.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\afs.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\error.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo_toml-0.22.1\src\inheritable.rs:

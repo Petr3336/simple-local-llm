@@ -1,0 +1,14 @@
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\libsoftbuffer-08ff2f61bd76b652.rmeta: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backend_dispatch.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backend_interface.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backends\mod.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backends\win32.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\error.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\util.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\../README.md
+
+C:\Users\AntonMoryakov\project\simple-local-llm\src-tauri\../docs/tauri-docs\debug\deps\softbuffer-08ff2f61bd76b652.d: C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\lib.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backend_dispatch.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backend_interface.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backends\mod.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backends\win32.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\error.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\util.rs C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\../README.md
+
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\lib.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backend_dispatch.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backend_interface.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backends\mod.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\backends\win32.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\error.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\util.rs:
+C:\Users\AntonMoryakov\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\softbuffer-0.4.6\src\../README.md:
+
+# env-dep:CARGO_PKG_VERSION=0.4.6
