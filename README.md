@@ -143,7 +143,7 @@ This project makes use of the following third-party libraries:
 
 ## 📚 Документация
 
-👉 [Открыть локальную документацию](https://html-preview.github.io/?url=https://github.com/Petr3336/simple-local-llm/blob/main/docs/tauri-docs/doc/app_lib/index.html)
+👉 [Открыть локальную документацию](https://petr3336.github.io/simple-local-llm/)
 
 ## 🔄 Как пересобрать документацию
 
