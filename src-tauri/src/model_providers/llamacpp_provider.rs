@@ -8,21 +8,20 @@ use llama_cpp_2::{
     sampling::LlamaSampler,
 };
 use log::{debug, error, info, warn};
+use minijinja::{context, Environment, Value};
 use reqwest::Client;
 use serde_json::json;
-use std::{fs, ptr::null};
 use std::num::NonZeroU32;
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
+use std::{fs, ptr::null};
 use tauri::{AppHandle, Emitter, Manager};
 use tokio::fs::File;
 use tokio::io::AsyncWriteExt;
-use minijinja::{Environment, context, Value};
 
-
-use crate::model_provider::{LLMOptions, ModelProvider};
 use crate::initialize_functions;
+use crate::model_provider::{LLMOptions, ModelProvider};
 
 pub struct LlamaCppProvider {
     models_dir: PathBuf,
@@ -36,7 +35,10 @@ impl LlamaCppProvider {
 
         #[cfg(not(target_os = "android"))]
         {
-            app_dir = app.path().app_data_dir().expect("Failed to get app data dir");
+            app_dir = app
+                .path()
+                .app_data_dir()
+                .expect("Failed to get app data dir");
         }
 
         if let Err(e) = tokio::fs::create_dir_all(&app_dir).await {
@@ -168,7 +170,7 @@ impl ModelProvider for LlamaCppProvider {
         chat_id: String,
     ) -> Result<(), String> {
         self.ensure_models_dir_exists()?;
-    
+
         {
             let mut running = self.running.lock().unwrap();
             if *running {
@@ -177,10 +179,10 @@ impl ModelProvider for LlamaCppProvider {
             }
             *running = true;
         }
-    
+
         info!("Starting model: {} with messages: {:?}", model, messages);
         self.stop_flag.store(false, Ordering::SeqCst);
-    
+
         // Клонируем необходимые данные для 'static замыкания.
         let model_path = self.model_path(&model);
         let stop_flag = self.stop_flag.clone();
@@ -189,7 +191,7 @@ impl ModelProvider for LlamaCppProvider {
         let messages = messages.clone();
         let app = app.clone();
         let app_for_spawn = app.clone();
-    
+
         // spawn_blocking возвращает tool_response, если функция была вызвана,
         // иначе возвращает json!("") (пустую строку).
         let tool_response_result: Result<serde_json::Value, String> =
@@ -504,12 +506,12 @@ Here are some rules to keep in mind when writing your answer
             })
             .await
             .map_err(|e| format!("Failed to run model: {:?}", e))?;
-    
+
         {
             let mut running = self.running.lock().unwrap();
             *running = false;
         }
-    
+
         match tool_response_result {
             Ok(tool_response) => {
                 info!("Model run completed successfully");
@@ -525,8 +527,6 @@ Here are some rules to keep in mind when writing your answer
             }
         }
     }
-    
-    
 
     /*     async fn run_model(
         &self,
@@ -537,7 +537,7 @@ Here are some rules to keep in mind when writing your answer
         chat_id: String,
     ) -> Result<(), String> {
         self.ensure_models_dir_exists()?;
-    
+
         {
             let mut running = self.running.lock().unwrap();
             if *running {
@@ -546,30 +546,30 @@ Here are some rules to keep in mind when writing your answer
             }
             *running = true;
         }
-    
+
         info!("Starting model: {} with messages: {:?}", model, messages);
         self.stop_flag.store(false, Ordering::SeqCst);
-    
+
         let model_path = self.model_path(&model);
         let stop_flag = self.stop_flag.clone();
         let options = options.clone();
         let chat_id = chat_id.clone();
         let messages = messages.clone();
-        
+
         debug!("Using tools: {:?}", options.clone().unwrap().functions);
-    
+
         let result = tokio::task::spawn_blocking(move || {
             // Инициализация backend
             let backend = LlamaBackend::init()
                 .map_err(|e| format!("Backend init error: {:?}", e))?;
             info!("Llama backend initialized");
-    
+
             debug!("Loading model from path: {:?}", model_path);
             let model_params = Default::default();
             let llama = LlamaModel::load_from_file(&backend, model_path, &model_params)
                 .map_err(|e| format!("Failed to load model: {:?}", e))?;
             info!("Model loaded successfully");
-    
+
             let ctx_params = LlamaContextParams::default().with_n_ctx(Some(
                 options.clone()
                     .and_then(|o| o.num_ctx)
@@ -580,20 +580,20 @@ Here are some rules to keep in mind when writing your answer
                 .new_context(&backend, ctx_params)
                 .map_err(|e| format!("Failed to create context: {:?}", e))?;
             debug!("Context created");
-    
+
             // Получаем оригинальный шаблон
             let original_chat_template = llama.get_chat_template()
                 .map_err(|e| format!("Ошибка получения шаблона: {:?}", e))?;
             let template_str = original_chat_template.as_c_str()
                 .to_str()
                 .map_err(|e| format!("Ошибка конвертации шаблона в UTF-8: {:?}", e))?;
-    
+
             let all_functions = initialize_functions();
             let allowed_function_names = options
                 .as_ref()
                 .and_then(|opts| opts.functions.clone())
                 .unwrap_or_default();
-    
+
             let mut functions_json = vec![];
             for name in &allowed_function_names {
                 if let Some(func) = all_functions.get(name) {
@@ -614,15 +614,15 @@ Here are some rules to keep in mind when writing your answer
                     debug!("Функция '{}' не найдена в all_functions", name);
                 }
             }
-    
+
             let mut chat_messages = Vec::new();
             let system_message = "You are helpful AI assistant. Don't put a function call inside triple quotes ```";
-    
+
             chat_messages.push(serde_json::json!({
                 "role": "system",
                 "content": system_message
             }));
-    
+
             for msg in messages.iter() {
                 if let (Some(role_str), Some(content)) = (
                     msg.get("role").and_then(|r| r.as_str()),
@@ -634,7 +634,7 @@ Here are some rules to keep in mind when writing your answer
                     }));
                 }
             }
-    
+
             let mut env = Environment::new();
             env.add_function("strftime_now", |format: &str| {
                 chrono::Utc::now().format(format).to_string()
@@ -644,7 +644,7 @@ Here are some rules to keep in mind when writing your answer
                     minijinja::ErrorKind::InvalidOperation,
                     format!("JSON serialization error: {}", e)
                 ))
-            });    
+            });
 
             env.add_filter("tojson", |value: Value| {
                 serde_json::to_string_pretty(&value).map_err(|e| minijinja::Error::new(
@@ -652,61 +652,61 @@ Here are some rules to keep in mind when writing your answer
                     format!("JSON serialization error: {}", e)
                 ))
             });
-    
+
             let tmpl = env.template_from_str(template_str)
                 .map_err(|e| format!("Ошибка компиляции шаблона MiniJinja: {:?}", e))?;
-    
+
             let template = context! {
                 tools => functions_json,
                 tools_in_user_message => false,
                 messages => chat_messages,
                 add_generation_prompt => true,
             };
-    
+
             let rendered_template = tmpl.render(template)
                 .map_err(|e| format!("Ошибка рендеринга MiniJinja: {:?}", e))?;
-    
+
             let prompt = rendered_template;
-    
+
             debug!("Generated prompt: {}", prompt);
-    
+
             let tokens = llama
                 .str_to_token(&prompt, AddBos::Always)
                 .map_err(|e| format!("Tokenization failed: {:?}", e))?;
             debug!("Prompt tokenized into {} tokens", tokens.len());
-    
+
             let mut batch = LlamaBatch::new(512, 1);
             for (i, token) in tokens.iter().enumerate() {
                 batch
                     .add(*token, i as i32, &[0], i == tokens.len() - 1)
                     .map_err(|e| format!("Batch addition error: {:?}", e))?;
             }
-    
+
             ctx.decode(&mut batch)
                 .map_err(|e| format!("Decoding failed: {:?}", e))?;
             debug!("Initial decoding complete");
-    
+
             let mut sampler = LlamaSampler::chain_simple([
                 LlamaSampler::greedy(),
                 LlamaSampler::temp(0.3),
             ]);
             let mut n_cur = batch.n_tokens();
             let mut full_response = String::new();
-    
+
             while n_cur < (ctx.n_ctx() as usize).try_into().unwrap() {
                 if stop_flag.load(Ordering::SeqCst) {
                     info!("Model run stopped by user");
                     let _ = app.emit("stop-model", ());
                     break;
                 }
-    
+
                 let token = sampler.sample(&ctx, batch.n_tokens() - 1);
-    
+
                 if llama.is_eog_token(token) {
                     info!("End-of-generation token received");
                     break;
                 }
-    
+
                 if llama
                     .token_to_str(token, Special::Tokenize)
                     .unwrap_or_default() == "<|end_of_text|>"
@@ -714,13 +714,13 @@ Here are some rules to keep in mind when writing your answer
                     info!("End-of-text token encountered");
                     break;
                 }
-    
+
                 let output = llama
                     .token_to_str(token, Special::Tokenize)
                     .map_err(|e| format!("Token to string error: {:?}", e))?;
                 debug!("Model output token: {}", output);
                 full_response.push_str(&output);
-    
+
                 if options.as_ref().map_or(false, |opts| opts.stream) {
                     let payload = json!({
                         "chat_id": chat_id,
@@ -736,7 +736,7 @@ Here are some rules to keep in mind when writing your answer
                     });
                     let _ = app.emit("model-stream-output", payload.to_string());
                 }
-    
+
                 batch.clear();
                 batch
                     .add(token, n_cur as i32, &[0], true)
@@ -745,7 +745,7 @@ Here are some rules to keep in mind when writing your answer
                     .map_err(|e| format!("Decoding failed: {:?}", e))?;
                 n_cur += 1;
             }
-    
+
             if !options.as_ref().map_or(false, |opts| opts.stream) {
                 let output_value = match serde_json::from_str::<serde_json::Value>(&full_response) {
                     Ok(parsed) => parsed,
@@ -766,7 +766,7 @@ Here are some rules to keep in mind when writing your answer
                         return Ok(());
                     }
                 };
-    
+
                 if let (Some(name), Some(arguments)) = (
                     output_value.get("name").and_then(|v| v.as_str()),
                     output_value.get("parameters").cloned(),
@@ -788,7 +788,7 @@ Here are some rules to keep in mind when writing your answer
                         }
                     }
                 }
-    
+
                 let payload = json!({
                     "chat_id": chat_id,
                     "output": {
@@ -803,50 +803,50 @@ Here are some rules to keep in mind when writing your answer
                 });
                 let _ = app.emit("model-output", payload.to_string());
             }
-    
+
             Ok(())
         })
         .await
         .map_err(|e| format!("Failed to run model: {:?}", e))?;
-    
+
         let mut running = self.running.lock().unwrap();
         *running = false;
-    
+
         match &result {
             Ok(_) => info!("Model run completed successfully"),
             Err(e) => error!("Model run failed: {}", e),
         }
-    
+
         result
     } */
 
-   /* let system_message = "
-You are a helpful AI assistant.
+    /* let system_message = "
+    You are a helpful AI assistant.
 
-# Answer Rules
-Here are some rules to keep in mind when writing your answer
-1. Use function calling if that helps complete the task
-2. Do not put the function call in triple backticks \"```\" with the json language tag.
-3. Answer to last user question.
-4. If the user asks something related to \"functions\" or \"tools\", it always refers to the Tools section described below
+    # Answer Rules
+    Here are some rules to keep in mind when writing your answer
+    1. Use function calling if that helps complete the task
+    2. Do not put the function call in triple backticks \"```\" with the json language tag.
+    3. Answer to last user question.
+    4. If the user asks something related to \"functions\" or \"tools\", it always refers to the Tools section described below
 
-# Tools
-You may call one or more functions to assist with the user query.
-You are provided with function signatures within <tools></tools> XML tags:
-<tools>
-get_unix_time:
-  description: Returns current UNIX timestamp.
-  params:
-</tools>
-For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+    # Tools
+    You may call one or more functions to assist with the user query.
+    You are provided with function signatures within <tools></tools> XML tags:
+    <tools>
+    get_unix_time:
+      description: Returns current UNIX timestamp.
+      params:
+    </tools>
+    For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
 
-# Tools calling example
-<tool_call>
-{\"function_name\": \"example\", \"arguments\": {\"param1\": \"value_param1\"}}
-</tool_call>
+    # Tools calling example
+    <tool_call>
+    {\"function_name\": \"example\", \"arguments\": {\"param1\": \"value_param1\"}}
+    </tool_call>
 
-# Chat history
-"; */
+    # Chat history
+    "; */
 
     async fn download_model(&self, app: tauri::AppHandle, model: String) -> Result<(), String> {
         info!("Downloading model: {}", model);

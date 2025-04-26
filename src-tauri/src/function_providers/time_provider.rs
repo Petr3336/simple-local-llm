@@ -1,7 +1,10 @@
-use std::{collections::HashMap, time::{SystemTime, UNIX_EPOCH}};
 use serde_json::{json, Value};
+use std::{
+    collections::HashMap,
+    time::{SystemTime, UNIX_EPOCH},
+};
 
-use crate::function_provider::{LlmFunction, FunctionDefinition};
+use crate::function_provider::{FunctionDefinition, LlmFunction};
 use async_trait::async_trait;
 
 pub struct UnixTimeFunction;

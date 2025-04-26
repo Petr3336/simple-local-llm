@@ -6,7 +6,7 @@ use function_provider::LlmFunction;
 pub mod function_providers;
 
 use log::LevelFilter;
-use log::{info, debug, warn, error}; // [log]
+use log::{debug, error, info, warn}; // [log]
 
 use model_provider::{LLMOptions, ModelProvider};
 use std::collections::HashMap;
@@ -30,7 +30,7 @@ async fn init_providers(app: &AppHandle) {
 
     #[cfg(feature = "llama_cpp")]
     {
-        use crate::model_providers::llamacpp_provider::LlamaCppProvider;    
+        use crate::model_providers::llamacpp_provider::LlamaCppProvider;
         let provider = LlamaCppProvider::new(app).await;
         providers.push(Arc::new(provider));
     }
@@ -77,7 +77,10 @@ async fn get_available_providers() -> Vec<String> {
 
 #[tauri::command]
 async fn get_installed_models(provider_name: String) -> Result<Vec<String>, String> {
-    debug!("Request to get installed models for provider: {}", provider_name); // [log]
+    debug!(
+        "Request to get installed models for provider: {}",
+        provider_name
+    ); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             return provider.get_installed_models().await;
@@ -96,10 +99,15 @@ async fn run_model(
     options: Option<LLMOptions>,
     chat_id: String,
 ) -> Result<(), String> {
-    info!("Request to run model '{}' on provider '{}'", model, provider_name); // [log]
+    info!(
+        "Request to run model '{}' on provider '{}'",
+        model, provider_name
+    ); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
-            return provider.run_model(app, model, messages, options, chat_id).await;
+            return provider
+                .run_model(app, model, messages, options, chat_id)
+                .await;
         }
     }
     warn!("Provider not found: {}", provider_name); // [log]
@@ -107,8 +115,15 @@ async fn run_model(
 }
 
 #[tauri::command]
-async fn download_model(app: AppHandle, provider_name: String, model: String) -> Result<(), String> {
-    info!("Request to download model '{}' from provider '{}'", model, provider_name); // [log]
+async fn download_model(
+    app: AppHandle,
+    provider_name: String,
+    model: String,
+) -> Result<(), String> {
+    info!(
+        "Request to download model '{}' from provider '{}'",
+        model, provider_name
+    ); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             return provider.download_model(app, model).await;
@@ -120,7 +135,10 @@ async fn download_model(app: AppHandle, provider_name: String, model: String) ->
 
 #[tauri::command]
 async fn delete_model(provider_name: String, model: String) -> Result<(), String> {
-    info!("Request to delete model '{}' from provider '{}'", model, provider_name); // [log]
+    info!(
+        "Request to delete model '{}' from provider '{}'",
+        model, provider_name
+    ); // [log]
     for provider in get_providers() {
         if provider.name() == provider_name {
             return provider.delete_model(model).await;
@@ -151,16 +169,17 @@ pub fn run() {
         LevelFilter::Info
     };
     tauri::Builder::default()
+        .plugin(tauri_plugin_dialog::init())
         .setup(|app| {
             info!("Running setup hook");
             // 2. Получаем AppHandle как отдельную переменную (копия)
             let handle = app.handle().clone();
-        
+
             // 3. Передаём его внутрь async
             tauri::async_runtime::spawn(async move {
                 init_providers(&handle).await;
             });
-            
+
             /* tauri::async_runtime::spawn(async move {
                 // 👇 Инициализация функций
                 let functions = initialize_functions();

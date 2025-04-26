@@ -1,80 +1,80 @@
 <template>
-    <v-container>
-      <v-row class="mt-2">
-        <v-col cols="12">
-          <v-card class="pa-4">
-            <v-card-title>Чат с моделью</v-card-title>
-            <v-card-text>
-              <!-- Форма для отправки сообщения -->
-              <v-form @submit.prevent="runModel">
-                <v-select
-                  id="model-provider"
-                  v-model="modelProvider"
-                  :items="providersList"
-                  label="Выберите провайдера модели"
-                  dense
-                  @update:model-value="getModels"
-                >
-                  <template #no-data>
-                    <p class="px-4">
-                      Данный провайдер моделей не найден
-                    </p>
-                  </template>
-                </v-select>
-                <v-combobox
-                  id="model-name"
-                  v-model="modelParams.model"
-                  :items="modelsList"
-                  label="Выберите модель"
-                  dense
-                />
-                <v-text-field
-                  id="model-prompt"
-                  v-model="modelParams.prompt"
-                  label="Введите сообщение"
-                  dense
-                />
-                <v-btn
-                  id="generate"
-                  color="primary"
-                  type="submit"
-                  class="mr-4 mt-4"
-                >
-                  Отправить
-                </v-btn>
-                <v-btn
-                  id="download-model"
-                  color="secondary"
-                  class="mr-4 mt-4"
-                  @click="downloadSelectedModel"
-                >
-                  Загрузить модель
-                </v-btn>
-                <v-btn
-                  id="delete-model"
-                  color="error"
-                  class="mr-4 mt-4"
-                  @click="deleteSelectedModel"
-                >
-                  Удалить выбранную модель
-                </v-btn>
-                <v-btn
-                  id="stop-model"
-                  color="error"
-                  class="mr-4 mt-4"
-                  @click="stopModel"
-                >
-                  Остановить модель
-                </v-btn>
-                <v-switch
-                  v-model="modelParams.options.stream"
-                  color="primary"
-                >
-                  Stream
-                </v-switch>
-              </v-form>
-            </v-card-text>
-            <!-- <div
+  <v-container>
+    <v-row class="mt-2">
+      <v-col cols="12">
+        <v-card class="pa-4">
+          <v-card-title>Чат с моделью</v-card-title>
+          <v-card-text>
+            <!-- Форма для отправки сообщения -->
+            <v-form @submit.prevent="runModel">
+              <v-select
+                id="model-provider"
+                v-model="modelProvider"
+                :items="providersList"
+                label="Выберите провайдера модели"
+                dense
+                @update:model-value="getModels"
+              >
+                <template #no-data>
+                  <p class="px-4">
+                    Данный провайдер моделей не найден
+                  </p>
+                </template>
+              </v-select>
+              <v-combobox
+                id="model-name"
+                v-model="modelParams.model"
+                :items="modelsList"
+                label="Выберите модель"
+                dense
+              />
+              <v-text-field
+                id="model-prompt"
+                v-model="modelParams.prompt"
+                label="Введите сообщение"
+                dense
+              />
+              <v-btn
+                id="generate"
+                color="primary"
+                type="submit"
+                class="mr-4 mt-4"
+              >
+                Отправить
+              </v-btn>
+              <v-btn
+                id="download-model"
+                color="secondary"
+                class="mr-4 mt-4"
+                @click="downloadSelectedModel"
+              >
+                Загрузить модель
+              </v-btn>
+              <v-btn
+                id="delete-model"
+                color="error"
+                class="mr-4 mt-4"
+                @click="deleteSelectedModel"
+              >
+                Удалить выбранную модель
+              </v-btn>
+              <v-btn
+                id="stop-model"
+                color="error"
+                class="mr-4 mt-4"
+                @click="stopModel"
+              >
+                Остановить модель
+              </v-btn>
+              <v-switch
+                v-model="modelParams.options.stream"
+                color="primary"
+              >
+                Stream
+              </v-switch>
+            </v-form>
+          </v-card-text>
+          <!-- <div
               v-if="isLoading"
               class="d-flex justify-center my-4 mb-14"
             >
@@ -84,32 +84,32 @@
                 color="primary"
               />
             </div> -->
-            <div v-if="messages && messages.length">
-              <div
-                v-for="(msg, index) in messages"
-                :key="index"
-                class="chat-message"
-              >
-                <md-preview
-                  v-if="msg.role == 'assistant'"
-                  v-model="msg.content"
-                  theme="dark"
-                  class="px-16 md-preview mt-2"
-                  style="padding-bottom: 19.2px;"
-                  language="ru-RU"
-                  :code-foldable="false"
-                  no-code-header
-                />
-                <p v-if="msg.role == 'user'">
-                  {{ msg.content }}
-                </p>
-              </div>
+          <div v-if="messages && messages.length">
+            <div
+              v-for="(msg, index) in messages"
+              :key="index"
+              class="chat-message"
+            >
+              <md-preview
+                v-if="msg.role == 'assistant'"
+                v-model="msg.content"
+                theme="dark"
+                class="px-16 md-preview mt-2"
+                style="padding-bottom: 19.2px;"
+                language="ru-RU"
+                :code-foldable="false"
+                no-code-header
+              />
+              <p v-if="msg.role == 'user'">
+                {{ msg.content }}
+              </p>
             </div>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </template>
+          </div>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
   
   <script lang="ts" setup>
   import { ref, onMounted } from "vue";
