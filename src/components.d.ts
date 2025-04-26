@@ -11,7 +11,6 @@ declare module 'vue' {
     FilePreviews: typeof import('./components/FilePreviews.vue')['default']
     InputMessage: typeof import('./components/InputMessage.vue')['default']
     RenameChatDialog: typeof import('./components/RenameChatDialog.vue')['default']
-    RenameDialog: typeof import('./components/RenameDialog.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchChatDialog: typeof import('./components/SearchChatDialog.vue')['default']
