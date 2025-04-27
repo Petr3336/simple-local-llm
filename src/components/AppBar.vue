@@ -92,7 +92,7 @@ function getModels() {
 </script>
 
 <style scoped>
-.v-app-bar {
+v-app-bar {
   backdrop-filter: blur(5px);
 }
 
