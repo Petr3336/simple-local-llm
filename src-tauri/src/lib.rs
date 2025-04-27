@@ -7,6 +7,7 @@ pub mod function_providers;
 
 mod commands {
     pub mod embeddings;
+    pub mod prepare_embeddings;
 }
 
 use log::LevelFilter;
@@ -229,6 +230,7 @@ pub fn run() {
             delete_model,
             stop_model,
             commands::embeddings::generate_embeddings,
+            commands::prepare_embeddings::prepare_embeddings,
         ])
         .run(tauri::generate_context!())
         .expect("Ошибка при запуске Tauri-приложения");
