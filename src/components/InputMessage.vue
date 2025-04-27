@@ -1,134 +1,261 @@
 <template>
-  <v-container>
-    <div class="chat-container">
-      <!-- Компонент превью файлов -->
-      <FilePreviews :files="files" @remove-file="removeFile" />
+  <v-container class="chat-container">
+    <!-- Компонент превью файлов -->
+    <FilePreviews :files="files" @remove-file="removeFile" />
 
-      <!-- Основное поле ввода -->
-      <div class="input-wrapper">
-        <MdEditor v-model="text" theme="dark" :language="'en-US'" :preview="false" :toolbars="toolbars"
-          :no-footer="true" :show-words-count="false" class="custom-md-editor" :style="{
-            borderRadius: '8px',
-            height: '200px',
-            width: '100%'
-          }" />
+    <!-- Основное поле ввода -->
+    <div class="input-wrapper">
+      <MdEditor v-model="modelParams.prompt" theme="dark" :language="'en-US'" :preview="false" :toolbars="toolbars"
+        :no-footer="true" :show-words-count="false" class="custom-md-editor" :style="{
+          borderRadius: '8px',
+          height: '200px',
+          width: '100%',
+        }" />
 
-        <!-- Панель управления -->
-        <div class="controls">
-          <div class="left-controls">
-            <v-menu v-model="showMenu" :close-on-content-click="false">
-              <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" icon="mdi-menu" size="small" variant="text" border></v-btn>
-              </template>
-              <v-card class="menu-card">
-                <v-list>
-                  <v-list-item>
-                    <template v-slot:prepend>
-                      <v-switch v-model="systemSearchEnabled" class="pr-3" @click.stop hide-details></v-switch>
-                    </template>
-                    <v-list-item-title>Поиск по системе</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-card>
-            </v-menu>
-            <v-btn @click="triggerFileInput" icon="mdi-file-upload-outline" size="small" variant="text" border />
-          </div>
-
-          <!-- Кнопка отправки -->
-          <v-btn @click="sendMessage" icon="mdi-send-variant" size="small" color="#1976d2" variant="flat" />
+      <!-- Панель управления -->
+      <div class="d-flex justify-space-between align-center">
+        <div class="left-controls">
+          <v-menu v-model="showMenu" :close-on-content-click="false">
+            <template #activator="{ props }">
+              <v-btn v-bind="props" icon="mdi-menu" size="small" variant="text" border />
+            </template>
+            <v-card class="menu-card">
+              <v-list density="compact">
+                <v-list-item v-for="(func, key) in llmFunctions" :key="key">
+                  <template #prepend>
+                    <v-switch v-model="func.enabled" density="compact" class="pr-3" hide-details @click.stop />
+                  </template>
+                  <v-list-item-title>{{ func.name }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-card>
+          </v-menu>
+          <v-btn icon="mdi-file-upload-outline" size="small" variant="text" border @click="triggerFileInput" />
         </div>
-      </div>
 
-      <!-- Скрытый input для загрузки файлов -->
-      <input type="file" ref="fileInput" @change="handleFileUpload" multiple style="display: none;" />
+        <!-- Кнопка отправки -->
+        <v-btn icon="mdi-send-variant" size="small" color="#1976d2" variant="flat" @click="runModel" />
+      </div>
     </div>
+
+    <!-- Скрытый input для загрузки файлов -->
+    <input ref="fileInput" type="file" multiple style="display: none" @change="handleFileUpload">
   </v-container>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { MdEditor } from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
-import FilePreviews from './FilePreviews.vue';
+<script setup lang="ts">
+import { ref } from "vue";
+import { MdEditor } from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
+import { useChatStore, type LLMOptions, type ChatRole } from '@/stores/chat'
+import { useAppStore } from '@/stores/app'
+import { listen } from "@tauri-apps/api/event";
+import { storeToRefs } from "pinia";
 
-const text = ref('');
-const files = ref([]);
-const fileInput = ref(null);
-const systemSearchEnabled = ref(false);
+// Chat Store
+const chatStore = useChatStore()
+const appStore = useAppStore()
+
+const { currentProvider, currentModel } = storeToRefs(appStore)
+const { llmFunctions } = storeToRefs(chatStore)
+
+chatStore.fetchAvailableFunctions();
+
+const files = ref<
+  Array<{ name: string; type: string; preview: string; file: File }>
+>([]);
+const fileInput = ref<HTMLInputElement | null>(null);
 const showMenu = ref(false);
-
 const toolbars = [
-  'bold', 'underline', 'orderedList',
-  'code', 'link', 'fullscreen'
+  "bold",
+  "-",
+  "title",
+  "unorderedList",
+  "orderedList",
+  "-",
+  "codeRow",
+  "code",
+  "link",
+  "table",
+  "mermaid",
+  "katex",
+  "-",
+  "revoke",
+  "next",
+  "=",
+  "preview",
+  "fullscreen",
 ];
 
-const handleFileUpload = (e) => {
-  const uploadedFiles = Array.from(e.target.files);
-  uploadedFiles.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      files.value.push({
-        name: file.name,
-        type: file.type,
-        preview: event.target.result,
-        file
-      });
-    };
-    if (file.type.startsWith('image/')) {
-      reader.readAsDataURL(file);
-    } else {
-      reader.readAsText(file);
+const isLoading = ref(false);
+const streamBuffer = ref("");
+const output = ref("");
+
+interface ModelParameters {
+  model: string;
+  prompt: string;
+  options: LLMOptions;
+}
+
+const modelParams = ref<ModelParameters>({
+  model: currentModel.value, // значение будет установлено после загрузки списка моделей
+  prompt: "",
+  options: {
+    num_gpu: 100,
+    num_ctx: 8096,
+    functions: [],
+    stream: true,
+  },
+});
+
+// Выбор файла
+const triggerFileInput = () => fileInput.value?.click()
+
+// Загрузка файлов
+const handleFileUpload = (e: Event) => {
+  const input = e.target as HTMLInputElement
+  if (!input.files) return
+  Array.from(input.files).forEach(file => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      files.value.push({ name: file.name, type: file.type, preview: reader.result as string, file })
+    }
+    file.type.startsWith('image/') ? reader.readAsDataURL(file) : reader.readAsText(file)
+  })
+}
+
+// Удаление превью
+const removeFile = (idx: number) => files.value.splice(idx, 1)
+
+/**
+   * Отправка запроса к модели через хранилище.
+   * При вызове chatStore.runModel автоматически добавится сообщение пользователя в историю.
+   */
+async function runModel() {
+  isLoading.value = true;
+  output.value = "";
+  chatStore.addMessage({ role: 'user', content: modelParams.value.prompt })
+  modelParams.value.options.functions = llmFunctions.value.filter(func => func.enabled).map(func => func.name)
+  await chatStore.runModel(
+    currentProvider.value,
+    modelParams.value.model,
+    modelParams.value.prompt,
+    modelParams.value.options
+  );
+}
+
+onMounted(() => {
+  // Обработчик для стримингового вывода
+  listen("model-stream-output", (event) => {
+    console.log("model-stream-output", event);
+    const chatStore = useChatStore();
+    if (isLoading.value) {
+      isLoading.value = false;
+    }
+    try {
+      const eventData = JSON.parse(event.payload as string);
+      const chatId = eventData.chat_id;
+      const output = eventData.output;
+
+      // Добавляем новую часть в буфер
+      streamBuffer.value += output;
+
+      // Пробуем найти полные JSON-сообщения
+      const messages = streamBuffer.value.split('\n').filter(msg => msg.trim());
+
+      for (const message of messages) {
+        try {
+          const parsedMessage = JSON.parse(message);
+          if (parsedMessage.message) {
+            const msg = parsedMessage.message;
+            const role = msg.role || "assistant";
+            const content = msg.content || "";
+            const tool_call_id = msg.tool_call_id;
+
+            chatStore.appendMessageByRole(chatId, role, content, tool_call_id);
+          }
+        } catch {
+          // Если не удалось распарсить JSON, оставляем в буфере
+          continue;
+        }
+      }
+
+      // Очищаем буфер от обработанных сообщений
+      streamBuffer.value = streamBuffer.value.split('\n').slice(-1)[0];
+    } catch (e) {
+      console.error("Ошибка обработки model-stream-output", e);
     }
   });
-};
 
-const removeFile = (index) => {
-  files.value.splice(index, 1);
-};
+  listen("model-output", (event) => {
+    console.log("model-output", event);
+    const chatStore = useChatStore();
+    if (isLoading.value) {
+      isLoading.value = false;
+    }
+    try {
+      const eventData = JSON.parse(event.payload as string);
+      const chatId = eventData.chat_id;
+      const output = eventData.output;
 
-const sendMessage = () => {
-  if (!text.value.trim() && files.value.length === 0) return;
+      let role: ChatRole = "assistant";
+      let content = "";
+      let tool_call_id: string | undefined;
 
-  const payload = {
-    text: text.value,
-    files: files.value.map(f => f.file),
-    systemSearch: systemSearchEnabled.value
-  };
+      if (typeof output === "object" && output.role && output.content) {
+        role = output.role as ChatRole;
+        content = output.content;
+        tool_call_id = output.tool_call_id;
 
-  console.log('Отправлено:', payload);
-  text.value = '';
-  files.value = [];
-};
+      } else if (typeof output === "object" && output.message && output.message.content != null) {
+        const msg = output.message;
+        role = msg.role || "assistant";
+        content = msg.content;
+        tool_call_id = msg.tool_call_id;
+      } else {
+        content = JSON.stringify(output);
+      }
 
-const triggerFileInput = () => {
-  fileInput.value.click();
-};
+      chatStore.appendMessageByRole(chatId, role, content, tool_call_id);
+
+      // Если это ответ от функции (tool), запускаем модель снова
+      if (role === "tool" && tool_call_id) {
+        // Отключаем функции для следующего запроса
+        modelParams.value.options.functions = [];
+        // Запускаем модель снова
+        chatStore.runModel(
+          currentProvider.value,
+          modelParams.value.model,
+          "На основе предыдущего ответа, в котором была использована функция " + tool_call_id + ", выполни следующую задачу: " + modelParams.value.prompt,
+          modelParams.value.options
+        );
+      }
+    } catch (e) {
+      console.error("Ошибка обработки model-output", e);
+    }
+  });
+});
 </script>
 
 <style scoped>
 .chat-container {
-  border: 1px solid #424242;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgb(33, 33, 33);
   border-radius: 8px;
   padding: 12px;
   transition: all 0.3s ease;
 }
 
 .custom-md-editor {
-  --md-bk-color: #0000002b;
+  --md-bk-color: rgb(25, 25, 25);
   --md-color: #ffffff;
-  --md-border-color: #424242;
+  --md-border-color: rgba(255, 255, 255, 0.12);
 }
 
 .input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .left-controls {

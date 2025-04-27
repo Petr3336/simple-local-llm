@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppBar: typeof import('./components/AppBar.vue')['default']
+    ChatMessage: typeof import('./components/ChatMessage.vue')['default']
     FilePreviews: typeof import('./components/FilePreviews.vue')['default']
     InputMessage: typeof import('./components/InputMessage.vue')['default']
     RenameChatDialog: typeof import('./components/RenameChatDialog.vue')['default']

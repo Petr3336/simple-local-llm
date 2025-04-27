@@ -1,14 +1,14 @@
+use crate::function_provider::FunctionDefinition;
 use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 use tauri::AppHandle;
-use crate::function_provider::FunctionDefinition;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct LLMOptions {
     pub num_gpu: Option<u32>,
     pub num_ctx: Option<u32>,
     pub functions: Option<Vec<String>>,
-    pub stream: bool
+    pub stream: bool,
 }
 
 #[async_trait]
@@ -21,7 +21,7 @@ pub trait ModelProvider: Send + Sync {
         model: String,
         messages: Vec<serde_json::Value>,
         options: Option<LLMOptions>,
-        chat_id: String
+        chat_id: String,
     ) -> Result<(), String>;
 
     async fn download_model(&self, app: tauri::AppHandle, model: String) -> Result<(), String>;

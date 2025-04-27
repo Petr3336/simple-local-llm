@@ -3,14 +3,14 @@ use futures::StreamExt;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
+use std::collections::HashMap;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
-use std::collections::HashMap;
 use tauri::{AppHandle, Emitter};
 
 use crate::model_provider::{LLMOptions, ModelProvider};
 
-use log::{info, debug, warn, error}; // [log]
+use log::{debug, error, info, warn}; // [log]
 
 use crate::function_provider::{FunctionDefinition, LlmFunction};
 use crate::initialize_functions;
@@ -61,13 +61,10 @@ impl ModelProvider for OllamaProvider {
             name: String,
         }
 
-        let tag_response: TagResponse = response
-            .json()
-            .await
-            .map_err(|e| {
-                error!("Failed to parse JSON response: {}", e); // [log]
-                format!("Ошибка парсинга JSON: {}", e)
-            })?;
+        let tag_response: TagResponse = response.json().await.map_err(|e| {
+            error!("Failed to parse JSON response: {}", e); // [log]
+            format!("Ошибка парсинга JSON: {}", e)
+        })?;
 
         let model_names: Vec<String> = tag_response
             .models
@@ -88,17 +85,17 @@ impl ModelProvider for OllamaProvider {
         chat_id: String,
     ) -> Result<(), String> {
         info!("Running model '{}' with messages: {:?}", model, messages);
-    
+
         let client = reqwest::Client::new();
         let mut body = serde_json::Map::new();
-    
+
         body.insert("model".to_string(), json!(model));
         body.insert("messages".to_string(), json!(messages));
-    
+
         // Определяем, включён ли стриминг
         let stream_enabled = options.as_ref().map(|opts| opts.stream).unwrap_or(false);
         body.insert("stream".to_string(), json!(stream_enabled));
-        
+
         let all_functions = initialize_functions();
         let mut tools_payload = Vec::new();
         let mut callable_map: HashMap<String, Arc<dyn LlmFunction>> = HashMap::new();
@@ -113,14 +110,19 @@ impl ModelProvider for OllamaProvider {
             }
             if let Some(enabled) = &opts.functions {
                 for name in enabled {
-                    if let Some(func) = all_functions.iter().find(|f| f.definition().name == *name) {
+                    if let Some(func) = all_functions.iter().find(|f| f.definition().name == *name)
+                    {
                         let def = func.definition();
 
-                        let properties = def.parameters.iter().map(|(key, param)| {
-                            let mut prop = json!({ "type": param.param_type });
-                            prop["description"] = json!(param.description);
-                            (key.clone(), prop)
-                        }).collect::<serde_json::Map<_, _>>();
+                        let properties = def
+                            .parameters
+                            .iter()
+                            .map(|(key, param)| {
+                                let mut prop = json!({ "type": param.param_type });
+                                prop["description"] = json!(param.description);
+                                (key.clone(), prop)
+                            })
+                            .collect::<serde_json::Map<_, _>>();
 
                         let required = def.parameters.keys().cloned().collect::<Vec<_>>();
 
@@ -148,10 +150,10 @@ impl ModelProvider for OllamaProvider {
         if use_tools {
             body.insert("tools".into(), json!(tools_payload));
         }
-    
+
         self.stop_flag.store(false, Ordering::SeqCst);
         debug!("Sending request to /api/chat with body: {:?}", body);
-    
+
         let response = client
             .post("http://localhost:11434/api/chat")
             .json(&serde_json::Value::Object(body))
@@ -161,11 +163,11 @@ impl ModelProvider for OllamaProvider {
                 error!("Failed to send request to /api/chat: {}", e);
                 e.to_string()
             })?;
-    
+
         let mut stream = response.bytes_stream();
         let stop_flag = self.stop_flag.clone();
         let chat_id_clone = chat_id.clone();
-    
+
         tauri::async_runtime::spawn(async move {
             info!("Started receiving response from model");
             if stream_enabled {
@@ -243,10 +245,16 @@ impl ModelProvider for OllamaProvider {
                                                         "tool_call_id": name
                                                     }
                                                 });
-                                                let _ = app.emit("model-output", tool_response.to_string());
+                                                let _ = app.emit(
+                                                    "model-output",
+                                                    tool_response.to_string(),
+                                                );
                                             }
                                             Err(err) => {
-                                                let _ = app.emit("function-error", format!("{}: {}", name, err));
+                                                let _ = app.emit(
+                                                    "function-error",
+                                                    format!("{}: {}", name, err),
+                                                );
                                             }
                                         }
                                     }
@@ -272,11 +280,9 @@ impl ModelProvider for OllamaProvider {
             }
             info!("Response from model has ended");
         });
-    
+
         Ok(())
     }
-    
-    
 
     /* async fn run_model(
         &self,
@@ -472,13 +478,13 @@ impl ModelProvider for OllamaProvider {
         Ok(())
     } */
 
-    
-
     async fn download_model(&self, app: tauri::AppHandle, model: String) -> Result<(), String> {
         info!("Requesting download for model: {}", model); // [log]
 
         let client = Client::new();
-        let body = ModelRequest { name: model.clone() };
+        let body = ModelRequest {
+            name: model.clone(),
+        };
 
         let response = client
             .post("http://localhost:11434/api/pull")
@@ -504,7 +510,9 @@ impl ModelProvider for OllamaProvider {
         info!("Requesting deletion of model: {}", model); // [log]
 
         let client = Client::new();
-        let body = ModelRequest { name: model.clone() };
+        let body = ModelRequest {
+            name: model.clone(),
+        };
 
         let response = client
             .delete("http://localhost:11434/api/delete")
