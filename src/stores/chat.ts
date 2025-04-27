@@ -24,6 +24,19 @@ export interface LLMOptions {
   stream: boolean
 }
 
+interface FunctionParam {
+  name: string
+  description: string
+  type: string
+}
+
+interface FunctionDefinition {
+  name: string
+  description?: string
+  parameters: Record<string, FunctionParam>
+  enabled: boolean
+}
+
 export const useChatStore = defineStore('chat', {
   state: () => {
     // Создаем первый чат сразу при инициализации хранилища
@@ -36,6 +49,7 @@ export const useChatStore = defineStore('chat', {
     return {
       chatSessions: [firstChat] as ChatSession[],
       activeChatId: firstChat.id as string | null,
+      llmFunctions: [] as FunctionDefinition[],
     }
   },
   getters: {
@@ -86,6 +100,17 @@ export const useChatStore = defineStore('chat', {
     clearActiveChatMessages() {
       if (this.activeChat) {
         this.activeChat.messages = []
+      }
+    },
+    async fetchAvailableFunctions() {
+      try {
+        const functions = await invoke<Omit<FunctionDefinition, 'enabled'>[]>('get_available_functions')
+        this.llmFunctions = functions.map(func => ({
+          ...func,
+          enabled: false, // добавляем false по умолчанию
+        }))
+      } catch (error) {
+        console.error('Failed to fetch available functions:', error)
       }
     },
     async runModel(

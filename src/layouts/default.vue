@@ -20,6 +20,8 @@
 .input-message-footer {
   background: transparent !important;
   transform: none !important;
-  z-index: 1500 !important;
+}
+.input-message-footer:has(.md-editor-fullscreen) {
+  z-index: 1010 !important;
 }
 </style>

@@ -10,6 +10,6 @@ export const useAppStore = defineStore('app', {
   actions: {
     sideBarToggle() {
       this.sideBarState = !this.sideBarState
-    }
-  }
+    },
+  },
 })

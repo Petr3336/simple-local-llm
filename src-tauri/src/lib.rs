@@ -90,6 +90,19 @@ async fn get_installed_models(provider_name: String) -> Result<Vec<String>, Stri
     Err("Provider not found".into())
 }
 
+use crate::function_provider::FunctionDefinition;
+#[tauri::command]
+async fn get_available_functions() -> Result<Vec<FunctionDefinition>, String> {
+    info!("Request to get available functions"); // [log]
+
+    let available_functions = function_providers::all_functions()
+        .into_iter()
+        .map(|func| func.definition())
+        .collect();
+
+    Ok(available_functions)
+}
+
 #[tauri::command]
 async fn run_model(
     app: AppHandle,
@@ -206,6 +219,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             get_available_providers,
             get_installed_models,
+            get_available_functions,
             run_model,
             download_model,
             delete_model,

@@ -1,89 +1,45 @@
 <template>
   <v-container class="chat-container">
     <!-- Компонент превью файлов -->
-    <FilePreviews
-      :files="files"
-      @remove-file="removeFile"
-    />
+    <FilePreviews :files="files" @remove-file="removeFile" />
 
     <!-- Основное поле ввода -->
     <div class="input-wrapper">
-      <MdEditor
-        v-model="modelParams.prompt"
-        theme="dark"
-        :language="'en-US'"
-        :preview="false"
-        :toolbars="toolbars"
-        :no-footer="true"
-        :show-words-count="false"
-        class="custom-md-editor"
-        :style="{
+      <MdEditor v-model="modelParams.prompt" theme="dark" :language="'en-US'" :preview="false" :toolbars="toolbars"
+        :no-footer="true" :show-words-count="false" class="custom-md-editor" :style="{
           borderRadius: '8px',
           height: '200px',
           width: '100%',
-        }"
-      />
+        }" />
 
       <!-- Панель управления -->
-      <div class="controls">
+      <div class="d-flex justify-space-between align-center">
         <div class="left-controls">
-          <v-menu
-            v-model="showMenu"
-            :close-on-content-click="false"
-          >
+          <v-menu v-model="showMenu" :close-on-content-click="false">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                icon="mdi-menu"
-                size="small"
-                variant="text"
-                border
-              />
+              <v-btn v-bind="props" icon="mdi-menu" size="small" variant="text" border />
             </template>
             <v-card class="menu-card">
-              <v-list>
-                <v-list-item>
+              <v-list density="compact">
+                <v-list-item v-for="(func, key) in llmFunctions" :key="key">
                   <template #prepend>
-                    <v-switch
-                      v-model="systemSearchEnabled"
-                      class="pr-3"
-                      hide-details
-                      @click.stop
-                    />
+                    <v-switch v-model="func.enabled" density="compact" class="pr-3" hide-details @click.stop />
                   </template>
-                  <v-list-item-title>Поиск по системе</v-list-item-title>
+                  <v-list-item-title>{{ func.name }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-card>
           </v-menu>
-          <v-btn
-            icon="mdi-file-upload-outline"
-            size="small"
-            variant="text"
-            border
-            @click="triggerFileInput"
-          />
+          <v-btn icon="mdi-file-upload-outline" size="small" variant="text" border @click="triggerFileInput" />
         </div>
 
         <!-- Кнопка отправки -->
-        <v-btn
-          icon="mdi-send-variant"
-          size="small"
-          color="#1976d2"
-          variant="flat"
-          @click="runModel"
-        />
+        <v-btn icon="mdi-send-variant" size="small" color="#1976d2" variant="flat" @click="runModel" />
       </div>
     </div>
 
     <!-- Скрытый input для загрузки файлов -->
-    <input
-      ref="fileInput"
-      type="file"
-      multiple
-      style="display: none"
-      @change="handleFileUpload"
-    >
+    <input ref="fileInput" type="file" multiple style="display: none" @change="handleFileUpload">
   </v-container>
 </template>
 
@@ -101,12 +57,14 @@ const chatStore = useChatStore()
 const appStore = useAppStore()
 
 const { currentProvider, currentModel } = storeToRefs(appStore)
+const { llmFunctions } = storeToRefs(chatStore)
+
+chatStore.fetchAvailableFunctions();
 
 const files = ref<
   Array<{ name: string; type: string; preview: string; file: File }>
 >([]);
 const fileInput = ref<HTMLInputElement | null>(null);
-const systemSearchEnabled = ref(false);
 const showMenu = ref(false);
 const toolbars = [
   "bold",
@@ -134,17 +92,17 @@ const streamBuffer = ref("");
 const output = ref("");
 
 interface ModelParameters {
-    model: string;
-    prompt: string;
-    options: LLMOptions;
-  }
+  model: string;
+  prompt: string;
+  options: LLMOptions;
+}
 
 const modelParams = ref<ModelParameters>({
   model: currentModel.value, // значение будет установлено после загрузки списка моделей
   prompt: "",
   options: {
     num_gpu: 100,
-    num_ctx: 4096,
+    num_ctx: 8096,
     functions: [],
     stream: true,
   },
@@ -177,6 +135,7 @@ async function runModel() {
   isLoading.value = true;
   output.value = "";
   chatStore.addMessage({ role: 'user', content: modelParams.value.prompt })
+  modelParams.value.options.functions = llmFunctions.value.filter(func => func.enabled).map(func => func.name)
   await chatStore.runModel(
     currentProvider.value,
     modelParams.value.model,
@@ -299,23 +258,8 @@ onMounted(() => {
   gap: 8px;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .left-controls {
   display: flex;
   gap: 8px;
-}
-
-.md-editor-fullscreen {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 9999 !important;
 }
 </style>

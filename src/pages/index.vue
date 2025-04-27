@@ -248,7 +248,7 @@
     );
   }
   
-  onMounted(() => {
+/*   onMounted(() => {
     // Обработчик для стримингового вывода
     listen("model-stream-output", (event) => {
       console.log("model-stream-output", event);
@@ -362,7 +362,7 @@
         getModels();
       }
     });
-  });
+  }); */
   </script>
   
   <style>
