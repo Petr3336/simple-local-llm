@@ -46,15 +46,15 @@ interface FunctionDefinition {
 export const useChatStore = defineStore('chat', {
   state: () => {
     // Создаем первый чат сразу при инициализации хранилища
-    const firstChat: ChatSession = {
+    /* const firstChat: ChatSession = {
       id: nanoid(),
       title: 'Первый чат',
       messages: [],
       createdAt: Date.now()
-    }
+    } */
     return {
-      chatSessions: [firstChat] as ChatSession[],
-      activeChatId: firstChat.id as string | null,
+      chatSessions: [] as ChatSession[],
+      activeChatId: null as string | null,
       llmFunctions: [] as FunctionDefinition[],
       runParams: {
         model: "",
@@ -85,12 +85,14 @@ export const useChatStore = defineStore('chat', {
       }
       this.chatSessions.push(chat)
       this.activeChatId = id
+      this.router.push('/'+id)
     },
     deleteChat(id: string) {
       this.chatSessions = this.chatSessions.filter(c => c.id !== id)
       if (this.activeChatId === id) {
         const last = this.chatSessions[this.chatSessions.length - 1]
         this.activeChatId = last ? last.id : null
+        this.router.push('/')
       }
     },
     selectChat(id: string) {

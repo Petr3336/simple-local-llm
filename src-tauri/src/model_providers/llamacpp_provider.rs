@@ -337,10 +337,11 @@ You are a helpful AI assistant.
 
 # Answer Rules
 Here are some rules to keep in mind when writing your answer
-1. Use function calling if that helps complete the task
-2. Do not put the function call in triple backticks \"```\" with the json language tag.
-3. Answer to last user question.
-4. If the user asks something related to \"functions\" or \"tools\", it always refers to the Tools section described below
+1. Answer in the same language as user
+2. Use function calling if that helps complete the task
+3. Do not put the function call in triple backticks \"```\" with the json language tag.
+4. Answer to last user question.
+5. If the user asks something related to \"functions\" or \"tools\", it always refers to the Tools section described below
 ";
     
                 chat_messages.push(serde_json::json!({

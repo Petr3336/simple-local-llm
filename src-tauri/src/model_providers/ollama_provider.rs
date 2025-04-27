@@ -21,6 +21,7 @@ pub struct OllamaProvider {
 #[derive(Serialize)]
 struct ModelRequest {
     name: String,
+    stream: bool
 }
 
 impl OllamaProvider {
@@ -484,6 +485,7 @@ impl ModelProvider for OllamaProvider {
         let client = Client::new();
         let body = ModelRequest {
             name: model.clone(),
+            stream: false
         };
 
         let response = client
@@ -512,6 +514,7 @@ impl ModelProvider for OllamaProvider {
         let client = Client::new();
         let body = ModelRequest {
             name: model.clone(),
+            stream: false
         };
 
         let response = client

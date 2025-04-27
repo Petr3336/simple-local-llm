@@ -11,6 +11,7 @@ import { useChatStore, type ChatRole } from "@/stores/chat";
 import { useAppStore } from "@/stores/app";
 import { listen } from "@tauri-apps/api/event";
 import { storeToRefs } from "pinia";
+import router from "./router";
 
 onMounted(() => {
   attachConsole();
@@ -19,9 +20,14 @@ onMounted(() => {
 const chatStore = useChatStore();
 const appStore = useAppStore();
 chatStore.$tauri.start();
-appStore.$tauri.start();
+appStore.$tauri.start().then(() => {
+  if (appStore.$state.initialSetup) {
+    router.push('/initial-setup')
+    initialSetup.value = false
+  }
+});
 
-const { currentProvider, currentModel } = storeToRefs(appStore)
+const { currentProvider, currentModel, initialSetup } = storeToRefs(appStore)
 const { runParams } = storeToRefs(chatStore)
 const streamBuffer = ref("");
 const isLoading = ref(false);
