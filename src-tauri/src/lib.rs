@@ -5,10 +5,7 @@ pub mod function_provider;
 use function_provider::LlmFunction;
 pub mod function_providers;
 
-mod commands {
-    pub mod embeddings;
-    pub mod prepare_embeddings;
-}
+mod embeddings;
 
 use log::LevelFilter;
 use log::{debug, error, info, warn}; // [log]
@@ -229,8 +226,8 @@ pub fn run() {
             download_model,
             delete_model,
             stop_model,
-            commands::embeddings::generate_embeddings,
-            commands::prepare_embeddings::prepare_embeddings,
+            embeddings::retrieve_context,
+            embeddings::embed_with_cache
         ])
         .run(tauri::generate_context!())
         .expect("Ошибка при запуске Tauri-приложения");
