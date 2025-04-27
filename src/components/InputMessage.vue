@@ -66,7 +66,7 @@
             size="small"
             variant="text"
             border
-            @click="triggerFileInput"
+            @click="selectFiles"
           />
         </div>
         <div class="controls">
@@ -89,15 +89,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Скрытый input для загрузки файлов -->
-    <input
-      ref="fileInput"
-      type="file"
-      multiple
-      style="display: none"
-      @change="handleFileUpload"
-    >
   </v-container>
 </template>
 
@@ -106,15 +97,17 @@ import {
   ref, 
   computed, 
   onMounted, 
-  watch, 
-  nextTick, 
+  watch,
   type ComponentPublicInstance 
 } from "vue";
 import { MdEditor, type ExposeParam } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
-import { useChatStore, type ModelParameters } from "@/stores/chat";
+import { useChatStore } from "@/stores/chat";
 import { useAppStore } from "@/stores/app";
 import { storeToRefs } from "pinia";
+import { open } from "@tauri-apps/plugin-dialog";
+import { readFile } from "@tauri-apps/plugin-fs";
+import * as pathAPI from "@tauri-apps/api/path";
 
 // Chat Store
 const chatStore = useChatStore();
@@ -124,8 +117,14 @@ const { currentProvider, currentModel } = storeToRefs(appStore);
 const { llmFunctions, runParams } = storeToRefs(chatStore);
 chatStore.fetchAvailableFunctions();
 
-// Файлы и загрузка
-const files = ref<Array<{ name: string; type: string; preview: string; file: File }>>([]);
+// Состояние файлов
+interface FileItem {
+  name: string;
+  type: string;
+  preview: string;
+  path: string;
+}
+const files = ref<FileItem[]>([]);
 const fileInput = ref<HTMLInputElement | null>(null);
 const showMenu = ref(false);
 
@@ -161,27 +160,45 @@ const editorToolbars = computed(() => fullscreen.value ? toolBarConfiguration : 
 const isLoading = ref(false);
 const output = ref("");
 
-// Выбор файла
-const triggerFileInput = () => fileInput.value?.click();
-// Загрузка файлов
-const handleFileUpload = (e: Event) => {
-  const input = e.target as HTMLInputElement;
-  if (!input.files) return;
-  Array.from(input.files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      files.value.push({ 
-        name: file.name, 
-        type: file.type, 
-        preview: reader.result as string, 
-        file 
-      });
-    };
-    file.type.startsWith("image/") 
-      ? reader.readAsDataURL(file) 
-      : reader.readAsText(file);
+
+// Функция выбора файлов через Tauri-dialog
+async function selectFiles() {
+  const result = await open({
+    multiple: true,
+    directory: false,
   });
-};
+  if (!result) return;
+
+  const paths = Array.isArray(result) ? result : [result];
+  for (const filePath of paths) {
+    // получаем имя и расширение
+    const name = await pathAPI.basename(filePath);
+    const ext = (await pathAPI.extname(filePath)).toLowerCase();
+
+    // читаем файл (plugins-fs автоматически возвращает Uint8Array для бинарников)
+    const raw = await readFile(filePath);
+
+    let preview: string;
+    let type: string;
+
+    // если это изображение — конвертим в data:URL
+    if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp"].includes(ext) && raw instanceof Uint8Array) {
+      const b64 = btoa(String.fromCharCode(...raw));
+      const mimeExt = ext === ".jpg" ? "jpeg" : ext.slice(1);
+      type = `image/${mimeExt}`;
+      preview = `data:${type};base64,${b64}`;
+    } else {
+      // иначе трактуем как текст
+      // raw может быть Uint8Array или строкой
+      const text = typeof raw === "string" ? raw : new TextDecoder().decode(raw);
+      type = "text/plain";
+      preview = text;
+    }
+
+    files.value.push({ name, type, preview, path: filePath });
+  }
+}
+
 // Удаление превью
 const removeFile = (idx: number) => files.value.splice(idx, 1);
 
