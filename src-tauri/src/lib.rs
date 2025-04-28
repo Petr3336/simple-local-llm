@@ -250,7 +250,8 @@ pub fn run() {
             delete_model,
             stop_model,
             embeddings::retrieve_context,
-            embeddings::embed_with_cache
+            embeddings::embed_with_cache,
+            embeddings::download_embedding_model
         ])
         .run(tauri::generate_context!())
         .expect("Ошибка при запуске Tauri-приложения");

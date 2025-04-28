@@ -3,9 +3,9 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::num::NonZeroU32;
 use anyhow::{Context, Result};
-use log::info;
+use futures::StreamExt;
 use sha2::{Digest, Sha256};
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, Emitter, Manager};
 use serde::Deserialize;
 use llama_cpp_2::context::params::LlamaContextParams;
 use llama_cpp_2::llama_backend::LlamaBackend;
@@ -14,6 +14,8 @@ use llama_cpp_2::model::{AddBos, LlamaModel, Special};
 use llama_cpp_2::model::params::LlamaModelParams;
 use bytemuck;
 use tauri::async_runtime::spawn_blocking;
+use log::{debug, error, info, warn};
+use tokio::io::AsyncWriteExt;
 
 /// Источник ввода: либо файл, либо строковой контент
 #[derive(Deserialize)]
@@ -310,4 +312,97 @@ pub async fn retrieve_context(
     .map_err(|e| e.to_string())??;
 
     Ok(result_str)
+}
+
+#[tauri::command]
+pub async fn download_embedding_model(app: tauri::AppHandle, model: String) -> Result<(), String> {
+    info!("Downloading model: {}", model);
+
+    let (repo, filename) = model.split_once(':').ok_or_else(|| {
+        let msg = "Model format must be <repo>:<filename.gguf>".to_string();
+        error!("{}", msg);
+        msg
+    })?;
+
+    // Получаем путь к кэшу и создаём директорию для моделей
+    let mut base = app.path().cache_dir().map_err(|e| e.to_string())?;
+    
+    #[cfg(not(target_os = "android"))]
+    {
+        base = app
+            .path()
+            .app_data_dir()
+            .expect("Failed to get app data dir");
+    }
+
+    // Папка для embedding моделей
+    let embeddings_models_dir = base.join("models/embeddings");
+
+    // Проверяем, существует ли папка, если нет — создаём её
+    if !embeddings_models_dir.exists() {
+        tokio::fs::create_dir_all(&embeddings_models_dir)
+            .await
+            .map_err(|e| {
+                let msg = format!("Failed to create models dir: {:?}", e);
+                error!("{}", msg);
+                msg
+            })?;
+        info!("Created models directory: {:?}", embeddings_models_dir);
+    }
+
+    let url = format!("https://huggingface.co/{}/resolve/main/{}", repo, filename);
+
+    debug!("Fetching model from URL: {}", url);
+
+    let client = reqwest::Client::new();
+    let response = client.get(&url).send().await.map_err(|e| {
+        let msg = format!("Failed to send GET request: {:?}", e);
+        error!("{}", msg);
+        msg
+    })?;
+
+    if !response.status().is_success() {
+        let msg = format!(
+            "Failed to download model. HTTP error: {}",
+            response.status()
+        );
+        error!("{}", msg);
+        return Err(msg);
+    }
+
+    let total_size = response.content_length().ok_or_else(|| {
+        let msg = "Response did not include content length.".to_string();
+        error!("{}", msg);
+        msg
+    })?;
+
+    let mut stream = response.bytes_stream();
+    let target_path = embeddings_models_dir.join(filename);
+    let mut file = tokio::fs::File::create(&target_path).await.map_err(|e| {
+        let msg = format!("Failed to create file: {:?}", e);
+        error!("{}", msg);
+        msg
+    })?;
+
+    let mut downloaded: u64 = 0;
+    while let Some(chunk_result) = stream.next().await {
+        let chunk = chunk_result.map_err(|e| {
+            let msg = format!("Error reading stream: {:?}", e);
+            error!("{}", msg);
+            msg
+        })?;
+
+        file.write_all(&chunk).await.map_err(|e| {
+            let msg = format!("Failed to write chunk to file: {:?}", e);
+            error!("{}", msg);
+            msg
+        })?;
+
+        downloaded += chunk.len() as u64;
+        let progress = downloaded as f32 / total_size as f32;
+        let _ = app.emit("model-download-progress", progress);
+    }
+
+    info!("Model downloaded to {:?}", target_path);
+    Ok(())
 }

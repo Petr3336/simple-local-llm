@@ -4,7 +4,7 @@
   <v-container>
     <v-stepper
       v-model="page"
-      :items="['Настрой провайдера модели', 'Выбери модель']"
+      :items="['Настрой провайдера модели', 'Выбери модель', 'Скачай embedding модель']"
       next-text="Далее"
       prev-text="Назад"
     >
@@ -67,6 +67,26 @@
           </v-combobox>
         </v-card>
       </template>
+      <template #item.3>
+        <v-card
+          title="Шаг 3: Скачай embedding модель"
+          flat
+        >
+          <div class="d-flex justify-center align-center">
+            <v-progress-linear
+              :model-value="embeddingDownload"
+              height="12"
+              class="mx-4"
+            />
+            <v-btn
+              color="primary mx-4"
+              @click="startDownloadModel('gpustack\/bge-m3-GGUF:bge-m3-Q4_0.gguf')"
+            >
+              Начать загрузку
+            </v-btn>
+          </div>
+        </v-card>
+      </template>
       <template #actions="{ prev, next}">
         <v-stepper-actions
           @click:prev="prev"
@@ -74,7 +94,7 @@
         >
           <template #next="{ props }">
             <v-btn
-              :disabled="false"
+              :disabled="(page == 3 && embeddingDownload != 100)"
               @click="nextPage(page, props)"
             />
           </template>
@@ -88,6 +108,7 @@
 import router from '@/router';
 import { useAppStore } from '@/stores/app'
 import { invoke } from '@tauri-apps/api/core';
+import { listen } from '@tauri-apps/api/event';
 import { storeToRefs,  } from 'pinia';
 
 definePage({
@@ -101,8 +122,39 @@ const { currentProvider, currentModel, providersList, availableModels, installed
 
 const page = ref(1)
 
+const embeddingDownload = ref<number>(0);
+
+// Следим за прогрессом загрузки
+const handleDownloadProgress = (progress: number) => {
+  embeddingDownload.value = progress * 100; // Переводим в проценты
+};
+
+// Обработчик для начала загрузки модели
+const startDownloadModel = async (model: string) => {
+  try {
+    await invoke('download_embedding_model', { model }); // Вызов команды Tauri
+  } catch (error) {
+    console.error('Ошибка при загрузке модели:', error);
+  }
+};
+
+onMounted(() => {
+  listen('model-download-progress', (event) => {
+    console.log(event)
+    // Проверяем и преобразуем payload в number
+    const progress = event.payload as number;
+
+    // Если прогресс — это число, обновляем состояние
+    if (typeof progress === 'number') {
+      handleDownloadProgress(progress); // Обновляем прогресс
+    } else {
+      console.error('Received non-number progress value:', progress);
+    } // Обновляем прогресс
+  });
+})
+
 function nextPage(page: number, props: any ){
-  if (page == 2) {
+  if (page == 3) {
     localStorage.setItem('hasCompletedSetup', 'true')
     router.push('/')
   } else {
