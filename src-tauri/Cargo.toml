@@ -25,6 +25,7 @@ tauri-build = { version = "2.1.0", features = [] }
 
 [dependencies]
 anyhow = "1.0"
+bytemuck = "1.14"
 tauri-plugin-pinia = "3"
 tokio = { version = "1", features = ["fs", "rt-multi-thread", "macros"] }
 serde_json = "1.0"
@@ -45,3 +46,4 @@ tera = "1.20.0"
 minijinja = "2.9.0"
 encoding_rs = "0.8.35"
 tauri-plugin-dialog = "2"
+sha2 = "0.10.8"
