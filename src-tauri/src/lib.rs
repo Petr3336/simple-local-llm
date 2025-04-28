@@ -13,12 +13,13 @@ use log::{debug, error, info, warn}; // [log]
 use model_provider::{LLMOptions, ModelProvider};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
-use tauri::AppHandle;
+use tauri::{AppHandle, Manager};
 use tauri_plugin_log::{Builder as LogBuilder, TargetKind};
 
 use once_cell::sync::OnceCell;
 
 static PROVIDERS: OnceCell<Mutex<Vec<Arc<dyn ModelProvider>>>> = OnceCell::new();
+static FUNCTIONS: OnceCell<Mutex<Vec<Arc<dyn LlmFunction>>>> = OnceCell::new();
 //static FUNCTIONS: OnceCell<Vec<Arc<dyn LlmFunction>>> = OnceCell::new();
 
 async fn init_providers(app: &AppHandle) {
@@ -64,7 +65,12 @@ fn get_providers() -> Vec<Arc<dyn ModelProvider>> {
 } */
 
 pub fn initialize_functions() -> Vec<Arc<dyn LlmFunction>> {
-    function_providers::all_functions()
+    FUNCTIONS
+        .get()
+        .expect("Functions not initialized")
+        .lock()
+        .unwrap()
+        .clone()
 }
 
 #[tauri::command]
@@ -96,13 +102,12 @@ use crate::function_provider::FunctionDefinition;
 #[tauri::command]
 async fn get_available_functions() -> Result<Vec<FunctionDefinition>, String> {
     info!("Request to get available functions"); // [log]
-
-    let available_functions = function_providers::all_functions()
-        .into_iter()
-        .map(|func| func.definition())
-        .collect();
-
-    Ok(available_functions)
+    let funcs = FUNCTIONS
+        .get()
+        .ok_or_else(|| "Functions not initialized".to_string())?
+        .lock()
+        .unwrap();
+    Ok(funcs.iter().map(|f| f.definition()).collect())
 }
 
 #[tauri::command]
@@ -187,19 +192,37 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .setup(|app| {
             info!("Running setup hook");
-            // 2. Получаем AppHandle как отдельную переменную (копия)
-            let handle = app.handle().clone();
+            let handle = app.handle(); 
 
-            // 3. Передаём его внутрь async
+            // Передаём его внутрь async
+            let prov_handle = handle.clone();
             tauri::async_runtime::spawn(async move {
-                init_providers(&handle).await;
+                init_providers(&prov_handle).await;
             });
 
-            /* tauri::async_runtime::spawn(async move {
-                // 👇 Инициализация функций
-                let functions = initialize_functions();
-                FUNCTIONS.set(functions).ok();
-            }); */
+            let func_handle = handle.clone();
+            // Захардкоденный путь до эмбеддинг-модели
+            let mut app_path = func_handle
+            .path()
+            .cache_dir()
+            .expect("Failed to get cache dir");
+
+            #[cfg(not(target_os = "android"))]
+            {
+                app_path = app
+                    .path()
+                    .app_data_dir()
+                    .expect("Failed to get app data dir");
+            }
+
+            let  model_path = app_path.join("models/embeddings/bge-m3-Q4_0.gguf")
+            .to_string_lossy()
+            .to_string();
+
+
+            // Регистрируем все функции
+            let functions = function_providers::all_functions(&func_handle, &model_path);
+            FUNCTIONS.set(Mutex::new(functions)).ok();
 
             Ok(())
         })

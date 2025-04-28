@@ -69,13 +69,13 @@
       </template>
       <template #actions="{ prev, next}">
         <v-stepper-actions
-          @click:next="next"
           @click:prev="prev"
+          @click:next="next"
         >
           <template #next="{ props }">
             <v-btn
               :disabled="false"
-              @click="(page === 2 ? $router.push('/') : props.onClick())"
+              @click="nextPage(page, props)"
             />
           </template>
         </v-stepper-actions>
@@ -85,6 +85,7 @@
 </template>
 
 <script setup lang="ts">
+import router from '@/router';
 import { useAppStore } from '@/stores/app'
 import { invoke } from '@tauri-apps/api/core';
 import { storeToRefs,  } from 'pinia';
@@ -99,6 +100,15 @@ const appStore = useAppStore()
 const { currentProvider, currentModel, providersList, availableModels, installedModels } = storeToRefs(appStore)
 
 const page = ref(1)
+
+function nextPage(page: number, props: any ){
+  if (page == 2) {
+    localStorage.setItem('hasCompletedSetup', 'true')
+    router.push('/')
+  } else {
+    props.onClick()
+  }
+}
 
 onMounted(() => {
   invoke<string[]>("get_available_providers").then((providers) => {

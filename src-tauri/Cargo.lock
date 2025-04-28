@@ -105,6 +105,7 @@ dependencies = [
  "log",
  "minijinja",
  "once_cell",
+ "regex",
  "reqwest",
  "serde",
  "serde_json",
@@ -118,6 +119,7 @@ dependencies = [
  "tauri-plugin-pinia",
  "tera",
  "tokio",
+ "uuid",
 ]
 
 [[package]]

@@ -11,7 +11,6 @@ import { useChatStore, type ChatRole } from "@/stores/chat";
 import { useAppStore } from "@/stores/app";
 import { listen } from "@tauri-apps/api/event";
 import { storeToRefs } from "pinia";
-import router from "./router";
 
 onMounted(() => {
   attachConsole();
@@ -20,14 +19,9 @@ onMounted(() => {
 const chatStore = useChatStore();
 const appStore = useAppStore();
 chatStore.$tauri.start();
-appStore.$tauri.start().then(() => {
-  if (appStore.$state.initialSetup) {
-    router.push('/initial-setup')
-    initialSetup.value = false
-  }
-});
+appStore.$tauri.start();
 
-const { currentProvider, currentModel, initialSetup } = storeToRefs(appStore)
+const { currentProvider, currentModel } = storeToRefs(appStore)
 const { runParams } = storeToRefs(chatStore)
 const streamBuffer = ref("");
 const isLoading = ref(false);
@@ -102,6 +96,10 @@ onMounted(() => {
         tool_call_id = msg.tool_call_id;
       } else {
         content = JSON.stringify(output);
+      }
+
+      if (role === "tool" && tool_call_id && currentProvider.value == 'llama.cpp') {
+          chatStore.removeLastMessage(chatId)
       }
 
       chatStore.appendMessageByRole(chatId, role, content, tool_call_id);

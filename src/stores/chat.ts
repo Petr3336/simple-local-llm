@@ -191,7 +191,12 @@ export const useChatStore = defineStore('chat', {
     
       // На случай других ролей — просто добавим новое сообщение
       session.messages.push({ role, content });
-    },    
+    },
+    removeLastMessage(chatId: string) {
+      const session = this.chatSessions.find(c => c.id === chatId);
+      if (!session) return;
+      console.log(session.messages.pop());
+    },   
     async stopModel(
       providerName: string,
       model: string,

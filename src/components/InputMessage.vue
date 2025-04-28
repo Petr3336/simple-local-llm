@@ -100,7 +100,7 @@ import {
   watch,
   type ComponentPublicInstance 
 } from "vue";
-import { MdEditor, type ExposeParam } from "md-editor-v3";
+import { MdEditor, type ExposeParam, type ToolbarNames } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { useChatStore } from "@/stores/chat";
 import { useAppStore } from "@/stores/app";
@@ -134,7 +134,7 @@ const mdEditor = ref<ComponentPublicInstance & ExposeParam | null>(null);
 const fullscreen = ref(false);
 
 // Настройка тулбаров
-const toolBarConfiguration = [
+const toolBarConfiguration: ToolbarNames[] = [
   "bold",
   "-",
   "title",

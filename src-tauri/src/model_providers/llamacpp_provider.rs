@@ -196,6 +196,9 @@ impl ModelProvider for LlamaCppProvider {
         // иначе возвращает json!("") (пустую строку).
         let tool_response_result: Result<serde_json::Value, String> =
             tokio::task::spawn_blocking(move || -> Result<serde_json::Value, String> {
+                let mut tool_response = json!("");
+                let mut full_response = String::new();
+                let _llama = {
                 let backend =
                     LlamaBackend::init().map_err(|e| format!("Backend init error: {:?}", e))?;
                 info!("Llama backend initialized");
@@ -244,17 +247,18 @@ impl ModelProvider for LlamaCppProvider {
 You may call one or more functions to assist with the user query.
 You are provided with function signatures within <tools></tools> XML tags:
 <tools>
-{%- for tool in tools %}
+{% for tool in tools %}
 {{ tool.name }}:
   description: {{ tool.description | default("No description") }}
   params:
-    {%- if tool.parameters and tool.parameters|length > 0 %}
-    {%- for key, param in tool.parameters.items() %}
-    {{ key }}: {{ param.description | default("No description") }}
-    {%- endfor %}
-    {%- else -%}
-    {%- endif %}
-{%- endfor %}
+    {% if tool.parameters and tool.parameters|length > 0 %}
+      {% for p in tool.parameters %}
+    {{ p.key }}: {{ p.description | default("No description") }}
+      {% endfor %}
+    {% else %}
+      (нет параметров)
+    {% endif %}
+{% endfor %}
 </tools>
 For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
 
@@ -316,12 +320,13 @@ For each function call, return a json object with function name and arguments wi
                             "name": def.name,
                             "description": def.description.unwrap_or_default(),
                             "parameters": def.parameters.iter().map(|(key, param)| {
-                                (key.clone(), serde_json::json!({
+                                serde_json::json!({
+                                    "key": key,
                                     "name": param.name,
                                     "description": param.description,
                                     "type": param.param_type,
-                                }))
-                            }).collect::<serde_json::Value>()
+                                })
+                            }).collect::<Vec<_>>()
                         });
                         functions_json.push(json);
                     } else {
@@ -392,8 +397,9 @@ Here are some rules to keep in mind when writing your answer
                     .str_to_token(&prompt, AddBos::Always)
                     .map_err(|e| format!("Tokenization failed: {:?}", e))?;
                 debug!("Prompt tokenized into {} tokens", tokens.len());
-    
-                let mut batch = LlamaBatch::new(512, 1);
+                
+                let n_ctx = ctx.n_ctx() as usize;
+                let mut batch = LlamaBatch::new(n_ctx, 1);
                 for (i, token) in tokens.iter().enumerate() {
                     batch
                         .add(*token, i as i32, &[0], i == tokens.len() - 1)
@@ -406,9 +412,7 @@ Here are some rules to keep in mind when writing your answer
     
                 let mut sampler = LlamaSampler::greedy();
                 let mut n_cur = batch.n_tokens();
-                let mut full_response = String::new();
                 // Если функция не будет вызвана, возвращаем json!("")
-                let mut tool_response = json!("");
                 let mut function_called = false;
     
                 while n_cur < (ctx.n_ctx() as usize).try_into().unwrap() {
@@ -451,47 +455,6 @@ Here are some rules to keep in mind when writing your answer
                             }).to_string() + "\n"
                         });
                         let _ = app.emit("model-stream-output", payload.to_string());
-    
-                        if !function_called {
-                            let tail = full_response
-                                .char_indices()
-                                .rev()
-                                .nth(100)
-                                .map(|(idx, _)| &full_response[idx..])
-                                .unwrap_or(&full_response);
-
-    
-                            if let Some(call_content) = LlamaCppProvider::extract_tool_call_tag(tail) {
-                                if let Some((fname, tool_json)) = LlamaCppProvider::try_extract_tool_call(&call_content) {
-                                    info!("Detected function call: {}", fname);
-                                    function_called = true;
-                                    if let Some(f) = all_functions.iter().find(|f| f.definition().name == fname) {
-                                        let params = tool_json.get("arguments").cloned().unwrap_or(json!({}));
-                                        match futures::executor::block_on(f.call(params)) {
-                                            Ok(tool_result) => {
-                                                let tool_result_str = tool_result.to_string();
-                                                tool_response = json!({
-                                                    "chat_id": chat_id,
-                                                    "output": {
-                                                        "role": "tool",
-                                                        "content": format!("Результат выполнения функции {}: {}", fname, tool_result_str),
-                                                        "tool_call_id": fname
-                                                    }
-                                                });
-                                                break;
-                                            }
-                                            Err(e) => {
-                                                warn!("Error calling function {}: {:?}", fname, e);
-                                                // Если произошла ошибка, можно оставить tool_response пустым
-                                                tool_response = json!("");
-                                            }
-                                        }
-                                    } else {
-                                        warn!("Function {} not found", fname);
-                                    }
-                                }
-                            }
-                        }
                     }
     
                     batch.clear();
@@ -502,8 +465,30 @@ Here are some rules to keep in mind when writing your answer
                         .map_err(|e| format!("Decoding failed: {:?}", e))?;
                     n_cur += 1;
                 }
-    
-                Ok(tool_response)
+            };
+            if let Some(call_content) = LlamaCppProvider::extract_tool_call_tag(&full_response) {
+                if let Some((fname, params)) = LlamaCppProvider::try_extract_tool_call(&call_content) {
+                    if let Some(func) = initialize_functions()
+                        .into_iter()
+                        .find(|f| f.definition().name == fname)
+                    {
+                        let args = params.get("arguments").cloned().unwrap_or_default();
+                        let tool_res = futures::executor::block_on(func.call(args))
+                            .map_err(|e| format!("Error calling function {}: {}", fname, e))?;
+                        let tool_result_str = tool_res.to_string();
+                        // Собираем ответ в нужном формате:
+                        tool_response = json!({
+                            "chat_id": chat_id,
+                            "output": {
+                                "role": "tool",
+                                "content": format!("Результат выполнения функции {}: {}", fname, tool_result_str),
+                                "tool_call_id": fname
+                            }
+                        });
+                    }
+                }
+            }
+            Ok(tool_response)
             })
             .await
             .map_err(|e| format!("Failed to run model: {:?}", e))?;
