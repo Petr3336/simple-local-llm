@@ -1,70 +1,49 @@
+<!-- eslint-disable vue/valid-v-slot -->
+// index.vue
 <template>
-  <v-app-bar
-    app
-    flat
-    color="transparent"
-    class="px-4"
-  >
-    <!-- Кнопка меню -->
-    <v-btn
-      icon
-      @click="appStore.sideBarToggle"
+  <v-container>
+    <v-stepper
+      v-model="page"
+      :items="['Настрой провайдера модели', 'Выбери модель']"
+      next-text="Далее"
+      prev-text="Назад"
     >
-      <v-icon>mdi-menu</v-icon>
-    </v-btn>
-    <v-spacer />
-    <v-menu :close-on-content-click="false">
-      <template #activator="{ props }">
-        <v-btn v-bind="props">
-          {{ currentProvider + ': ' + currentModel || "Выберите провайдера" }}
-          <v-icon right>
-            mdi-chevron-down
-          </v-icon>
-        </v-btn>
-      </template>
-
-      <v-card
-        class="pa-2"
-        style="background: transparent; box-shadow: none;"
-      >
-        <div class="d-flex align-center">
+      <template #item.1>
+        <v-card
+          title="Шаг 1: Выбери провайдера модели"
+          flat
+        >
           <v-select
             v-model="currentProvider"
             :items="providersList"
             label="Провайдер"
-            density="compact"
             variant="outlined"
-            class="mr-2"
-            style="min-width: 120px; max-width: 180px;"
+            class="mx-4"
             hide-details
             @update:model-value="{appStore.getModels(); currentModel=''}"
           />
-          <!-- <v-combobox
-            v-model="currentModel"
-            :items="modelsList"
-            label="Модель"
-            density="compact"
-            variant="outlined"
-            style="min-width: 150px; max-width: 180px;"
-            hide-details
-          /> -->
+        </v-card>
+      </template>
+
+      <template #item.2>
+        <v-card
+          title="Шаг 2: Выбери модель"
+          flat
+        >
           <v-select
             v-if="currentProvider=='llama.cpp'"
             v-model="currentModel"
             :items="availableModels"
             label="Провайдер"
-            density="compact"
             variant="outlined"
             class="mx-4"
             hide-details
-            style="min-width: 300px; max-width: 500px;"
           >
             <template #append-inner>
               <v-btn
                 v-if="!installedModels.includes(currentModel)"
                 icon="mdi-download"
                 variant="text"
-                density="compact"
                 @click="appStore.downloadSelectedModel(currentProvider, currentModel)"
               />
             </template>
@@ -74,35 +53,52 @@
             v-model="currentModel"
             :items="availableModels"
             label="Модель"
-            density="compact"
             variant="outlined"
             hide-details
-            style="min-width: 300px; max-width: 500px;"
           >
             <template #append-inner>
               <v-btn
                 v-if="!availableModels.includes(currentModel)"
                 icon="mdi-download"
                 variant="text"
-                density="compact"
                 @click="appStore.downloadSelectedModel(currentProvider, currentModel)"
               />
             </template>
           </v-combobox>
-        </div>
-      </v-card>
-    </v-menu>
-  </v-app-bar>
+        </v-card>
+      </template>
+      <template #actions="{ prev, next}">
+        <v-stepper-actions
+          @click:next="next"
+          @click:prev="prev"
+        >
+          <template #next="{ props }">
+            <v-btn
+              :disabled="false"
+              @click="(page === 2 ? $router.push('/') : props.onClick())"
+            />
+          </template>
+        </v-stepper-actions>
+      </template>
+    </v-stepper>
+  </v-container>
 </template>
 
-<script lang="ts" setup>
-import { onMounted } from "vue";
-import { invoke } from "@tauri-apps/api/core";
+<script setup lang="ts">
 import { useAppStore } from '@/stores/app'
-import { storeToRefs } from "pinia";
+import { invoke } from '@tauri-apps/api/core';
+import { storeToRefs,  } from 'pinia';
+
+definePage({
+  meta: {
+    layout: 'initial-setup',  // будет искать /src/layouts/custom-layout.vue
+  },
+})
 
 const appStore = useAppStore()
 const { currentProvider, currentModel, providersList, availableModels, installedModels } = storeToRefs(appStore)
+
+const page = ref(1)
 
 onMounted(() => {
   invoke<string[]>("get_available_providers").then((providers) => {
@@ -116,11 +112,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-v-app-bar {
-  backdrop-filter: blur(5px);
-}
-
-.v-btn--variant-outlined {
-  border: thin solid #ffffff1f;
-}
 </style>
