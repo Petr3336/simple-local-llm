@@ -216,7 +216,8 @@ async function runModel() {
     currentProvider.value,
     runParams.value.model,
     runParams.value.prompt,
-    runParams.value.options
+    runParams.value.options,
+    files.value.map( file => {return file.path})
   );
 }
 

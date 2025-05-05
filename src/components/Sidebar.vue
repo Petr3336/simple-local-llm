@@ -37,7 +37,7 @@
         <v-list-item
           v-for="chat in sortedChatSessions"
           :key="chat.id"
-          :active="chat.id === activeChatId"
+          :to="chat.id"
           @click="selectChat(chat.id)"
           @contextmenu.prevent="openContextMenu($event, chat)"
         >

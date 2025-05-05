@@ -1,4 +1,5 @@
 use std::cmp::Ordering;
+use std::fmt::format;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::num::NonZeroU32;
@@ -225,7 +226,7 @@ pub fn embed_sync(
 #[tauri::command]
 pub async fn retrieve_context(
     app: AppHandle,
-    model_path: String,
+    model_name: String,
     query_text: String,
     file_paths: Vec<String>,
     segment_size: u32,
@@ -233,6 +234,18 @@ pub async fn retrieve_context(
 ) -> Result<String, String> {
     // копируем top_n внутрь blocking-блока
     let n = top_n;
+
+    // Получаем путь к кэшу и создаём директорию для моделей
+    let mut base = app.path().cache_dir().map_err(|e| e.to_string())?;
+    
+    #[cfg(not(target_os = "android"))]
+    {
+        base = app
+            .path()
+            .app_data_dir()
+            .expect("Failed to get app data dir");
+    }
+    let model_path = base.join(format!("models/embeddings/{model_name}"));
     let result_str = spawn_blocking(move || {
         // a) Инициализация бэкенда и модели
         let backend = LlamaBackend::init().map_err(|e| e.to_string())?;
@@ -244,7 +257,6 @@ pub async fn retrieve_context(
         .map_err(|e| e.to_string())?;
 
         // b) Папка кэша
-        let base = app.path().cache_dir().map_err(|e| e.to_string())?;
         let cache_root = base.join("embeddings");
 
         // c) Эмбеддинг запроса
@@ -306,7 +318,16 @@ pub async fn retrieve_context(
             .map(|(text, _)| text)
             .collect::<Vec<_>>();
 
-        Ok::<String, String>(top_segments.join("\n\n"))
+        // h) Форматируем вывод с сегментами
+        let mut formatted_result = String::new();
+        for (i, text) in top_segments.iter().enumerate() {
+            if i == 0 {
+                formatted_result.push_str(&format!("file: \"{}\"\n", file_paths.join("\", \"")));
+            }
+            formatted_result.push_str(&format!("chunk {}: {}\n", i + 1, text));
+        }
+
+        Ok::<String, String>(formatted_result)
     })
     .await
     .map_err(|e| e.to_string())??;

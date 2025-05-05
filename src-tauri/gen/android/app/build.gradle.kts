@@ -27,9 +27,8 @@ android {
             }
 
             keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["password"] as String
             storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: error("KEYSTORE_PASSWORD is not set")
+            keyPassword = System.getenv("KEYSTORE_PASSWORD") ?: error("KEYSTORE_PASSWORD is not set")
         }
     }
 

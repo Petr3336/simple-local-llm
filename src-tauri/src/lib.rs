@@ -201,27 +201,9 @@ pub fn run() {
             });
 
             let func_handle = handle.clone();
-            // Захардкоденный путь до эмбеддинг-модели
-            let mut app_path = func_handle
-            .path()
-            .cache_dir()
-            .expect("Failed to get cache dir");
-
-            #[cfg(not(target_os = "android"))]
-            {
-                app_path = app
-                    .path()
-                    .app_data_dir()
-                    .expect("Failed to get app data dir");
-            }
-
-            let  model_path = app_path.join("models/embeddings/bge-m3-Q4_0.gguf")
-            .to_string_lossy()
-            .to_string();
-
 
             // Регистрируем все функции
-            let functions = function_providers::all_functions(&func_handle, &model_path);
+            let functions = function_providers::all_functions(&func_handle, "bge-m3-Q4_0.gguf");
             FUNCTIONS.set(Mutex::new(functions)).ok();
 
             Ok(())
